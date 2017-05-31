@@ -1,0 +1,605 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+}
+
+.fullheight {
+    height: 100%;
+}
+.midasi {
+    font-size: 26px; /* 文字の大きさ */
+    color: #000080;  /*2017.03.29 神田 色変更*/ 
+    height: 8px;
+    text-align: center;
+    width: 540px;
+}
+
+.Detailmidasi {
+    font-size: 26px; /* 文字の大きさ */
+    color: grey;
+    height: 8px;
+    text-align: center;
+    width:100%;
+}
+
+.komidasi {
+    font-size: 24px; /* 文字の大きさ */
+    color: grey;
+    height: 8px;
+    text-align: left;
+}
+
+.td_data14 {
+    font-size: 14px; /* 文字の大きさ */
+    color: grey;
+    height: 8px;
+    text-align: left;
+    border-width: 0;
+}
+
+.td_data16 {
+    font-size: 16px; /* 文字の大きさ */
+    color: grey;
+    height: 8px;
+    text-align: left;
+    border-width: 0;
+    vertical-align:top;
+}
+
+.td_data24 {
+    font-size: 24px; /* 文字の大きさ */
+    color: grey;
+    height: 8px;
+    text-align: left;
+    border-width: 0;
+}
+
+.td_data26 {
+    font-size: 26px; /* 文字の大きさ */
+    color: grey;
+    height: 8px;
+    text-align: left;
+    border-width: 0;
+}
+.textcenter28 {
+	font-size: 28px;
+	font-family: "ＭＳ ゴシック", "monospace";
+    text-align: center;
+}
+.textcenter24 {
+	font-size: 24px;
+	font-family: "ＭＳ ゴシック", "monospace";
+    text-align: center;
+}
+.textcenter18 {
+	font-size: 18px;
+	font-family: "ＭＳ ゴシック", "monospace";
+    text-align: center;
+}
+.textcenter16 {
+	font-size: 16px;
+	font-family: "ＭＳ ゴシック", "monospace";
+    text-align: center;
+}
+.textcenter14 {
+	font-size: 14px;
+	font-family: "ＭＳ ゴシック", "monospace";
+    text-align: center;
+}
+.moji24 {
+	font-size: 24px;
+	font-family: "ＭＳ ゴシック", "monospace";
+}
+.moji18 {
+	font-size: 18px;
+	font-family: "ＭＳ ゴシック", "monospace";
+}
+.moji16 {
+	font-size: 16px;
+	font-family: "ＭＳ ゴシック", "monospace";
+}
+.moji14 {
+	font-size: 14px;
+	font-family: "ＭＳ ゴシック", "monospace";
+}
+.moji11 {
+	font-size: 11px;
+	font-family: "ＭＳ ゴシック", "monospace";
+}
+.komoji {
+	font-size: 12px;
+	font-family: "ＭＳ ゴシック", "monospace";
+}
+.kotei {
+	font-family: "monospace";
+	font-size: x-small;
+}
+.komidasi12 {
+	font-family: "ＭＳ ゴシック", "monospace";
+	font-size: 12px;
+}
+.komidasi11 {
+	font-family: "ＭＳ ゴシック", "monospace";
+	font-size: 11px;
+}
+.komidasi10 {
+	font-family: "ＭＳ ゴシック", "monospace";
+	font-size: 10px;
+	line-height: 11px;
+}
+
+.textright {
+	text-align:right;
+}
+
+.textleft  {
+	text-align:left;
+}
+
+.backcolor {
+  	background-color:#a7bda7;
+}
+
+/*.btn_big {
+    width: 499px;
+    height: 40px;
+    text-align: left;
+}
+.btn_small {
+    width: 200px;
+    height: 30px;
+    text-align: right;
+}
+.btn_middle {
+    width: 300px;
+    height: 40px;
+    text-align: left;
+}*/
+
+/*ウィンドウ全体のフォント、背景色
+body
+{
+  color:#000000;
+  background-color:#a7bda7;
+}*/
+
+/*標準ボタン class="stdbutton を指定*/
+/*.stdbutton
+{
+  width: 100px;
+  height: 30px;
+}*/
+
+/*FMC／MC進捗用縦スクロール*/
+div.follow {
+    font-family: "ＭＳ ゴシック", "monospace";
+    font-size:10pt;
+    width:570px;
+    height:121px;
+    border:1px solid #000080;
+    overflow-y: scroll;
+}
+
+/*過去トラ検索用 */
+
+
+/*TOP10用 */
+.serchTop10 {
+    font-family: "ＭＳ ゴシック", "monospace";
+    border: 1px solid #000; 
+    width:240px;
+    vertical-align :top;
+    font-size:10pt;          /*　2017.04.03 ta_kanda 追加 */
+}
+
+/*履歴用 */
+.serchkHistory {
+    font-family: "ＭＳ ゴシック", "monospace";
+    border: 1px solid #000; 
+    width:240px;
+    vertical-align :top;
+    font-size:10pt;          /*　2017.04.03 ta_kanda 追加 */
+}
+/*カテゴリエリア */
+.categoryField
+{
+    border:1px solid #000;
+}
+/*カテゴリタブ */
+.categoryTab
+{
+    width:100%;
+    height:350px;
+    border:1px solid #000;
+    color:#000000;
+    background-color:#EEEEEE;
+}
+
+/*カテゴリ‐部署リスト用*/
+div.categoryBusyo {
+    font-family: "ＭＳ ゴシック", "monospace";
+    font-size:10pt;
+    width:290px;
+    height:300px;
+    border:1px solid #000;
+    overflow-y: scroll;
+}
+
+/*カテゴリ‐システムリスト用*/
+div.categorySystem {
+    font-family: "ＭＳ ゴシック", "monospace";
+    font-size:10pt;
+    width:290px;
+    height:280px;
+    vertical-align: top;
+    border:1px solid #000;
+    overflow-y: scroll;
+}
+
+/*カテゴリ‐部品リスト用*/
+div.categoryBuhin {
+    font-family: "ＭＳ ゴシック", "monospace";
+    font-size:10pt;
+    width:313px;
+    height:305px;
+    border:1px solid #000;
+    overflow-y: scroll;
+    overflow-x :scroll;
+}
+    div.categoryBuhin table
+    {
+    width:480px;
+    }
+
+/*カテゴリ‐マスタリスト用*/
+div.categoryMst {
+    font-family: "ＭＳ ゴシック", "monospace";
+    font-size:10pt;
+    width:290px;
+    height:300px;
+    border:1px solid #000;
+    overflow-y: scroll;
+}
+
+/*カテゴリ‐マスタパネル用*/
+/*div.categoryMstTab {
+    font-family: "ＭＳ ゴシック", "monospace";
+    font-size:10pt;
+    width:350px;
+    height:300px;
+    border:1px solid #000080;
+    overflow-y: scroll;
+}*/
+
+/*カテゴリ‐部署パネル用*/
+/*div.categoryBusyoTab {
+    font-family: "ＭＳ ゴシック", "monospace";
+    font-size:10pt;
+    width:280px;
+    height:300px;
+    border:1px solid #000080;
+    overflow-y: scroll;
+}*/
+
+/*カテゴリ‐システム用*/
+/*div.categorySystemTab {
+    font-family: "ＭＳ ゴシック", "monospace";
+    font-size:10pt;
+    width:280px;
+    height:270px;
+    vertical-align: top;
+    border:1px solid #000080;
+    white-space: nowrap;
+    overflow: scroll;
+}*/
+
+/*div.categoryBuhinTab {
+    font-family: "ＭＳ ゴシック", "monospace";
+    font-size:10pt;
+    width:300px;
+    height:315px;
+    vertical-align: top;
+    border:1px solid #000080;
+    white-space:nowrap;
+    overflow: scroll;
+}*/
+
+/*カテゴリ選択背景色 */
+.category
+{
+    /*height:420px;*/
+    width:620px;
+    height:394px;
+    border:1px solid #000;
+    color:#000000;
+    background-color:#EEEEEE;
+}
+
+/*カテゴリタブ */
+.categoryTab
+{
+    /*width:620px;*/
+    /*height:394px;*/
+    /*height:354px;*/
+    border:1px solid #000;
+    color:#000000;
+    background-color:#EEEEEE;             
+    font-family: "ＭＳ ゴシック", "monospace";  /*　2017.04.03 ta_kanda 追加 */
+    font-size:10pt;
+}
+
+.categoryTabM {
+    color: blue;
+    font-weight:bold;
+} 
+
+/*カテゴリ検索タブ背景色*/
+.Tab_ColorAdd {
+    background-color: blue !important;
+    color:white !important;
+} 
+
+/*カテゴリ検索タブ背景色(デフォルト）*/
+.Tab_Default {
+    background-color: lightgray !important;
+    color:black !important;
+} 
+
+/*カテゴリ選択背景色 */
+.kaito_head00 {
+    font-family: "ＭＳ ゴシック", "monospace";
+    font-size:10pt;
+    height:20px;
+    border:1px solid #000080;
+}
+
+.kaito_head01 {
+    font-family: "ＭＳ ゴシック", "monospace";
+    font-size:10pt;
+    height:40px;
+    width:50px;
+    border:1px solid #000080;
+}
+
+.kaito_head1 {
+    font-family: "ＭＳ ゴシック", "monospace";
+    font-size:11pt;
+    width:50px;
+    height:60px;
+    border:1px solid #000080;
+}
+
+.kaito_head2 {
+    font-family: "ＭＳ ゴシック", "monospace";
+    font-size:11pt;
+    width:100px;
+    height:60px;
+    border:1px solid #000080;
+}
+
+/* DataTables用 */
+/* フォロー回答DataTables用 */
+table.anstbl {
+    border:1px solid #5cc1e6;
+    border-collapse: collapse;
+    word-break: break-all;
+}
+table.anstbl td{
+    font-family: "ＭＳ ゴシック", "monospace";
+    font-size: 10pt;
+    vertical-align: top;
+    border:1px solid #5cc1e6;
+}
+table.anstbl th{
+    font-family: "ＭＳ ゴシック", "monospace";
+    font-size: 10pt;
+    border:1px solid #5cc1e6;
+    background-color:#336633; color:#ffffff;
+
+}
+
+/* IE8 用 */
+table.anstbl tr.odd td  { background-color: #cfe2e6;}
+table.anstbl tr.even td { background-color: #FFFFFF;}
+
+/* IE11 用
+table.anstbl tr:nth-child(odd)  td{background-color:#cfe2e6;color:#000000;}
+table.anstbl tr:nth-child(even) td{background-color:#FFFFFF;color:#000000;}*/
+
+/* 過去トラDataTables用 */
+table.tratbl {
+    border:1px solid #5cc1e6; border-collapse:collapse;
+    word-break: break-all;
+    border-spacing: 1px;
+}
+table.tratbl td{
+    font-family: "ＭＳ ゴシック", "monospace";
+    font-size: 10pt;
+    vertical-align: top;
+    border:1px solid #5cc1e6;
+}
+table.tratbl th{
+    font-family: "ＭＳ ゴシック", "monospace";
+    font-size: 10pt;
+    border:1px solid #5cc1e6;
+    background-color:#336633; color:#ffffff;
+
+}
+
+/* IE8 用 */
+table.tratbl tr.odd td  { background-color: #cfe2e6;}
+table.tratbl tr.even td { background-color: #FFFFFF;}
+
+/* IE11 用
+table.tratbl tr:nth-child(odd)  td{background-color:#cfe2e6;color:#000000;}
+table.tratbl tr:nth-child(even) td{background-color:#FFFFFF;color:#000000;}*/
+
+.align_right {
+    text-align: right; 
+}
+.align_center {
+    text-align: center; 
+}
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+.tableFont,
+.table {
+    font-size:12px;
+}
+table {
+    text-align:left;
+    
+    padding-left:2px;
+}
+.TxtInputBoxStyle{
+    height:150px;
+    width:100%;
+    overflow:scroll;
+}
+.pnlInputBoxStyle{
+    height:10px;
+}
+.bbTable {
+    overflow-y: scroll;
+    height: 200px;
+    width: 100%;
+    overflow-x: hidden;
+}
+.highlight{
+    background-color:yellow
+}
+/*過去トラ検索スタイル定義*/
+.lnkKategori {
+    padding :0px 0px 0px 0px !important  ;
+}
+
+
+/*過去トラ詳細スタイル定義*/
+.DetailDivStyle{
+     overflow-y:scroll;
+     height:90vh;
+     padding:10px;
+}
+.DetailTableStyle{
+    font-family: "ＭＳ ゴシック", "monospace";
+    font-size:10pt;
+    border-collapse: collapse; 
+    table-layout: fixed; 
+    width:100%;
+    padding: 5px;
+}
+    .DetailTableStyle tr {
+        height: 15px;
+    }
+    .DetailTableStyle td {
+        text-align:left;
+        padding-left:5px;
+    }
+    .DetailTableStyle th {
+        width:130px;
+        text-align:left;
+        background-color: #D3D3D3;
+        padding-left:5px;
+    }
+    .DetailTableStyle tr,
+    .DetailTableStyle td {
+        border: 1px solid #CCCCCC;
+        text-align: left;
+        vertical-align: top;
+    }
+
+/*フォロー回答テーブルスタイル定義*/
+.syosaiTable {
+    font-family: "ＭＳ ゴシック", "monospace";
+    font-size:10pt;
+    border-collapse: collapse; 
+    table-layout: fixed; 
+} 
+.syosaiTable th, 
+.syosaiTable td { 
+    border: 1px solid #CCCCCC; 
+    padding: 5px 10px; 
+    text-align: left; 
+    vertical-align: top;
+} 
+.syosaiTable th { 
+    background-color: #D3D3D3; 
+}
+
+/*設通図面選択画面スタイル定義*/
+.ecsDrawingSelectDivStyle{
+    width:400px;
+    text-align:left;
+    padding-left:10px;
+    
+}
+.ecsDrawingSelectTableStyle{
+    text-align:left;
+
+}
+.ecsDrawingSelectTdDrawingNoStyle{
+    width:300px;
+}
+.ecsDrawingSelectTdDrawingRevNoStyle {
+    width:300px;
+}
+/*フォント汎用*/
+.font
+{
+    font-family: "ＭＳ ゴシック", "monospace";
+}
+
+/*BRAVA用*/
+.pdf
+{
+    padding : 0px 0px 0px 0px;
+    height: 640px;
+}

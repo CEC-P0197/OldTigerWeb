@@ -1,0 +1,16 @@
+<%-- 掲示版(サンプル）--%>
+
+<%-- 以下、サンプル--%>
+改行&ltbr/>する,改行<br/>する
+&lti>斜体文字&lt/>,<i>斜体文字</>
+&ltu>アンダーライン&lt/u>,<u>アンダーライン</u>
+&ltstrike>打消し線&lt/strike>,<strike>打消し線</strike>
+&ltfont color="blue">文字を青くする&lt/font>,<font color="blue">文字を青くする</font>
+&ltfont color="red">文字を赤くする&lt/font>,<font color="red">文字を赤くする</font>
+&ltfont size="4">文字を大きくする&lt/font>,<font size="4">文字を大きくする</font>
+&lta href="\\xx\\HELP.PDF">リンクサンプル&lt/a>,<a href="/Sample.pdf">リンクサンプル</a>
+指定なし,指定なし
+
+
+<%-- <font size="4px" color="blue"><u>コード</u></font>,<font  size="4px" color="blue"><u>表示</u></font>--%>
+
