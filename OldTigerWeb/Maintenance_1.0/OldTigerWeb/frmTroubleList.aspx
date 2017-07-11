@@ -22,62 +22,6 @@
 
     <title>過去トラ検索結果</title>
 
-    <%--<script type="text/javascript">--
-        //// --------------------------------------------------
-        //// 関数名   : DisplayForder
-        //// 概要     : フォルダを表示する
-        //// 引数     : strUrl     : フォルダパス
-        //// 戻り値   : なし
-        //// --------------------------------------------------
-        //function DisplayForder(url) {
-        //    try {
-        //        window.open(url);
-        //    }
-        //    catch (e) {
-        //        //alert("未存在 " + url);
-        //    }
-        //}
-
-        //// --------------------------------------------------
-        //// 関数名   : Window Open
-        //// 概要     : 詳細画面表示
-        //// 引数     : システム管理番号
-        //// 戻り値   : true、false
-        //// --------------------------------------------------
-        //function openDetail(sysKanriNo) {
-        //    // 1. 画面のオープン
-        //    var url = "frmDetail.aspx?KANRINO=" + sysKanriNo;
-        //    var w = (screen.width - 780) / 2;
-        //    var h = (screen.height - 700) / 2;
-        //    alert("A");
-        //    alert(sysKanriNo);
-        //    var features = "menubar=no,toolbar=no,location=no,resizable=no,scrollbars=yes,status=no,height=700,width=780,left=" + w + ",top=" + h;
-        //    var returnFlg = window.open(url, sysKanriNo, features);
-
-        //    // 3. エラー時処理
-        //    // 1) 別画面1画面目
-        //    if (returnFlg == 1) {
-
-        //    }
-        //    return true;
-        //}
-
-        //$(function () {
-        //    $("input").keydown(function (e) {
-        //        if ((e.which && e.which === 13) || (e.keyCode && e.keyCode === 13)) {
-        //            var value = document.activeElement;
-        //            alert(value);
-        //            return false;
-        //        } else {
-        //            return true;
-        //        }
-        //    });
-        //});
-
-        /* IE8 用 */
-        <%--jQuery(function ($) { $("tr:nth-child(odd)").addClass('odd'); $("tr:nth-child(even)").addClass('even'); });--
-
-   --</script>--%>
 
     <style type="text/css">
     h4 { /* h1～h6を指定 http://www.aoiweb.com/aoi2/title_bar4.htm */
@@ -187,15 +131,19 @@
     </style>
 
 </head>
-<body style ="margin:0 auto; padding-left :5px;">
+<body onload="focus()" style ="margin:0 auto; padding-left :5px;">
    <%--<h4 class="auto-style7" >過去トラシステム　　　　　　　　　　　　　　　過去トラ検索結果</h4>　2017.03.29 神田 --%>
    <h4 >過去トラシステム</h4>
     <form id="frmTroubleList" runat="server">
-        <div class="divStyle" style="height: 640px;height: 1330px;">
+        <div id="frmTroubleListDiv" class="divStyle" style="height: 640px;height: 1330px;">
             <table style="width:100%;" >
                 <tbody>
                     <tr>
-                        <td colspan="5" class="midasi">過去トラ検索結果</td>
+                        <td colspan="4" class="midasi">過去トラ検索結果</td>
+                        <td>
+<%--                            <asp:Button ID="btnClose" runat="server" Width="100px" Height="35px" Text="閉じる" CssClass="buttoncolor btnClose" 
+                            OnClientClick="window.close();" />--%>
+                        </td>
                     </tr>
                     <tr>
 		              <td>検索条件：　<asp:Label ID="lblType" runat="server" /></td>
@@ -209,8 +157,8 @@
 <%-- 20170201 機能改善 END --%>
                       <td style="text-align:left; padding-left:0px">
 <%-- 20170201 機能改善 START --%>
-                        <asp:Button ID="btnSearch" runat="server" Width="100px" Height="35px" Text="検索" CssClass="buttoncolor" OnClick="btn_Search_Click" 
-                            OnClientClick="return confSearchCheck();" /> 
+                        <asp:Button ID="btnSearch" runat="server" Width="100px" Height="35px" Text="検索" CssClass="buttoncolor"  OnClick="btn_Search_Click" 
+                            OnClientClick="confSearchCheck();return openWindowLoading();" /> 
 <%-- 20170201 機能改善 END --%>
                        </td>
                        <td style="text-align:right">
@@ -229,7 +177,7 @@
                 </tbody>
             </table>
             <div class="divStyle">
-                <table border="1" class="tratbl" id="troubleList" >
+                <table border="1" class="tratbl noneStyle" id="troubleList" >
                     <thead>
                         <tr>
                             <th rowspan="2" class="div_36 thBaseColor"><br /><br />No</th>
@@ -255,27 +203,6 @@
                             <th class="div_90 thRecurColor">再発防止策<br />評価面</th>
                         </tr>
                     </thead>
-<%--                <tfoot>
-                        <tr>
-                            <th>No</th>
-                            <th>ﾗﾝｸ</th>
-                            <th>BYPU区分</th>
-                            <th>管理<br />No</th>
-                            <th>項目</th>
-                            <th>F<br />M<br />C</th>
-                            <th>現象<br />（内容）</th>
-                            <th>状況</th>
-                            <th>原因</th>
-                            <th>対策</th>
-                            <th>開発時の<br />流出要因</th>
-                            <th>確認の<br />観点</th>
-                            <th>再発防止策<br />設計面</th>
-                            <th>再発防止策<br />評価面</th>
-                            <th>部署</th>
-                            <th>資料No一覧</th>
-                            <th>関連資料</th>
-                        </tr>
-                    </tfoot>--%>
                     <tbody>
                     <%
                         if (userSight == "BY") {editDt = troubleListBY;}
@@ -286,10 +213,8 @@
                                 rowCount++;
                     %>
                         <tr>
-                            <%--<td style="text-align:right"><%=editDt.Rows[i]["ROWID"].ToString() %></td>--%>
                             <td class="tdStyle" style="text-align:right"><%=rowCount %></td>
                             <td class="tdStyle" style="text-align:center;font-size:10px;"><div><%=editDt.Rows[i]["SYUMU"].ToString() %></div></td>
-                            <%--<td><%=troubleListBY.Rows[i]["FOLLOW_INFO"].ToString() %></td>--%>
                             <td class="tdStyle" style="text-align:center"><%=editDt.Rows[i]["BY_PU"].ToString() %></td>
                             <td class="tdStyle"><a href="#" onclick="openDetail('<%=editDt.Rows[i]["SYSTEM_NO"].ToString() %>');">
                                 <%=editDt.Rows[i]["KOUMOKU_KANRI_NO"].ToString() %></a></td>
@@ -308,12 +233,7 @@
                             <%if (editDt.Rows[i]["LINK_FOLDER_PATH"].ToString() == ""){%>
                             <td  class="tdStyle" style="text-align:center"></td>
                             <%}else{%>
-<%-- 20170201 機能改善 START --%>
-                             
-<%--                                <td  class="tdStyle" style="text-align:center"><a href="javascript:DisplayForder('<%=editDt.Rows[i]["LINK_FOLDER_PATH"].ToString().Trim() %>')">資料</a></td> --%>
                                 <td style="text-align:center">●</td>
-<%-- 20170201 機能改善 END --%>
-<%--                                <td style="text-align:center">有</td>--%>
                             <%}%>
                         </tr>
                     <%  }    }%>
@@ -326,7 +246,6 @@
                                 rowCount++;           
                             %>
                         <tr>
-                            <%--<td style="text-align:right"><%=editDt.Rows[i]["ROWID"].ToString() %></td>--%>
                             <td class="tdStyle" style="text-align:right"><%=rowCount %></td>
                             <td class="tdStyle" style="text-align:center;font-size:10px;"><div><%=editDt.Rows[i]["SYUMU"].ToString() %></div></td>
                             <%--<td><%=troubleListBY.Rows[i]["FOLLOW_INFO"].ToString() %></td>--%>
@@ -348,13 +267,8 @@
                             <%if (editDt.Rows[i]["LINK_FOLDER_PATH"].ToString() == ""){%>
                             <td  class="tdStyle" style="text-align:center"></td>
                             <%}else{%>
-<%-- 20170201 機能改善 START --%>
-                             
-<%--                                <td  class="tdStyle" style="text-align:center"><a href="javascript:DisplayForder('<%=editDt.Rows[i]["LINK_FOLDER_PATH"].ToString().Trim() %>')">資料</a></td> --%>
                                 <td style="text-align:center">●</td>
-<%-- 20170201 機能改善 END --%>
-                                <%--<td style="text-align:center">有</td>--%>
-                                    <%}%>
+                            <%}%>
                         </tr>
                     <%  }    }%>
                     </tbody>
@@ -363,50 +277,26 @@
         </div>
 
     <script type="text/javascript">
+        var parentWindowObject;
+            window.onload = function () {
+            $('#troubleList').removeClass("noneStyle");
+            $('#frmTroubleListDiv').removeClass("dispLoading");
+            parentWindowObject = window.opener;  //親画面定義
+            parentWindowObject.document.getElementById('btnCloseWindow').click(); //親画面内ボタンクリック
+        };
+
         $(document).ready(function () {
             CreateDataTables('#troubleList');
         });
 
         function CreateDataTables(tableID) {
-            //$(tableID + ' tfoot th').each(function () {
-            //    var title = jQuery.trim($(this).text());
-            //    $(this).html('<input style="width:100%" type="text" placeholder="' + title + '" name="' + title +　'" />' );
-            //});
-            //テキストボックスソート用
-            //$.fn.dataTable.ext.order['dom-text'] = function (settings, col) {
-            //    return this.api().column(col, { order: 'index' }).nodes().map(function (td, i) {
-            //        return $('input', td).val();
-            //    });
-            //}
-
-            //var cbox = { "orderDataType": "dom-text" };
-            //var colNum = $(tableID)[0].rows[0].cells.length;
-            //var colSet = [cbox];
-            //for (var i = 0 ; i < colNum - 1 ; i++) {
-            //    colSet.push(null);
-            //}
 
             var oTable = $(tableID).DataTable({
-                //initComplete: function() {
-                //    var r = $(tableID+' tfoot tr');   
-                //    r.find('th').each(function() {
-                //        $(this).css('padding', 8);
-                //    });
-                //    $(tableID+' thead').append(r);
-                //    $('#search_0').css('text-align', 'center');
-                //},
-                //20170201 機能改善 START
                 //"searching": true,     //フィルタを有効
                 "searching": false,     //フィルタを無効
-<%--                <% if(saveFlg) {%>
-                "stateSave": true,
-                <%} else {%>
-                "stateSave": false,
-                <% saveFlg = false; }%>--%>
-                //20170201 機能改善 END
                 "lengthChange": false,
                 "iDisplayLength": 8,
-                "aaSorting":[],
+                "aaSorting": [],
                 //"sDom": '<"top">rt<"bottom"lip><"clear">',
                 "bAutoWidth": false,
                 "oLanguage": {
@@ -426,19 +316,7 @@
                         "sLast": "最終"
                     }
                 }
-                //, "Columns": colSet
             });
-            ////フィルタを設定
-            //oTable.columns().every(function () {
-            //    var that = this;
-            //    $('input', this.footer()).on('keyup change blur input', function () {
-            //        if (that.search() !== this.value) {
-            //            that
-            //                .search(this.value)
-            //                .draw();
-            //        }
-            //    });
-            //});
         }
 
         //20170201 機能改善 START
@@ -493,7 +371,6 @@
                 }
                 return rc;
             }
-
             return true;
         }
         // 入力候補設定
@@ -590,6 +467,9 @@
         /* IE8 用 */
         jQuery(function ($) { $("tr:nth-child(odd)").addClass('odd'); $("tr:nth-child(even)").addClass('even'); });
 
+        function openWindowLoading() {
+            parentWindowObject.document.getElementById('btnOpenWindow').click();
+        }
 
     </script>
     </form>

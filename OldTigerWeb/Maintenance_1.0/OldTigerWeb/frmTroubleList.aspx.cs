@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Linq;
 using System.Data;
-using System.Collections;
+//using System.Net.Http;
+//using System.Threading;
+//using System.Threading.Tasks;
 using System.IO;
 using System.Web;
 using System.Web.UI;
 
 using OfficeOpenXml;
 //20170306 START k-ohmatsuzawa EXCEL表示修正
+using System.Collections;
 using System.Collections.Generic;
 //20170306 END k-ohmatsuzawa
 
@@ -21,6 +24,21 @@ namespace OldTigerWeb
         public int rowCount = 0;
         //20170201 機能改善 START
         public bool saveFlg = false;
+
+        #region "フィールド"
+        /// <summary>
+        /// 共通ビジネスロジック定義
+        /// </summary>
+        CommonLogic bcom = new CommonLogic();
+        /// <summary>
+        /// 過去トラリストビジネスロジック定義
+        /// </summary>
+        BuisinessLogic.BLTroubleList bLogic = new BuisinessLogic.BLTroubleList();
+        /// <summary>
+        /// ページ埋め込みロジック定義
+        /// </summary>
+        CommonPageLogic cPageLogic = new CommonPageLogic();
+        #endregion
         //20170201 機能改善 END
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -174,9 +192,10 @@ namespace OldTigerWeb
             //}
             if ((String)ViewState[Const.Def.DefPARA_CONDITION_FLG] == Const.Def.DefTYPE_AND)
             {
+                // テキストボックスカラー変更（AND）
                 txtSearch.BackColor = System.Drawing.ColorTranslator.FromHtml("#66FFFF");
             }
-            else
+            else　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　// OR条件
             {
                 txtSearch.BackColor = System.Drawing.ColorTranslator.FromHtml("#99FF99");
             }
@@ -540,19 +559,6 @@ namespace OldTigerWeb
                 }
                 
             
-                // 検索タイプ名取得
-                //20170201 機能改善 START
-                //paraTypeName = setTypeName(paraType);
-
-                //if (paraType == Const.Def.DefTYPE_WORD || paraType == Const.Def.DefTYPE_TOP10)
-                //{
-                //    paraTypeName = paraTypeName + "：" + paraWord;
-                //}
-                //else
-                //{
-                //    paraTypeName = "カテゴリ検索：" + paraTypeName + " " + (String)ViewState[Const.Def.DefSERCH_WORD];
-                //}
-                //paraTypeName = setTypeName(paraType);
                 if (paraType == Const.Def.DefTYPE_WORD || paraType == Const.Def.DefTYPE_TOP10)
                 {
                     if ((String)ViewState[Const.Def.DefPARA_CONDITION_FLG] == Const.Def.DefTYPE_AND)
@@ -651,8 +657,6 @@ namespace OldTigerWeb
         // 
         protected void btn_Search_Click(Object sender, EventArgs e)
         {
-            CommonLogic bcom = new CommonLogic();
-
             String[] strArrayData = null;
             String strMoji = "";
             String strWord = "";

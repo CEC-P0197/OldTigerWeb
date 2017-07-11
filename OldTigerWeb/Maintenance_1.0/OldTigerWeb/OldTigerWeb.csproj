@@ -334,6 +334,7 @@
     <Content Include="frmEcsSelectWindow.aspx" />
     <Content Include="frmErrorPage.aspx" />
     <Content Include="frmFollow.aspx" />
+    <Content Include="frmLoading.aspx" />
     <Content Include="frmSearch.aspx" />
     <Content Include="frmTroubleList.aspx" />
     <Content Include="Images\accent.png" />
@@ -351,6 +352,7 @@
     <Content Include="Images\heroAccent.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\load.gif" />
     <Content Include="Images\new.gif" />
     <Content Include="Images\red.png" />
     <Content Include="Images\TOP_BackImage.png" />
@@ -742,6 +744,7 @@
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
     <Content Include="Scripts\jquery.anystretch.min.js" />
     <Content Include="Scripts\jquery.highlight-5.js" />
+    <Content Include="Scripts\loading.js" />
     <Content Include="Scripts\JSCOMMON.JS" />
     <Content Include="Scripts\media\css\dataTables.bootstrap.css" />
     <Content Include="Scripts\media\css\dataTables.bootstrap.min.css" />
@@ -863,7 +866,9 @@
     <Compile Include="BuisinessLogic\BLDetail.cs" />
     <Compile Include="BuisinessLogic\BLTroubleList.cs" />
     <Compile Include="BuisinessLogic\BLSearch.cs" />
-    <Compile Include="BuisinessLogic\Common\CommonLogic.cs" />
+    <Compile Include="CommonLogic\CommonLogic.cs" />
+    <Compile Include="CommonLogic\CommonPageLogic.cs" />
+    <Compile Include="CommonLogic\ICommonLogic.cs" />
     <Compile Include="Const\Const.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
@@ -942,6 +947,13 @@
     </Compile>
     <Compile Include="frmFollow.aspx.designer.cs">
       <DependentUpon>frmFollow.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmLoading.aspx.cs">
+      <DependentUpon>frmLoading.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmLoading.aspx.designer.cs">
+      <DependentUpon>frmLoading.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmSearch.aspx.cs">
       <DependentUpon>frmSearch.aspx</DependentUpon>

@@ -5,6 +5,7 @@ using System.Collections;
 using System.Text;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using OldTigerWeb.Const;
 
 namespace OldTigerWeb
 {
@@ -12,6 +13,7 @@ namespace OldTigerWeb
     {
         #region フィールド
                     CommonLogic bcom = new CommonLogic();
+                    CommonPageLogic cPageLogic = new CommonPageLogic();
         #endregion
 
         #region 初期表示
@@ -1346,14 +1348,9 @@ namespace OldTigerWeb
             Type cstype = this.GetType();
             ClientScriptManager cs = Page.ClientScript;
 
-            string strScr = "<script type='text/javascript'>";
-            strScr += "var url = './frmTroubleList.aspx'; ";
-            strScr += "var features = 'menubar=no,toolbar=no,location=no,resizable=no,scrollbars=no,status=no,height=700,width=1340,";
-            strScr += "left=(window.screen.width-1340)/2,top=(window.screen.height-700)/2';";
-            strScr += "var returnFlg = window.open(url, 'frmTroubleList', features); ";
-            strScr += "</script>";
+            string strScr = cPageLogic.openWindow(Def.DefPageId_TroubleList);
 
-            cs.RegisterStartupScript(cstype, "OpenNewWindow", strScr);
+            cs.RegisterStartupScript(cstype, "OpenSubWindow", strScr);
         }
 
         #endregion

@@ -12,11 +12,17 @@ using System.Web.UI.WebControls;
 using OfficeOpenXml;
 using OfficeOpenXml.Drawing;
 using OfficeOpenXml.Style;
+using OldTigerWeb.Const;
 
 namespace OldTigerWeb
 {
     public partial class frmFollow : System.Web.UI.Page
     {
+        #region "フィールド"
+        CommonLogic bcom = new CommonLogic();
+        CommonPageLogic cPageLogic = new CommonPageLogic();
+        #endregion
+
         protected void Page_Load(object sender, EventArgs e)
         {
             // ポストバック時はリターン
@@ -278,14 +284,9 @@ namespace OldTigerWeb
             Type cstype = this.GetType();
             ClientScriptManager cs = Page.ClientScript;
 
-            string strScr = "<script type='text/javascript'>";
-            strScr += "var url = './frmFollowAnswer.aspx'; ";
-            strScr += "var features = 'menubar=no,toolbar=no,location=no,resizable=no,scrollbars=no,status=no,height=720,width=1340,";
-            strScr += "left=(window.screen.width-1340)/2,top=(window.screen.height-720)/2';";
-            strScr += "var returnFlg = window.open(url, 'frmFollowAnswer', features); ";
-            strScr += "</script>";
+            string strScr = cPageLogic.openWindow(Def.DefPageId_FollowAnswer);
 
-            cs.RegisterStartupScript(cstype, "OpenNewWindow", strScr);
+            cs.RegisterStartupScript(cstype, "OpenSubWindow", strScr);
         }
 
         #endregion

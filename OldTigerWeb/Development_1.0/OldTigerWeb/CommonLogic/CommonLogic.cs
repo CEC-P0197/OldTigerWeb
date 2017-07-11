@@ -20,36 +20,48 @@ public class DebugParameter
     public string Content;
 }
 
-public class CommonLogic
+public class CommonLogic : ICommonLogic
     {
         // エラーログ設定
-        private  string _ErrorLogDir =  HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["LogDir"]);
-        private string _ErrorLogFile = ConfigurationManager.AppSettings["LogFile"];
+        private  string _ErrorLogDir;
+        private string _ErrorLogFile;
 
         // デバッグログ設定
-        private string _DebugLogDir = HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["DebugLogDir"]);
-        private string _DebugLogFile = ConfigurationManager.AppSettings["DebugLogFile"];
+        private string _DebugLogDir;
+        private string _DebugLogFile;
 
         // デバッグ判定設定
-        private string _DebugFlg = ConfigurationManager.AppSettings["DebugFlg"];
-        private string _DebugDefaultFlg = ConfigurationManager.AppSettings["DebugDefaultFlg"];
+        private string _DebugFlg;
+        private string _DebugDefaultFlg;
         // デバッグログファイルパス
         private string _DebugFileFullPath;
 
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
     public CommonLogic()
-        {
-        }
+    {
+        // エラーログ設定
+        _ErrorLogDir = HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["LogDir"]);
+        _ErrorLogFile = ConfigurationManager.AppSettings["LogFile"];
 
-        /// <summary>
-        /// Script（ダイアログ表示）登録
-        /// </summary>
-        /// <param name="csType">インスタンスType</param>
-        /// <param name="csManager">ClientScriptManagerクラス</param>
-        /// <param name="arrayMessage">メッセージ文字列</param>
-        public void ShowMessage(
+        // デバッグログ設定
+        _DebugLogDir = HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["DebugLogDir"]);
+        _DebugLogFile = ConfigurationManager.AppSettings["DebugLogFile"];
+
+        // デバッグ判定設定
+        _DebugFlg = ConfigurationManager.AppSettings["DebugFlg"];
+        _DebugDefaultFlg = ConfigurationManager.AppSettings["DebugDefaultFlg"];
+        // デバッグログファイルパス
+    }
+
+/// <summary>
+/// Script（ダイアログ表示）登録
+/// </summary>
+/// <param name="csType">インスタンスType</param>
+/// <param name="csManager">ClientScriptManagerクラス</param>
+/// <param name="arrayMessage">メッセージ文字列</param>
+public void ShowMessage(
             Type csType,
             ClientScriptManager csManager,
             ArrayList arrayMessage)

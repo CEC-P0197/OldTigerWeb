@@ -11,17 +11,7 @@
     <link rel="stylesheet" href= "Content/OldTiger.css" />
     <%--<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>--%>
     <link rel="stylesheet" href= "Content/themes/base/jquery-ui.css"/>
-
-
-    <%--外部JS読込み--%>
     <script type="text/javascript" src="Scripts/JSCOMMON.js"></script>
-    <script src="Scripts/jquery-1.8.2.js"></script>
-    <script src="Scripts/jquery-ui-1.8.24.js"></script>
-
-    <%--<script type="text/javascript" src="jquery.tab.js"></script>--%>
-
-<%--    <script src="//code.jquery.com/jquery-1.8.2.js"></script>
-    <script src="//code.jquery.com/ui/1.8.24/jquery-ui.js"></script>--%>
 
     <style type="text/css">
         h4 { /* h1～h6を指定 http://www.aoiweb.com/aoi2/title_bar4.htm */
@@ -33,39 +23,6 @@
             /*color: #0073a8;*/ /* 文字の色 */
             color: grey ; /* 文字の色を黒に変更 2017.03.29 神田 */
         } 
-
-        .buttoncolor:hover { 
-            /* 背景色を水色に指定 */ 
-            background-color: #ccffff;
-            border:1px #6699ff solid;
-        }
-        .buttoncolor:focus {
-            /* 背景色をリンク色に指定 */
-            background-color: #6699ff;
-            border: 1px #6699ff solid;
-        }
-        .tabcolor:hover { 
-            /* 背景色を水色に指定 */ 
-            background-color: #ccffff;
-        }
-        .tabcolor:focus { 
-            /* 背景色をリンク色に指定 */ 
-            background-color: #6699ff;
- 
-        }
-
-        .auto-style1 {
-         /*font-size: x-small;*/
-         font-size :11px;
-         width: 650px;   /* 幅 */
-         /*height: 470px;*/ /* 高さ */
-         /*height: 430px; /* 高さ */
-        }
-
-        .auto-style2 {
-            width: 146px;
-        }
-
     </style>
 
 </head>
@@ -81,9 +38,6 @@
     <form id="frmSearch" runat="server">
         <%-- ヘッダーエリア --%>
         <table style ="padding-left :40px">
-        <%--<table style ="margin :0 auto ;">--%>
-        <%--<table>--%>
-            <tbody>
                 <tr>
                     <td>
                         <asp:LinkButton ID="lnkTop" Text="TOPページ" OnClick="lnkTop_Click" runat="server" />
@@ -118,12 +72,8 @@
                         %>
                     </td> 
                     <td style ="text-align:center;">
-                    <%--<td class="auto-style2">--%>
                         <a href="mailto:<%= (String)ViewState["MailAddr"] %>">問合せ・ご要望</a>
                     </td>
-<%--                    <td>
-                        <asp:LinkButton ID="lnkTop" Text="TOPページへ" OnClick="lnkTop_Click" runat="server" />
-                    </td>--%>
                 </tr>
                 <tr>
                     <td></td>
@@ -142,22 +92,18 @@
                         <asp:Button ID="btnSearch" runat="server" Text="ｷｰﾜｰﾄﾞ検索" Width="100px"
                             Class="buttoncolor" Style="font-size: 12pt" OnClick="btn_Search_Click" OnClientClick="return confSearchCheck();" /></td>
                     <td>
-                    <%--<td class="auto-style2">--%>
                         <asp:Button ID="btnClearKeyWord" runat="server" Text="ｷｰﾜｰﾄﾞｸﾘｱ" Width="100px"
                             Class="buttoncolor " Style="font-size: 12pt" OnClick="btn_Clear_Click" /></td>
-                    <%--<td></td>--%>
                 </tr>
-            </tbody>
         </table>
         <%-- 検索条件エリア --%>
         <table style ="margin :0 auto ;">
-            <tbody>
                 <tr>
                     <%-- カテゴリ検索 --%>
                     <td class="categoryField">
                         <%--タブのインデックスをhiddenフィールドで保持--%>
                         <asp:HiddenField runat="server" ID="hdnTabIndex" Value="0" />
-                        <div id="tabs" class="auto-style1">
+                        <div id="tabs" class="tabsGroup">
                             <ul>
                                 <li id="tabPU"><a href="#lnkKategori03PU" class ="tabcolor" onclick="javascript:chgTab('0');">部署（ＰＵ）</a></li>
                                 <li id="tabBY"><a href="#lnkKategori03BY" class ="tabcolor" onclick="javascript:chgTab('1');">部署（ＢＹ）</a></li>
@@ -169,15 +115,12 @@
                                 <li id="tabMt06"><a href="#lnkKategori09" class ="tabcolor" onclick="javascript:chgTab('7');">現象（制御系）</a></li>
                                 <li id="tabMt07"><a href="#lnkKategori10" class ="tabcolor" onclick="javascript:chgTab('8');">要因（制御系）</a></li>
                                 <li id="tabMt08"><a href="#lnkKategori11" class ="tabcolor" onclick="javascript:chgTab('9');">ＥＧＴＭ形式</a></li>
-                                <%-- <li id="tabMt09"><a href="#lnkKategori12" onclick="javascript:chgTab('10');">ＴＯＰ４０</a></li>--%>
-                                <%-- <li id="tabMt10"><a href="#lnkKategori13" onclick="javascript:chgTab('11');">リプロ２０</a></li>--%>
                             </ul>
 
                             <%-- 部署（ＰＵ） --%>
                             <div id="lnkKategori03PU" class ="lnkKategori">
                                 <asp:Panel ID="pnlCategoryBusyo" runat="server" class="categoryTab">
                                     <table>
-                                        <tbody>
                                             <tr>
                                                 <td></td>
                                                 <td>設計部署
@@ -211,7 +154,6 @@
                                                     </div>
                                                 </td>
                                               </tr>
-                                        </tbody>
                                     </table>
                                 </asp:Panel>
                             </div>
@@ -220,7 +162,6 @@
                             <div id="lnkKategori03BY" class ="lnkKategori">
                                 <asp:Panel ID="pnlCategoryBusyo1" runat="server" class="categoryTab">
                                     <table>
-                                        <tbody>
                                             <tr>
                                                 <td></td>
                                                 <td>設計部署
@@ -253,7 +194,6 @@
                                                 </td>
                                                 <td></td>
                                             </tr>
-                                        </tbody>
                                     </table>
                                 </asp:Panel>
                             </div>
@@ -262,7 +202,6 @@
                             <div id="lnkKategori04" class ="lnkKategori">
                                 <asp:Panel ID="pnlCategoryMst01" runat="server" class="categoryTab">
                                     <table>
-                                        <tbody>
                                             <tr>
                                                 <td></td>
                                                 <td style="padding-top:5px;">システム</td>
@@ -304,7 +243,6 @@
                                                 </td>
                                                 <td></td>
                                             </tr>
-                                        </tbody>
                                     </table>
                                 </asp:Panel>
                             </div>
@@ -313,7 +251,6 @@
                             <div id="lnkKategori05" class ="lnkKategori">
                                 <asp:Panel ID="pnlCategoryMst02" runat="server" class="categoryTab">
                                     <table>
-                                        <tbody>
                                             <tr>
                                                 <td></td>
                                                 <td style="padding-top:5px;">開発符号</td>
@@ -330,7 +267,6 @@
                                                 </td>
                                                 <td></td>
                                             </tr>
-                                        </tbody>
                                     </table>
                                 </asp:Panel>
                             </div>
@@ -339,7 +275,6 @@
                             <div id="lnkKategori06" class="lnkKategori">
                                 <asp:Panel ID="pnlCategoryMst03" runat="server" class="categoryTab">
                                     <table>
-                                        <tbody>
                                             <tr>
                                                 <td></td>
                                                 <td style="padding-top:5px;">現象（分類）</td>
@@ -356,7 +291,6 @@
                                                 </td>
                                                 <td></td>
                                             </tr>
-                                        </tbody>
                                     </table>
                                 </asp:Panel>
                             </div>
@@ -365,7 +299,6 @@
                             <div id="lnkKategori07" class="lnkKategori">
                                 <asp:Panel ID="pnlCategoryMst04" runat="server" class="categoryTab">
                                     <table>
-                                        <tbody>
                                             <tr>
                                                 <td></td>
                                                 <td style="padding-top:5px;">原因（分類）</td>
@@ -382,7 +315,6 @@
                                                 </td>
                                                 <td></td>
                                             </tr>
-                                        </tbody>
                                     </table>
                                 </asp:Panel>
                             </div>
@@ -391,7 +323,6 @@
                             <div id="lnkKategori08" class="lnkKategori">
                                 <asp:Panel ID="pnlCategoryMst05" runat="server" class="categoryTab">
                                     <table>
-                                        <tbody>
                                             <tr>
                                                 <td></td>
                                                 <td style="padding-top:5px;">車型特殊</td>
@@ -408,7 +339,6 @@
                                                 </td>
                                                 <td></td>
                                             </tr>
-                                        </tbody>
                                     </table>
                                 </asp:Panel>
                             </div>
@@ -417,7 +347,6 @@
                             <div id="lnkKategori09" class="lnkKategori">
                                 <asp:Panel ID="pnlCategoryMst06" runat="server" class="categoryTab">
                                     <table>
-                                        <tbody>
                                             <tr>
                                                 <td></td>
                                                 <td style="padding-top:5px;">現象（制御系）</td>
@@ -434,7 +363,6 @@
                                                 </td>
                                                 <td></td>
                                             </tr>
-                                        </tbody>
                                     </table>
                                 </asp:Panel>
                             </div>
@@ -443,7 +371,6 @@
                             <div id="lnkKategori10" class="lnkKategori">
                                 <asp:Panel ID="pnlCategoryMst07" runat="server" class="categoryTab">
                                     <table>
-                                        <tbody>
                                             <tr>
                                                 <td></td>
                                                 <td style="padding-top:5px;">要因（制御系）</td>
@@ -460,7 +387,6 @@
                                                 </td>
                                                 <td></td>
                                             </tr>
-                                        </tbody>
                                     </table>
                                 </asp:Panel>
                             </div>
@@ -469,7 +395,6 @@
                             <div id="lnkKategori11" class="lnkKategori">
                                 <asp:Panel ID="pnlCategoryMst08" runat="server" class="categoryTab">
                                     <table>
-                                        <tbody>
                                             <tr>
                                                 <td></td>
                                                 <td style="padding-top:5px;">ＥＧＴＭ形式</td>
@@ -486,15 +411,17 @@
                                                 </td>
                                                 <td></td>
                                             </tr>
-                                        </tbody>
                                     </table>
                                 </asp:Panel>
                             </div>
+                        	<div>
+	                        <asp:Button ID="btnCategoryClear" runat="server" text="ｶﾃｺﾞﾘｸﾘｱ" Width="100px"
+	                                 Class="buttoncolor " Style="font-size: 12pt; float: right;" onclick="btn_CategoryClear_Click" OnClientClick="return CategoryAllClear();"/>
+	                        <asp:Button ID="btnCategorySerch" runat="server" text="ｶﾃｺﾞﾘ検索"  Width="100px" 
+	                               Class="buttoncolor" Style="font-size: 12pt;float: right;" onclick="btn_CategorySearch_Click" OnClientClick="return confSearchCategoryCheck();" />
+                            </div>
                         </div>
-                        <asp:Button ID="btnCategoryClear" runat="server" text="ｶﾃｺﾞﾘｸﾘｱ" Width="100px"
-                                 Class="buttoncolor " Style="font-size: 12pt; float: right;" onclick="btn_CategoryClear_Click" OnClientClick="return CategoryAllClear();"/>
-                        <asp:Button ID="btnCategorySerch" runat="server" text="ｶﾃｺﾞﾘ検索"  Width="100px" 
-                               Class="buttoncolor" Style="font-size: 12pt;float: right;" onclick="btn_CategorySearch_Click" OnClientClick="return confSearchCategoryCheck();" />
+			
                     </td>
 
                     <%-- TOP10タグ --%>
@@ -627,16 +554,21 @@
                             Class="buttoncolor" Style="font-size: 16pt" OnClick="btn_Follow_Click" />
                     </td>
                 </tr>--%>
-             </tbody>
         </table> 
+        <input type="button" id="btnOpenWindow" style="visibility:hidden" onclick="openWindowLoading();" />
+        <input type="button" id="btnCloseWindow" style="visibility:hidden" onclick="closeWindowLoading();" />
     </form> 
 </div>
 </body>
 
-   <script type="text/javascript">
+    <%--外部JS読込み--%>
+    <script src="Scripts/jquery-1.8.2.js"></script>
+    <script src="Scripts/jquery-ui-1.8.24.js"></script>
+    <script src="Scripts/loading.js"></script>
+    <script type="text/javascript">
 
        var tabIndex;
-
+       var frmLoading;
         //タブ設定
         $(document).ready(function () {
             
@@ -651,7 +583,7 @@
             selectedCheckBoxItem('ckBoxMst06','lnkKategori10');                                 // 要因（制御系）
             selectedCheckBoxItem('ckBoxMst07','lnkKategori11');                                 // EGTM形式
           
-                $('#tabs').tabs({ selected: tabIndex });
+            $('#tabs').tabs({ selected: tabIndex });
             
         })
 
@@ -1273,6 +1205,15 @@
            catch (e) {
                //alert("未存在 " + url);
            }
+       }
+
+       function OpenSubWindowMitakaSearch() {
+           // 1. 画面のオープン
+           var url = "frmMitakaSearch.aspx";
+           var w = (screen.width - 1000) / 2;
+           var h = (screen.height - 700) / 2;
+           var features = "menubar=no,toolbar=no,location=no,resizable=no,scrollbars=yes,status=no,height=700,width=1340,left=" + w + ",top=" + h;
+           var frmWatchInstSearchFlg = window.open(url, "frmMitakaSearch", features);
        }
 
        $(function () {

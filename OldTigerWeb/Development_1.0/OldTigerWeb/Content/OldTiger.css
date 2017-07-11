@@ -454,7 +454,6 @@ table.tratbl tr:nth-child(even) td{background-color:#FFFFFF;color:#000000;}*/
     border: none;
     cursor: pointer;
 }
-
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
     position: relative;
@@ -522,6 +521,16 @@ table {
 }
 
 
+/*過去トラ検索結果スタイル定義*/
+.noneStyle {
+    display:none !important;
+}
+.dispLoading {
+    background-image: url("../Images/load.gif")!important;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+}
 /*過去トラ詳細スタイル定義*/
 .DetailDivStyle{
      overflow-y:scroll;

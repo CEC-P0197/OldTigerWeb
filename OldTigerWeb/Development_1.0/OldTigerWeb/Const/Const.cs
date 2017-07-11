@@ -229,5 +229,12 @@ namespace OldTigerWeb.Const
         public const string API_DRAWINGLIST_URL = "DrawingList/{0}";
 
         #endregion
+
+        #region "ページ判定用文字列"
+        public const string DefPageId_TroubleList = "frmTroubleList";       // 過去トラ検索結果画面
+        public const string DefPageId_FollowAnswer = "frmFollowAnswer";     // フォロー情報画面
+        public const string DefPageId_Loading = "frmLoading";               // ロード画面
+        #endregion
+
     }
 }

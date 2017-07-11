@@ -22,187 +22,6 @@
             color: gray ; /* 文字の色を黒に変更 2017.03.29 神田 */
         }
     </style>
-
-   <script src="Scripts/jquery-1.8.2.js"></script>
-   <script src="Scripts/jquery-ui-1.8.24.js"></script>
-
-   <script type="text/javascript">
-       // --------------------------------------------------
-       // 関数名   : DisplayForder
-       // 概要     : フォルダを表示する
-       // 引数     : strUrl     : フォルダパス
-       // 戻り値   : なし
-       // --------------------------------------------------
-       function DisplayForder(url) {
-           try {
-               window.open(url);
-           }
-           catch (e) {
-               //alert("未存在 " + url);
-           }
-       }
-
-        // --------------------------------------------------
-        // 関数名   : SelectCheck
-        // 概要     : ＦＭＣ／ｍｃ選択チェック
-        // 引数     : mode 1:回答 2:EXCELダウンロード
-        // 戻り値   : true、false
-        // --------------------------------------------------
-       function SelectCheck(mode) {
-           var iMode1 = 0;
-           var iFound = 0;
-           var rc = false;
-
-           var chkFmc     = document.getElementById("<%= ckBoxFmc.ClientID %>");
-           var chkMc      = document.getElementById("<%= ckBoxmc.ClientID %>");
-           var chkOverFmc = document.getElementById("<%= ckBoxOverFmc.ClientID %>");
-           var chkOverMc  = document.getElementById("<%= ckBoxOvermc.ClientID %>");
-           var txtKacode  = document.getElementById("<%= txtKacode.ClientID %>").value;
-
-           var txtKacode  =
-           //if (txtKacode.trim() == "" && mode == "2") {
-           txtKacode  = $.trim(txtKacode);
-           if (txtKacode == ""  && mode == "2") {
-               alert("ダウンロードするフォロー対象部署を指定して下さい。");
-               document.getElementById("<%= txtKacode.ClientID %>").focus();
-               return rc;
-           }
-
-           if (chkFmc != null) {
-               var a = chkFmc.getElementsByTagName("input");
-
-               for (var i = 0; i < a.length; i++) {
-                   var e = a[i];
-                   if (e.type != "checkbox") {
-                       continue;
-                   }
-
-                   if (e.checked) {
-                       iMode1++;
-                       iFound++;
-                       if (iFound == 2) {
-                           break;
-                       }
-                   }
-               }
-           }
-
-           if (iFound != 2)
-           {
-               if (chkMc != null) {
-                   var b = chkMc.getElementsByTagName("input");
-
-                   for (var i = 0; i < b.length; i++) {
-                       var f = b[i];
-                       if (f.type != "checkbox") {
-                           continue;
-                       }
-
-                       if (f.checked) {
-                           iMode1++;
-                           iFound++;
-                           if (iFound > 2) {
-                               break;
-                           }
-                       }
-                   }
-               }
-            }
-
-           if (iFound != 2) {
-               if (chkOverFmc != null) {
-                   var c = chkOverFmc.getElementsByTagName("input");
-
-                   for (var i = 0; i < c.length; i++) {
-                       var g = c[i];
-                       if (g.type != "checkbox") {
-                           continue;
-                       }
-
-                       if (g.checked) {
-                           iFound++;
-                           if (iFound > 2) {
-                               break;
-                           }
-                       }
-                   }
-               }
-           }
-
-           if (iFound != 2) {
-               if (chkOverMc != null) {
-                   var d = chkOverMc.getElementsByTagName("input");
-
-                   for (var i = 0; i < d.length; i++) {
-                       var h = d[i];
-                       if (h.type != "checkbox") {
-                           continue;
-                       }
-
-                       if (h.checked) {
-                           iFound++;
-                           if (iFound > 2) {
-                               break;
-                           }
-                       }
-                   }
-               }
-           }
-
-            // チェックボックス選択チェック
-            if (mode == "1") {      // イベント期間内・回答
-                if (iMode1 == 0) {
-                    alert("回答するイベントを選択して下さい。");
-                    return rc;
-                }
-
-                if (iMode1 > 1) {
-                    alert("回答するイベントが複数選択されています。");
-                    return rc;
-                }
-            }
-            else
-            {                       // イベント期間内/外・ダウンロード
-                if (iFound == 0) {
-                    alert("ダウンロードするイベントを選択して下さい。");
-                    return rc;
-                }
-
-                if (iFound > 1) {
-                    alert("ダウンロードするイベントが複数選択されています。");
-                    return rc;
-                }
-            }
-
-            return true;
-        }
-       // --------------------------------------------------
-       // 関数名   : helpオープン
-       // 概要     : ＨＥＬＰファイル
-       // 引数     : strUrl     : フォルダパス
-       // 戻り値   : なし
-       // --------------------------------------------------
-       function helpFileViewOpen(kbn) {
-           try {
-               url=""
-               if (kbn == "HELP") {
-                   var url = "./frmClientView.aspx?VIEWFILE_KBN=" + "HelpFollow";
-               }
-               else {
-                   var url = "./frmClientView.aspx?VIEWFILE_KBN=" + "QaFollow";
-               }
-               var w = (screen.width - 780) / 2;   // 2017.04.10 ta_kanda サイズ変更
-               //var w = (screen.width - 1200) / 2;
-               var h = (screen.height - 690) / 2;
-               var features = "menubar=no,toolbar=no,location=no,resizable=no,scrollbars=no,status=no,height=690,width=780,left=" + w + ",top=" + h;
-               var returnFlg = window.open(url, 'frmClientView', features);
-           }
-           catch (e) {
-               //alert("未存在 " + url);
-           }
-       }
-    </script>
-
 </head>
 <body background="./Images/BackImage.gif">
 
@@ -212,7 +31,6 @@
     <h4 class="auto-style7" >過去トラシステム</h4>
 
     <form id="frmFollow" runat="server">
-  
     <table align="center" valign="top" style="width :100%; padding-left :40px">
       <tbody>
         <tr>
@@ -359,8 +177,189 @@
       </tr>
     </tbody>
     </table>
-   
+        <input type="button" id="btnOpenWindow" style="visibility:hidden" onclick="openWindowLoading();" />
+        <input type="button" id="btnCloseWindow" style="visibility:hidden" onclick="closeWindowLoading();" />
     </div>
+        <script src="Scripts/jquery-1.8.2.js"></script>
+        <script src="Scripts/jquery-ui-1.8.24.js"></script>
+        <script src="Scripts/loading.js"></script>
+        <script type="text/javascript">
+           // --------------------------------------------------
+           // 関数名   : DisplayForder
+           // 概要     : フォルダを表示する
+           // 引数     : strUrl     : フォルダパス
+           // 戻り値   : なし
+           // --------------------------------------------------
+           function DisplayForder(url) {
+               try {
+                   window.open(url);
+               }
+               catch (e) {
+                   //alert("未存在 " + url);
+               }
+           }
+
+            // --------------------------------------------------
+            // 関数名   : SelectCheck
+            // 概要     : ＦＭＣ／ｍｃ選択チェック
+            // 引数     : mode 1:回答 2:EXCELダウンロード
+            // 戻り値   : true、false
+            // --------------------------------------------------
+           function SelectCheck(mode) {
+               var iMode1 = 0;
+               var iFound = 0;
+               var rc = false;
+
+               var chkFmc     = document.getElementById("<%= ckBoxFmc.ClientID %>");
+               var chkMc      = document.getElementById("<%= ckBoxmc.ClientID %>");
+               var chkOverFmc = document.getElementById("<%= ckBoxOverFmc.ClientID %>");
+               var chkOverMc  = document.getElementById("<%= ckBoxOvermc.ClientID %>");
+               var txtKacode  = document.getElementById("<%= txtKacode.ClientID %>").value;
+
+               var txtKacode  =
+               //if (txtKacode.trim() == "" && mode == "2") {
+               txtKacode  = $.trim(txtKacode);
+               if (txtKacode == ""  && mode == "2") {
+                   alert("ダウンロードするフォロー対象部署を指定して下さい。");
+                   document.getElementById("<%= txtKacode.ClientID %>").focus();
+                   return rc;
+               }
+
+               if (chkFmc != null) {
+                   var a = chkFmc.getElementsByTagName("input");
+
+                   for (var i = 0; i < a.length; i++) {
+                       var e = a[i];
+                       if (e.type != "checkbox") {
+                           continue;
+                       }
+
+                       if (e.checked) {
+                           iMode1++;
+                           iFound++;
+                           if (iFound == 2) {
+                               break;
+                           }
+                       }
+                   }
+               }
+
+               if (iFound != 2)
+               {
+                   if (chkMc != null) {
+                       var b = chkMc.getElementsByTagName("input");
+
+                       for (var i = 0; i < b.length; i++) {
+                           var f = b[i];
+                           if (f.type != "checkbox") {
+                               continue;
+                           }
+
+                           if (f.checked) {
+                               iMode1++;
+                               iFound++;
+                               if (iFound > 2) {
+                                   break;
+                               }
+                           }
+                       }
+                   }
+                }
+
+               if (iFound != 2) {
+                   if (chkOverFmc != null) {
+                       var c = chkOverFmc.getElementsByTagName("input");
+
+                       for (var i = 0; i < c.length; i++) {
+                           var g = c[i];
+                           if (g.type != "checkbox") {
+                               continue;
+                           }
+
+                           if (g.checked) {
+                               iFound++;
+                               if (iFound > 2) {
+                                   break;
+                               }
+                           }
+                       }
+                   }
+               }
+
+               if (iFound != 2) {
+                   if (chkOverMc != null) {
+                       var d = chkOverMc.getElementsByTagName("input");
+
+                       for (var i = 0; i < d.length; i++) {
+                           var h = d[i];
+                           if (h.type != "checkbox") {
+                               continue;
+                           }
+
+                           if (h.checked) {
+                               iFound++;
+                               if (iFound > 2) {
+                                   break;
+                               }
+                           }
+                       }
+                   }
+               }
+
+                // チェックボックス選択チェック
+                if (mode == "1") {      // イベント期間内・回答
+                    if (iMode1 == 0) {
+                        alert("回答するイベントを選択して下さい。");
+                        return rc;
+                    }
+
+                    if (iMode1 > 1) {
+                        alert("回答するイベントが複数選択されています。");
+                        return rc;
+                    }
+                }
+                else
+                {                       // イベント期間内/外・ダウンロード
+                    if (iFound == 0) {
+                        alert("ダウンロードするイベントを選択して下さい。");
+                        return rc;
+                    }
+
+                    if (iFound > 1) {
+                        alert("ダウンロードするイベントが複数選択されています。");
+                        return rc;
+                    }
+                }
+
+                return true;
+            }
+           // --------------------------------------------------
+           // 関数名   : helpオープン
+           // 概要     : ＨＥＬＰファイル
+           // 引数     : strUrl     : フォルダパス
+           // 戻り値   : なし
+           // --------------------------------------------------
+           function helpFileViewOpen(kbn) {
+               try {
+                   url=""
+                   if (kbn == "HELP") {
+                       var url = "./frmClientView.aspx?VIEWFILE_KBN=" + "HelpFollow";
+                   }
+                   else {
+                       var url = "./frmClientView.aspx?VIEWFILE_KBN=" + "QaFollow";
+                   }
+                   var w = (screen.width - 780) / 2;   // 2017.04.10 ta_kanda サイズ変更
+                   //var w = (screen.width - 1200) / 2;
+                   var h = (screen.height - 690) / 2;
+                   var features = "menubar=no,toolbar=no,location=no,resizable=no,scrollbars=no,status=no,height=690,width=780,left=" + w + ",top=" + h;
+                   var returnFlg = window.open(url, 'frmClientView', features);
+               }
+               catch (e) {
+                   //alert("未存在 " + url);
+               }
+           }
+        </script>
+
     </form>
 </body>
 </html>

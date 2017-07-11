@@ -26,24 +26,9 @@
 <body style="height: 100%;">
     <form id="Document" runat="server">
     <div style="width:100vh">
-<%--        <div>
-            <table style="width:100%;">
-                <tr>
-                    <td style="text-align:left">
-                        <h4>関連資料：<%= title.Replace(".pdf","")%></h4>
-                    </td>
-                    <td style="text-align:right">
-                        <asp:Button ID="btClose" runat="server" Text="閉じる" Height="30px" Width="100px" OnClientClick="window.close();" />
-                    </td>
-                </tr>
-            </table>
-        </div>--%>
         <div　class="kinshi" style="display:none">
         </div>
         <div class="pdf">
-<%--            <p class="pdf"  style="border-style:solid;border-width:1px;border-color:lightgray;">
-              <embed class="pdf" style="width:100%;height:85vh;" src="<%= filePath %>" />
-            </p>--%>
             <object
             classid="clsid:F01E06A7-2439-44D9-9759-F2A73A0DD34A"
             codebase="http://<%= ConfigurationManager.AppSettings["Brava"] %>/BravaSDK/ActiveX/viewer/client/BravaClientXWrapper.cab#version=8,3,2,93"
