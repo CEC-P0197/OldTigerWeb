@@ -87,6 +87,59 @@ namespace OldTigerWeb.DataAccess.Common
         }
         #endregion
 
+        // 2017/07/14 Add Start
+        #region 課コードから部コードを取得
+        /// <summary>
+        /// 課コードから部コードを取得
+        /// </summary>
+        /// <param name="Type">課・主査コード</param>
+        /// <returns>部コード</returns>
+        public DataTable SelectBuCode(String ka_code)
+        {
+            DataTable result = new DataTable();
+
+            // DBオープン
+            DataAccess.Common.SqlCommon dbBase = new DataAccess.Common.SqlCommon();
+
+            SqlConnection connDb = dbBase.dbOpen();
+
+            try
+            {
+                // SQL作成
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connDb;
+                cmd.CommandText = "SELECT DISTINCT(BU_CODE) AS BU_CODE ";
+                cmd.CommandText += "FROM M_BUSYO_SEKKEI ";
+                cmd.CommandText += "WHERE KA_CODE = '" + ka_code + "' ";
+                cmd.CommandText += "UNION ";
+                cmd.CommandText += "SELECT DISTINCT(BU_CODE) AS BU_CODE ";
+                cmd.CommandText += "FROM M_BUSYO_HYOUKA ";
+                cmd.CommandText += "WHERE KA_CODE = '" + ka_code + "' ";
+
+                // コマンドを実行
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                // SqlDataReader からデータを DataTable に読み込む
+                result.Load(reader);
+
+                reader.Close();
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connDb.Close();
+                connDb.Dispose();
+                connDb = null;
+            }
+        }
+        #endregion
+        // 2017/07/14 Add End
+
         #region 過去トラ情報取得
         /// <summary>
         /// 過去トラ情報取得

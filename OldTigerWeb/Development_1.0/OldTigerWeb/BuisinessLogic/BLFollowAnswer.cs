@@ -27,5 +27,29 @@ namespace OldTigerWeb.BuisinessLogic
 
             return result;
         }
+
+        // 2017/07/14 Add Start
+        /// <summary>
+        /// フォロー対象部署一覧取得
+        /// </summary>
+        /// <param name="FMC_mc">FMC/mc区分</param>
+        /// <param name="kaihatu_id">開発符号</param>
+        /// <param name="by_pu">BYPU区分</param>
+        /// <param name="event_no">イベントNO</param>
+        /// <returns>結果ステータス</returns>
+        /// <remarks></remarks>
+        public DataTable GetKaCodeFollowDataList(String FMC_mc, String kaihatu_id, String by_pu, String event_no)
+        {
+            DataTable result = null;
+
+            // データアクセス作成
+            DataAccess.DAFollowAnswer dac = new DataAccess.DAFollowAnswer();
+
+            // ＳＱＬ実行
+            result = dac.SelectKaCodeFollowDataList(FMC_mc, kaihatu_id, by_pu, event_no);
+
+            return result;
+        }
+        // 2017/07/14 Add End
     }
 }

@@ -63,7 +63,7 @@ public class CommonPageLogic
         return strScr;
     }
     /// <summary>
-    /// ローディング画面オープン
+    /// ロード画面オープン
     /// </summary>
     /// <param name="strScr"></param>
     /// <param name="init"></param>
@@ -77,7 +77,11 @@ public class CommonPageLogic
         strScr += "frmLoading = window.open(urlLoading, 'frmLoading', featuresLoading); ";
         return strScr;
     }
-
+    /// <summary>
+    /// ロード画面フォーカス
+    /// </summary>
+    /// <param name="strScr"></param>
+    /// <returns></returns>
     private static string focusWindowLoading(ref string strScr)
     {
         strScr += "if(frmLoading != null){frmLoading.focus()}";

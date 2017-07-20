@@ -195,6 +195,21 @@ namespace OldTigerWeb
 
                 strArrayData = event_code.Trim().Split(',');
 
+                // 2017/07/14 Add Start
+                // 部展開の場合、入力された課コードから部コードを取得
+                DataTable buCode = null;
+
+                if (strArrayData[6] == Const.Def.BuTenkai)
+                {
+                    buCode = bcom.GetBuCode(txtKacode.Text.Trim());
+
+                    if (buCode.Rows.Count > 0)
+                    {
+                        txtKacode.Text = buCode.Rows[0]["BU_CODE"].ToString();
+                    }
+                }
+                // 2017/07/14 Add End
+
                 // 過去トラ一覧リスト取得
                 followList = bLogic.GetDownloadList(strArrayData[0], strArrayData[1],
                                         strArrayData[2], strArrayData[3], txtKacode.Text.Trim());

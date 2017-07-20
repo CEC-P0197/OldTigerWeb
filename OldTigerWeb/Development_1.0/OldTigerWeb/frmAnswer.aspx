@@ -130,7 +130,7 @@
         <asp:Button ID="btnRegist" runat="server" text="登録"   Height="30px" Width="100px" 
             OnClientClick="if (confRegistCheck() == false) { return false;} else { return true;}" OnClick="btnRegist_Click" /></p>
     <p class="moji11">　</p>
-    <p class="moji16">　　<asp:Label ID="lblFollowInfo" runat="server" Text="" />　　　フォロー対象課：<asp:Label ID="lblKacode" runat="server" Text="" /></p>
+    <p class="moji16">　　<asp:Label ID="lblFollowInfo" runat="server" Text="" />　　　フォロー対象部署：<asp:Label ID="lblKacode" runat="server" Text="" /></p>
             
       <asp:Panel ID="pnlDetail" runat="server">
 

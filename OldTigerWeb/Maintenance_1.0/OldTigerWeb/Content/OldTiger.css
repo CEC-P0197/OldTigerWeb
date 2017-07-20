@@ -209,6 +209,32 @@ div.follow {
 {
     border:1px solid #000;
 }
+.tabsGroup {
+         width: 650px;   /* 幅 */
+}
+
+.tabsGroup a{
+         font-size :11px;
+}
+.buttoncolor:hover { 
+    /* 背景色を水色に指定 */ 
+    background-color: #ccffff;
+    border:1px #6699ff solid;
+}
+.buttoncolor:focus {
+    /* 背景色をリンク色に指定 */
+    background-color: #6699ff;
+    border: 1px #6699ff solid;
+}
+.tabcolor:hover { 
+    /* 背景色を水色に指定 */ 
+    background-color: #ccffff;
+}
+.tabcolor:focus { 
+    /* 背景色をリンク色に指定 */ 
+    background-color: #6699ff;
+ 
+}
 /*カテゴリタブ */
 .categoryTab
 {

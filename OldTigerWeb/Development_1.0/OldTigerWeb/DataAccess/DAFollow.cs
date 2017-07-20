@@ -39,7 +39,7 @@ namespace OldTigerWeb.DataAccess
                 cmd.CommandText += "RTRIM(b.KAIHATU_FUGO) + '-' + RTRIM(c.EVENT_NAME) + '-'";
                 cmd.CommandText += " + CONVERT(VARCHAR, a.YMD_KAISI,111) + '～'";
                 cmd.CommandText += " + CONVERT(VARCHAR, a.YMD_END,111) + ',' + ";
-                cmd.CommandText += "RTRIM(c.EVENT_NAME) AS EVENT_CODE, ";
+                cmd.CommandText += "RTRIM(c.EVENT_NAME) + ',' + a.TENKAI_KBN AS EVENT_CODE, "; // 2017/07/14 Add TENKAI_KBN追加
                 cmd.CommandText += "RTRIM(a.BY_PU) + '-' + RTRIM(b.KAIHATU_FUGO) + '-' + RTRIM(c.EVENT_NAME) + '-'";
                 cmd.CommandText += " + CONVERT(VARCHAR, a.YMD_KAISI,111) + '～'";
                 cmd.CommandText += " + CONVERT(VARCHAR, a.YMD_END,111) AS FOLLOW_NAME ";

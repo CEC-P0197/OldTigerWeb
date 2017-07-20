@@ -565,6 +565,12 @@ table {
         vertical-align: top;
     }
 
+/*ＦＭＣ・ｍｃフォロー情報　表示一覧スタイル定義*/
+.trNonAnswer td
+{
+    background-color:#FFFFAA!important;
+}
+
 /*フォロー回答テーブルスタイル定義*/
 .syosaiTable {
     font-family: "ＭＳ ゴシック", "monospace";

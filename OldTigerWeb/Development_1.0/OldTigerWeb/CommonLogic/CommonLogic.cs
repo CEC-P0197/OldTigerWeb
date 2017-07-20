@@ -311,182 +311,202 @@ public void ShowMessage(
     /// <param name="ExcelType">エクセルタイプ K:過去トラ F:フォロー回答</param>
     /// <returns>Excelテンプレート名</returns>
     public string GetExcelTemplate(String ExcelType)
+    {
+        // Web.Configよりログディレクトリ名を取得
+        String excelFilePath =  HttpContext.Current.Server.MapPath(System.Web.Configuration.WebConfigurationManager.AppSettings["ExcelTempDir"]);
+
+        if (ExcelType == "K")
         {
-            // Web.Configよりログディレクトリ名を取得
-            String excelFilePath =  HttpContext.Current.Server.MapPath(System.Web.Configuration.WebConfigurationManager.AppSettings["ExcelTempDir"]);
-
-            if (ExcelType == "K")
-            {
-                // Excelテンプレート・過去トラ
-                excelFilePath += System.Web.Configuration.WebConfigurationManager.AppSettings["KakotoraTemplate"];
-            }
-            else
-            {
-                // Excelテンプレート・フォロー回答
-                excelFilePath += System.Web.Configuration.WebConfigurationManager.AppSettings["FollowTemplate"];
-            }
-            return excelFilePath;
+            // Excelテンプレート・過去トラ
+            excelFilePath += System.Web.Configuration.WebConfigurationManager.AppSettings["KakotoraTemplate"];
         }
-
-        /// <summary>
-        /// 問合せ先メールアドレス取得
-        /// <param name="BYPU">BY_PU区分</param>
-        /// <returns>メールアドレス</returns>
-        public string GetMailAddress(String BYPU)
+        else
         {
-            // Web.Configよりメールアドレスを取得
-            String mailAddr = "";
-
-            if (BYPU == "BY")
-            {
-                // メールアドレス・BY
-                mailAddr = System.Web.Configuration.WebConfigurationManager.AppSettings["MailAddrBY"];
-            }
-            if (BYPU == "PU")
-            {
-                // メールアドレス・PU
-                mailAddr = System.Web.Configuration.WebConfigurationManager.AppSettings["MailAddrPU"];
-            }
-            return mailAddr;
+            // Excelテンプレート・フォロー回答
+            excelFilePath += System.Web.Configuration.WebConfigurationManager.AppSettings["FollowTemplate"];
         }
-
-        /// <summary>
-        /// ヘルプ表示先取得
-        /// <param name="SF">S:検索、F:フォロー</param>
-        /// <returns>ヘルプ表示先</returns>
-        public string GetHelpForder(String SF)
-        {
-            // Web.Configよりヘルプ表示先を取得
-            String helpFolder = "";
-
-            if (SF == "SH")
-            {
-                // 過去トラ検索-ヘルプ（マニュアル）
-                helpFolder = System.Web.Configuration.WebConfigurationManager.AppSettings["HelpSerch"];
-            }
-            // 2017.04.03 ta_kanda 追加　Start
-            if (SF == "SQ")
-            {
-                // 過去トラ検索-Ｑ＆Ａ
-                helpFolder = System.Web.Configuration.WebConfigurationManager.AppSettings["QaSerch"];
-            }
-            if (SF == "FH")
-            {
-                // フォロー-ヘルプ（マニュアル）
-                helpFolder = System.Web.Configuration.WebConfigurationManager.AppSettings["HelpFollow"];
-            }
-            // 2017.04.03 ta_kanda 追加　Start
-            if (SF == "FQ")
-            {
-                // フォロー-Ｑ＆Ａ
-                helpFolder = System.Web.Configuration.WebConfigurationManager.AppSettings["QaFollow"];
-            }
-            // 2017.04.03 ta_kanda 追加　Start
-            if (SF == "TH")
-            {
-                // ＴＯＰ-ヘルプ（マニュアル）
-                helpFolder = System.Web.Configuration.WebConfigurationManager.AppSettings["HelpTop"];
-            }
-            if (SF == "TQ")
-            {
-                // ＴＯＰ-Ｑ＆Ａ
-                helpFolder = System.Web.Configuration.WebConfigurationManager.AppSettings["QaTop"];
-            }
-            // 2017.04.03 ta_kanda 追加　End
-            return helpFolder;
-        }
-
-        /// <summary>
-        /// 参照先メインフォルダ取得
-        /// <returns>参照先メインフォルダ</returns>
-        public string GetLinkForder()
-        {
-            // Web.Configより参照先メインフォルダを取得
-            String strLinkForder = "";
-
-            strLinkForder = System.Web.Configuration.WebConfigurationManager.AppSettings["LinkForder"];
-
-            return strLinkForder;
-        }
-
-        /// <summary>
-        /// フォルダの存在チェック・参照権限チェック
-        /// </summary>
-        /// <returns>結果ステータス</returns>
-        /// <remarks></remarks>
-        public int CheckFolder(String FilePath)
-        {
-            int result = 0;
-
-            if (FilePath == null || FilePath == "") return 1;
-
-            // フォルダの存在チェック
-            if (!Directory.Exists(FilePath))
-            {
-                // 存在しないか参照権限がない場合
-                return 1;
-            }
-
-            return result;
-        }
+        return excelFilePath;
+    }
 
     /// <summary>
-        /// ファイルの存在チェック・参照権限チェック
-        /// </summary>
-        /// <returns>結果ステータス</returns>
-        /// <remarks></remarks>
-        public int CheckFile(String FilePath)
+    /// 問合せ先メールアドレス取得
+    /// <param name="BYPU">BY_PU区分</param>
+    /// <returns>メールアドレス</returns>
+    public string GetMailAddress(String BYPU)
+    {
+        // Web.Configよりメールアドレスを取得
+        String mailAddr = "";
+
+        if (BYPU == "BY")
         {
-            int result = 0;
+            // メールアドレス・BY
+            mailAddr = System.Web.Configuration.WebConfigurationManager.AppSettings["MailAddrBY"];
+        }
+        if (BYPU == "PU")
+        {
+            // メールアドレス・PU
+            mailAddr = System.Web.Configuration.WebConfigurationManager.AppSettings["MailAddrPU"];
+        }
+        return mailAddr;
+    }
 
-            if (FilePath == null || FilePath == "") return 1;
+    /// <summary>
+    /// ヘルプ表示先取得
+    /// <param name="SF">S:検索、F:フォロー</param>
+    /// <returns>ヘルプ表示先</returns>
+    public string GetHelpForder(String SF)
+    {
+        // Web.Configよりヘルプ表示先を取得
+        String helpFolder = "";
 
-            // フォルダの存在チェック
-            if (!System.IO.File.Exists(FilePath))
-            {
-                // 存在しないか参照権限がない場合
-                return 1;
-            }
+        if (SF == "SH")
+        {
+            // 過去トラ検索-ヘルプ（マニュアル）
+            helpFolder = System.Web.Configuration.WebConfigurationManager.AppSettings["HelpSerch"];
+        }
+        // 2017.04.03 ta_kanda 追加　Start
+        if (SF == "SQ")
+        {
+            // 過去トラ検索-Ｑ＆Ａ
+            helpFolder = System.Web.Configuration.WebConfigurationManager.AppSettings["QaSerch"];
+        }
+        if (SF == "FH")
+        {
+            // フォロー-ヘルプ（マニュアル）
+            helpFolder = System.Web.Configuration.WebConfigurationManager.AppSettings["HelpFollow"];
+        }
+        // 2017.04.03 ta_kanda 追加　Start
+        if (SF == "FQ")
+        {
+            // フォロー-Ｑ＆Ａ
+            helpFolder = System.Web.Configuration.WebConfigurationManager.AppSettings["QaFollow"];
+        }
+        // 2017.04.03 ta_kanda 追加　Start
+        if (SF == "TH")
+        {
+            // ＴＯＰ-ヘルプ（マニュアル）
+            helpFolder = System.Web.Configuration.WebConfigurationManager.AppSettings["HelpTop"];
+        }
+        if (SF == "TQ")
+        {
+            // ＴＯＰ-Ｑ＆Ａ
+            helpFolder = System.Web.Configuration.WebConfigurationManager.AppSettings["QaTop"];
+        }
+        // 2017.04.03 ta_kanda 追加　End
+        return helpFolder;
+    }
 
-            return result;
+    /// <summary>
+    /// 参照先メインフォルダ取得
+    /// <returns>参照先メインフォルダ</returns>
+    public string GetLinkForder()
+    {
+        // Web.Configより参照先メインフォルダを取得
+        String strLinkForder = "";
+
+        strLinkForder = System.Web.Configuration.WebConfigurationManager.AppSettings["LinkForder"];
+
+        return strLinkForder;
+    }
+
+    /// <summary>
+    /// フォルダの存在チェック・参照権限チェック
+    /// </summary>
+    /// <returns>結果ステータス</returns>
+    /// <remarks></remarks>
+    public int CheckFolder(String FilePath)
+    {
+        int result = 0;
+
+        if (FilePath == null || FilePath == "") return 1;
+
+        // フォルダの存在チェック
+        if (!Directory.Exists(FilePath))
+        {
+            // 存在しないか参照権限がない場合
+            return 1;
         }
 
-        /// <summary>
-        /// Windowsログイン・ユーザマスタチェック
-        /// </summary>
-        /// <returns>結果ステータス</returns>
-        /// <remarks></remarks>
-        public Boolean CheckUser()
+        return result;
+    }
+
+    /// <summary>
+    /// ファイルの存在チェック・参照権限チェック
+    /// </summary>
+    /// <returns>結果ステータス</returns>
+    /// <remarks></remarks>
+    public int CheckFile(String FilePath)
+    {
+        int result = 0;
+
+        if (FilePath == null || FilePath == "") return 1;
+
+        // フォルダの存在チェック
+        if (!System.IO.File.Exists(FilePath))
         {
-            Boolean bRet = false;
-            DataTable result = null;
-
-            // Windows Login チェック
-            string sUser = GetWindowsUser();
-
-             // データアクセス作成
-            SqlCommon dac = new SqlCommon();
-
-            // ＳＱＬ実行
-            result = dac.SelectUser(sUser);
-
-            // 存在しない場合、使用不可
-            if (result.Rows.Count == 0)
-            {
-                bRet = true;
-            }
-
-            result.Dispose();
-
-            return bRet;
+            // 存在しないか参照権限がない場合
+            return 1;
         }
 
-        /// <summary>
-        /// ユーザマスタ取得
-        /// </summary>
-        /// <returns>結果データテーブル</returns>
-        /// <remarks></remarks>
-        public DataTable GetUser()
+        return result;
+    }
+
+    /// <summary>
+    /// Windowsログイン・ユーザマスタチェック
+    /// </summary>
+    /// <returns>結果ステータス</returns>
+    /// <remarks></remarks>
+    public Boolean CheckUser()
+    {
+        Boolean bRet = false;
+        DataTable result = null;
+
+        // Windows Login チェック
+        string sUser = GetWindowsUser();
+
+        // データアクセス作成
+        SqlCommon dac = new SqlCommon();
+
+        // ＳＱＬ実行
+        result = dac.SelectUser(sUser);
+
+        // 存在しない場合、使用不可
+        if (result.Rows.Count == 0)
+        {
+            bRet = true;
+        }
+
+        result.Dispose();
+
+        return bRet;
+    }
+
+    // 2017/07/14 Add Start
+    /// <summary>
+    /// 課コードから部コードを取得
+    /// </summary>
+    /// <param name="KaCode">課コード</param>
+    /// <returns>部コード</returns>
+    public DataTable GetBuCode(String KaCode)
+    {
+        DataTable result = null;
+
+        // データアクセス作成
+        SqlCommon dac = new SqlCommon();
+
+        // ＳＱＬ実行
+        result = dac.SelectBuCode(KaCode);
+
+        return result;
+    }
+    // 2017/07/14 Add End
+
+    /// <summary>
+    /// ユーザマスタ取得
+    /// </summary>
+    /// <returns>結果データテーブル</returns>
+    /// <remarks></remarks>
+    public DataTable GetUser()
         {
             DataTable result = null;
 

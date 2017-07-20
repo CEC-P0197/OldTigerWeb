@@ -141,7 +141,19 @@
         for (int i = 0; i < gbFollowData.Rows.Count; i++ )
         {
 %>
+<%
+            if (gbFollowData.Rows[i]["SINDO"].ToString() != "")
+            {
+%>
                 <tr>
+<%          }
+            else
+            {
+%>
+                <tr class="trNonAnswer">
+<%
+            }
+%>
                     <td width="30px" style="text-align:center"><div class="div_30"><%=gbFollowData.Rows[i]["RANK"].ToString() %></div></td>
                     <td width="50px"><div class="div_50"><%=gbFollowData.Rows[i]["BUHIN_NAME"].ToString() %></div></td>
                     <td width="90px"><div class="div_50"><%=gbFollowData.Rows[i]["BUNRUI_GENSYO_NAME"].ToString() %></div></td>
@@ -219,6 +231,24 @@
 
             oTable.fnPageChange(<%= gbStartPage %>);
         });
+
+       // 2017/07/14 Add Start
+       // --------------------------------------------------
+       // 関数名   : フォロー対象部署オートコンプリート
+       // 概要     : フォロー対象部署入力候補設定
+       // 引数     : 
+       // --------------------------------------------------
+        $(function () {
+            var inputAuxiliary = [
+                <%=(string)ViewState["KaCodeInfo"]%>
+            ];
+
+            $("#txtKacode").autocomplete({
+                source: inputAuxiliary
+            });
+
+        });
+        // 2017/07/14 Add End
 
         // --------------------------------------------------
         // 関数名   : confDispCheck

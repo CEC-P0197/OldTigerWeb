@@ -64,7 +64,7 @@
         <table style="padding-left :10px;padding-right :10px" class="anstbl" id="tratable" >
             <thead>
                 <tr>
-                    <th class="div_60">課</th>
+                    <th class="div_60">部署</th>
                     <th class="div_110">進度</th>
                     <th class="div_610">回答内容</th>
                 </tr>

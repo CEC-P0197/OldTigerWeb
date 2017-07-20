@@ -13,6 +13,7 @@ namespace OldTigerWeb
     {
         public int gbStartPage = 0;
         public DataTable gbFollowDataOtherDept = null;
+        public DataTable gbTenkaiKbn = null; // 2017/07/14 Add
         protected void Page_Load(object sender, EventArgs e)
         {
             // ポストバック時はリターン
@@ -63,16 +64,28 @@ namespace OldTigerWeb
                     return;
                 }
 
-                // 他部署フォローデータ取得
                 BuisinessLogic.BLAnswerSubWindow bAnswer = new BuisinessLogic.BLAnswerSubWindow();
 
+                // 2017/07/14 Add Start
+                // 展開区分取得
+                gbTenkaiKbn = bAnswer.GetTenkaiKbn(stFmcMc,
+                            stKaihatsuId,
+                            stByPu,
+                            stEventNo);
+
+                string stTenkaiKbn = "";
+                stTenkaiKbn = gbTenkaiKbn.Rows[0]["TENKAI_KBN"].ToString();
+                // 2017/07/14 Add End
+
+                // 他部署フォローデータ取得
                 gbFollowDataOtherDept = bAnswer.GetFollowDataOtherDept(stFmcMc,
                             stKaihatsuId,
                             stByPu,
                             stEventNo,
                             stFollowNo,
                             stKaCode,
-                            stSystemNo);
+                            stSystemNo,
+                            stTenkaiKbn); // 2017/07/14 Add 引数に展開区分を追加
              }
             // システムエラー処理（ログ出力、エラー画面遷移）
             catch (Exception ex)

@@ -88,5 +88,61 @@ namespace OldTigerWeb.DataAccess
         }
         #endregion
 
+        // 2017/07/14 Add Start
+        #region フォロー対象部署一覧取得
+        /// <summary>
+        /// フォロー対象部署一覧取得
+        /// </summary>
+        /// <param name="FMC_mc">FMC/mc区分</param>
+        /// <param name="Type">開発符号</param>
+        /// <param name="Type">BYPU区分</param>
+        /// <param name="Type">イベントNO</param>
+        /// <returns>取得結果情報</returns>
+        public DataTable SelectKaCodeFollowDataList(String FMC_mc, String kaihatu_id, String by_pu, String event_no)
+        {
+            DataTable result = new DataTable();
+
+            // DBオープン
+            DataAccess.Common.SqlCommon dbBase = new DataAccess.Common.SqlCommon();
+
+            SqlConnection connDb = dbBase.dbOpen();
+
+            try
+            {
+                // SQL作成
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connDb;
+
+                cmd.CommandText = "SELECT ";
+                cmd.CommandText += "DISTINCT(KA_CODE) AS KA_CODE ";  // 課コード
+                cmd.CommandText += "FROM T_FOLLOW_DATA AS FLW ";
+                cmd.CommandText += "WHERE FLW.FMC_mc = '" + FMC_mc + "' AND FLW.KAIHATU_ID = '" + kaihatu_id + "' AND FLW.EVENT_NO = '" + event_no + "' ";
+                cmd.CommandText += " AND FLW.TEKIYO_SQB = '*' AND FLW.TEKIYO_SEKKEI = '*' ";    // 20160322 INS フォロー展開コピー対応
+                cmd.CommandText += "ORDER BY FLW.KA_CODE ASC";
+
+                // コマンドを実行
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                // SqlDataReader からデータを DataTable に読み込む
+                result.Load(reader);
+
+                reader.Close();
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connDb.Close();
+                connDb.Dispose();
+                connDb = null;
+            }
+        }
+        #endregion
+        // 2017/07/14 Add End
+
     }
 }

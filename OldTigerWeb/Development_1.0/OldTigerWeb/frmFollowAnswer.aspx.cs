@@ -15,6 +15,7 @@ namespace OldTigerWeb
     {
         public int gbStartPage = 0;
         public DataTable gbFollowData = null;
+        public DataTable kaCodeFollowData = null;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -77,6 +78,10 @@ namespace OldTigerWeb
                 ViewState["FullEventName"] = strArrayData[4];
                 Session[Const.Def.DefPARA_EVENTNM] = strArrayData[4];
                 ViewState["EventName"] = strArrayData[5];
+
+                // フォロー対象部署オートコンプリート処理
+                GetKaCodeData(ViewState["FMC_mc"].ToString(), ViewState["KAIHATU_ID"].ToString(),
+                        ViewState["BY_PU"].ToString(), ViewState["EVENT_NO"].ToString());
 
                 Session[Const.Def.DefPARA_FOLLOW] = "";         // セッションクリア
 
@@ -171,6 +176,38 @@ namespace OldTigerWeb
             bcom.ShowMessage(csType, csManager, arrayMessage);
         }
         #endregion
+
+        // 2017/07/14 Add Start
+        #region フォロー対象部署オートコンプリート処理
+        /// <summary>
+        /// フォロー対象部署オートコンプリート処理
+        /// </summary>
+        /// <param name="FMC_mc">FMC/mc区分</param>
+        /// <param name="kaihatu_id">開発符号</param>
+        /// <param name="by_pu">BYPU区分</param>
+        /// <param name="event_no">イベントNO</param>
+        /// <returns>結果ステータス</returns>
+        protected void GetKaCodeData(String FMC_mc, String kaihatu_id, String by_pu, String event_no)
+        {
+            BuisinessLogic.BLFollowAnswer bLogic = new BuisinessLogic.BLFollowAnswer();
+
+            // AutoComplete の課コードリスト取得
+            kaCodeFollowData = bLogic.GetKaCodeFollowDataList(FMC_mc, kaihatu_id, by_pu, event_no);
+
+            string kaCodeInfo = "";
+
+            for (int i = 0; i < kaCodeFollowData.Rows.Count; i++)
+            {
+                if (i > 0) kaCodeInfo += ",\n";
+
+                kaCodeInfo += "{ label: '" + kaCodeFollowData.Rows[i]["KA_CODE"].ToString().Trim() + "', value: '" + kaCodeFollowData.Rows[i]["KA_CODE"].ToString().Trim() + "'}";
+            }
+
+            ViewState["KaCodeInfo"] = kaCodeInfo;
+
+        }
+        #endregion
+        // 2017/07/14 Add End
 
         #endregion
     }

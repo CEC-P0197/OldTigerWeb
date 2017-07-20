@@ -158,6 +158,8 @@ namespace OldTigerWeb.Const
         public const int DefCHECKC_CLM = 23;                        // チェック欄C列
 
         // EXCEL    フォロー回答情報出力
+        public const string BuTenkai = "部";                    　  // 部展開　2017/07/14 Add
+        public const string KaTenkai = "課";                    　  // 課展開　2017/07/14 Add
         public const string DefRUIJI = "類似";                    　// 類似
         public const string DefFollowExcelName = "Caco Follow_";       // ファイル名
         public const string DefFollowWorksheetName = "フォロー情報出力";  // ワークシート名

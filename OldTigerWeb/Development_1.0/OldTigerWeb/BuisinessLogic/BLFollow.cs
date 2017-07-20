@@ -30,7 +30,7 @@ namespace OldTigerWeb.BuisinessLogic
 
             return result;
         }
-
+        
         /// <summary>
         /// フォローダウンロード情報取得
         /// </summary>
