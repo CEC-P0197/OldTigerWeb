@@ -212,6 +212,8 @@
                             </div>
                             <div style="float:right;">
                                 <input name="lnkForm" type="button" value="掲示板編集" class="buttoncolor" style="display:none" onclick="displayForm();" />
+                                <input id="btn_MitakaRegist" type="button" value="test" class="buttoncolor" 
+                                    style="text-align :right ; " onclick="openSubWindowMitakaRegist();" />
                             </div>
                             <br/>
                             <div id="divForm" style="display:none;">    
@@ -466,6 +468,16 @@
                             //alert("未存在 " + url);
                         }
                     }
+
+                    function openSubWindowMitakaRegist() {
+                        // 1. 画面のオープン
+                        var url = "frmMitakaRegist.aspx";
+                        var w = (screen.width - 1340) / 2;
+                        var h = (screen.height - 700) / 2;
+                        var features = "menubar=no,toolbar=no,location=no,resizable=no,scrollbars=yes,status=no,height=700,width=1340,left=" + w + ",top=" + h;
+                        var frmMitakaRegistFlg = window.open(url, "frmMitakaRegist", features);
+                    }
+
             </script>
         </form>
     </body>

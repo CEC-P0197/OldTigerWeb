@@ -7,9 +7,23 @@ body {
     margin: 0;
 }
 
-.fullheight {
+/*ウィンドウ全体のフォント、背景色
+body
+{
+  color:#000000;
+  background-color:#a7bda7;
+}*/
+
+/*標準ボタン class="stdbutton を指定*/
+/*.stdbutton
+{
+  width: 100px;
+  height: 30px;
+}*/
+
+/*.fullheight {
     height: 100%;
-}
+}*/
 .midasi {
     font-size: 26px; /* 文字の大きさ */
     color: #000080;  /*2017.03.29 神田 色変更*/ 
@@ -33,23 +47,6 @@ body {
     text-align: left;
 }
 
-.td_data14 {
-    font-size: 14px; /* 文字の大きさ */
-    color: grey;
-    height: 8px;
-    text-align: left;
-    border-width: 0;
-}
-
-.td_data16 {
-    font-size: 16px; /* 文字の大きさ */
-    color: grey;
-    height: 8px;
-    text-align: left;
-    border-width: 0;
-    vertical-align:top;
-}
-
 .td_data24 {
     font-size: 24px; /* 文字の大きさ */
     color: grey;
@@ -57,16 +54,8 @@ body {
     text-align: left;
     border-width: 0;
 }
-
-.td_data26 {
-    font-size: 26px; /* 文字の大きさ */
-    color: grey;
-    height: 8px;
-    text-align: left;
-    border-width: 0;
-}
-.textcenter28 {
-	font-size: 28px;
+.textcenter14 {
+	font-size: 14px;
 	font-family: "ＭＳ ゴシック", "monospace";
     text-align: center;
 }
@@ -75,35 +64,12 @@ body {
 	font-family: "ＭＳ ゴシック", "monospace";
     text-align: center;
 }
-.textcenter18 {
-	font-size: 18px;
-	font-family: "ＭＳ ゴシック", "monospace";
-    text-align: center;
-}
-.textcenter16 {
-	font-size: 16px;
-	font-family: "ＭＳ ゴシック", "monospace";
-    text-align: center;
-}
-.textcenter14 {
-	font-size: 14px;
-	font-family: "ＭＳ ゴシック", "monospace";
-    text-align: center;
-}
-.moji24 {
-	font-size: 24px;
-	font-family: "ＭＳ ゴシック", "monospace";
-}
 .moji18 {
 	font-size: 18px;
 	font-family: "ＭＳ ゴシック", "monospace";
 }
 .moji16 {
 	font-size: 16px;
-	font-family: "ＭＳ ゴシック", "monospace";
-}
-.moji14 {
-	font-size: 14px;
 	font-family: "ＭＳ ゴシック", "monospace";
 }
 .moji11 {
@@ -114,35 +80,11 @@ body {
 	font-size: 12px;
 	font-family: "ＭＳ ゴシック", "monospace";
 }
-.kotei {
-	font-family: "monospace";
-	font-size: x-small;
-}
-.komidasi12 {
-	font-family: "ＭＳ ゴシック", "monospace";
-	font-size: 12px;
-}
-.komidasi11 {
-	font-family: "ＭＳ ゴシック", "monospace";
-	font-size: 11px;
-}
-.komidasi10 {
-	font-family: "ＭＳ ゴシック", "monospace";
-	font-size: 10px;
-	line-height: 11px;
-}
-
-.textright {
-	text-align:right;
-}
-
-.textleft  {
-	text-align:left;
-}
-
 .backcolor {
   	background-color:#a7bda7;
 }
+
+/*ボタン共通*/
 
 /*.btn_big {
     width: 499px;
@@ -160,19 +102,31 @@ body {
     text-align: left;
 }*/
 
-/*ウィンドウ全体のフォント、背景色
-body
-{
-  color:#000000;
-  background-color:#a7bda7;
-}*/
+/*ボタン押下*/
+.buttoncolor:hover { 
+    /* 背景色を水色に指定 */ 
+    background-color: #ccffff;
+    /*border:1px #6699ff solid;*/
+}
+/*タブ押下*/
+.buttoncolor:focus {
+    /* 背景色をリンク色に指定 */
+    background-color: #6699ff;
+    /*border: 1px #6699ff solid;*/
+}
 
-/*標準ボタン class="stdbutton を指定*/
-/*.stdbutton
-{
-  width: 100px;
-  height: 30px;
-}*/
+/*タブ共通*/
+
+/*タブ押下*/
+.tabcolor:hover { 
+    /* 背景色を水色に指定 */ 
+    background-color: #ccffff;
+}
+/*タブフォーカス*/
+.tabcolor:focus { 
+    /* 背景色をリンク色に指定 */ 
+    background-color: #6699ff;
+}
 
 /*FMC／MC進捗用縦スクロール*/
 div.follow {
@@ -187,67 +141,96 @@ div.follow {
 /*過去トラ検索用 */
 
 
-/*TOP10用 */
-.serchTop10 {
-    font-family: "ＭＳ ゴシック", "monospace";
-    border: 1px solid #000; 
-    width:240px;
-    vertical-align :top;
-    font-size:10pt;          /*　2017.04.03 ta_kanda 追加 */
+/*下部検索エリア*/
+.CotegorySearchTable{
+    height:300px;
 }
 
-/*履歴用 */
-.serchkHistory {
-    font-family: "ＭＳ ゴシック", "monospace";
-    border: 1px solid #000; 
-    width:240px;
-    vertical-align :top;
-    font-size:10pt;          /*　2017.04.03 ta_kanda 追加 */
+/*カテゴリ検索エリア*/
+/*タブグル―プ定義*/
+.tabsGroup{
+    font-size :11px!important;
+    height:100%;
+    background-color:#EEEEEE!important;
 }
-/*カテゴリエリア */
+.lnkKategori {
+    padding :0px 0px 0px 0px !important  ;
+    /*height:75%;*/
+    width:100%!important;
+    vertical-align:top;
+}
 .categoryField
 {
-    border:1px solid #000;
+    width:50%;
+    vertical-align:top;
+    height:100%;
+    background-color:#EEEEEE!important;
+    /*border:1px solid #000;*/
+}
+.tabsGroup {
+         width: 650px;   /* 幅 */
+}
+
+.tabsGroup a{
+         font-size :11px;
+}
+.buttoncolor:hover { 
+    /* 背景色を水色に指定 */ 
+    background-color: #ccffff;
+    border:1px #6699ff solid;
+}
+.buttoncolor:focus {
+    /* 背景色をリンク色に指定 */
+    background-color: #6699ff;
+    border: 1px #6699ff solid;
+}
+.tabcolor:hover { 
+    /* 背景色を水色に指定 */ 
+    background-color: #ccffff;
+}
+.tabcolor:focus { 
+    /* 背景色をリンク色に指定 */ 
+    background-color: #6699ff;
+ 
 }
 /*カテゴリタブ */
 .categoryTab
 {
-    width:100%;
-    height:350px;
+    width:100%!important;
+    /*height:100%;*/
+    /*height:350px;*/
+    /*border:1px solid #000;*/
+    /*color:#000000;*/
+    /*background-color:#EEEEEE;*/
+}
+
+.categoryBusyo,
+.categorySystem,
+.categoryBuhin,
+.categoryMst{
+    font-family: "ＭＳ ゴシック", "monospace";
+    font-size:10pt;
+    overflow-y: scroll;
     border:1px solid #000;
-    color:#000000;
-    background-color:#EEEEEE;
 }
 
 /*カテゴリ‐部署リスト用*/
 div.categoryBusyo {
-    font-family: "ＭＳ ゴシック", "monospace";
-    font-size:10pt;
     width:290px;
     height:300px;
-    border:1px solid #000;
-    overflow-y: scroll;
 }
 
 /*カテゴリ‐システムリスト用*/
 div.categorySystem {
-    font-family: "ＭＳ ゴシック", "monospace";
-    font-size:10pt;
     width:290px;
     height:280px;
     vertical-align: top;
-    border:1px solid #000;
-    overflow-y: scroll;
 }
 
 /*カテゴリ‐部品リスト用*/
 div.categoryBuhin {
-    font-family: "ＭＳ ゴシック", "monospace";
-    font-size:10pt;
     width:313px;
     height:305px;
-    border:1px solid #000;
-    overflow-y: scroll;
     overflow-x :scroll;
 }
     div.categoryBuhin table
@@ -257,128 +240,98 @@ div.categoryBuhin {
 
 /*カテゴリ‐マスタリスト用*/
 div.categoryMst {
-    font-family: "ＭＳ ゴシック", "monospace";
-    font-size:10pt;
     width:290px;
     height:300px;
-    border:1px solid #000;
-    overflow-y: scroll;
 }
-
-/*カテゴリ‐マスタパネル用*/
-/*div.categoryMstTab {
-    font-family: "ＭＳ ゴシック", "monospace";
-    font-size:10pt;
-    width:350px;
-    height:300px;
-    border:1px solid #000080;
-    overflow-y: scroll;
-}*/
-
-/*カテゴリ‐部署パネル用*/
-/*div.categoryBusyoTab {
-    font-family: "ＭＳ ゴシック", "monospace";
-    font-size:10pt;
-    width:280px;
-    height:300px;
-    border:1px solid #000080;
-    overflow-y: scroll;
-}*/
-
-/*カテゴリ‐システム用*/
-/*div.categorySystemTab {
-    font-family: "ＭＳ ゴシック", "monospace";
-    font-size:10pt;
-    width:280px;
-    height:270px;
-    vertical-align: top;
-    border:1px solid #000080;
-    white-space: nowrap;
-    overflow: scroll;
-}*/
-
-/*div.categoryBuhinTab {
-    font-family: "ＭＳ ゴシック", "monospace";
-    font-size:10pt;
-    width:300px;
-    height:315px;
-    vertical-align: top;
-    border:1px solid #000080;
-    white-space:nowrap;
-    overflow: scroll;
-}*/
 
 /*カテゴリ選択背景色 */
 .category
 {
     /*height:420px;*/
     width:620px;
-    height:394px;
+    /*height:394px;*/
     border:1px solid #000;
     color:#000000;
-    background-color:#EEEEEE;
 }
 
 /*カテゴリタブ */
 .categoryTab
 {
-    /*width:620px;*/
-    /*height:394px;*/
-    /*height:354px;*/
     border:1px solid #000;
-    color:#000000;
+    /*color:#000000;*/
     background-color:#EEEEEE;             
     font-family: "ＭＳ ゴシック", "monospace";  /*　2017.04.03 ta_kanda 追加 */
     font-size:10pt;
 }
 
-.categoryTabM {
-    color: blue;
-    font-weight:bold;
-} 
-
-/*カテゴリ検索タブ背景色*/
+/*カテゴリ検索タブボタン背景色*/
 .Tab_ColorAdd {
     background-color: blue !important;
     color:white !important;
 } 
 
-/*カテゴリ検索タブ背景色(デフォルト）*/
+/*カテゴリ検索タブボタン背景色(デフォルト）*/
 .Tab_Default {
     background-color: lightgray !important;
     color:black !important;
 } 
 
-/*カテゴリ選択背景色 */
-.kaito_head00 {
+/*検索条件エリア共通*/
+.serchTop10,
+.serchkHistory,
+.serchkMitaka{
+    height:50px!important;
     font-family: "ＭＳ ゴシック", "monospace";
-    font-size:10pt;
-    height:20px;
-    border:1px solid #000080;
+    border: 1px solid #000; 
 }
 
-.kaito_head01 {
-    font-family: "ＭＳ ゴシック", "monospace";
-    font-size:10pt;
-    height:40px;
-    width:50px;
-    border:1px solid #000080;
+/*TOP10用 */
+.serchTop10 {
+    width:25%;
+    vertical-align :top;
+    font-size:10pt;          /*　2017.04.03 ta_kanda 追加 */
 }
 
-.kaito_head1 {
-    font-family: "ＭＳ ゴシック", "monospace";
-    font-size:11pt;
-    width:50px;
-    height:60px;
-    border:1px solid #000080;
+/*履歴用 */
+.serchkHistory {
+    width:25%;
+    vertical-align :top;
+    font-size:10pt;          /*　2017.04.03 ta_kanda 追加 */
 }
-
-.kaito_head2 {
-    font-family: "ＭＳ ゴシック", "monospace";
-    font-size:11pt;
-    width:100px;
-    height:60px;
-    border:1px solid #000080;
+/*過去トラ観たか用 */
+.serchkMitaka,
+.serchkMitaka td {
+    /*width:240px;*/
+    width:100%;
+    vertical-align :top;
+    font-size:10pt;          /*　2017.04.03 ta_kanda 追加 */
+}
+.searchRightTable table
+/*,.searchRightTable td*/
+{
+    /*height:100%!important;*/
+    /*width:500px;*/
+}
+.searchUpper
+{
+    height:100%!important;
+    /*vertical-align:top;*/
+}
+.searchLower
+{
+    height:100%;
+    /*height:100px;*/
+}
+.searchLower div
+{
+    text-align:center!important;
+    height:100%;
+}
+/*.searchMitakaList,*/
+.searchMitakaList input{
+    height:100%!important;
+    width:100%!important;
+    font-size:20px;
 }
 
 /* DataTables用 */
@@ -444,7 +397,11 @@ table.tratbl tr:nth-child(even) td{background-color:#FFFFFF;color:#000000;}*/
 .align_center {
     text-align: center; 
 }
-
+/* DataTables　選択背景色強調色 */
+.highlight-active,
+.highlight-active td{
+    background-color:#5BC0DE!important;
+}
 /* Dropdown Button */
 .dropbtn {
     background-color: #4CAF50;
@@ -515,10 +472,6 @@ table {
 .highlight{
     background-color:yellow
 }
-/*過去トラ検索スタイル定義*/
-.lnkKategori {
-    padding :0px 0px 0px 0px !important  ;
-}
 
 
 /*過去トラ検索結果スタイル定義*/
@@ -564,12 +517,6 @@ table {
         text-align: left;
         vertical-align: top;
     }
-
-/*ＦＭＣ・ｍｃフォロー情報　表示一覧スタイル定義*/
-.trNonAnswer td
-{
-    background-color:#FFFFAA!important;
-}
 
 /*フォロー回答テーブルスタイル定義*/
 .syosaiTable {
@@ -618,3 +565,491 @@ table {
     padding : 0px 0px 0px 0px;
     height: 640px;
 }
+
+/*過去トラ観たか共通*/
+.SubWindowStyle{
+    background-color:lightgray;
+    font-family: "ＭＳ ゴシック", "monospace";
+    width:98vw;
+    height:90vh;
+}
+.SubWindowTitle{
+    width:100%!important;
+    height:100%!important;
+    /*margin: 10px 0px;*/
+    /*float:left;*/
+}
+    .SubWindowTitle div {
+        font-size:20px;
+        text-align:center;
+        /*text-shadow: 0 1px 2px #111111;*/
+        padding: 10px 10px;
+        border-radius: 3px;
+        border: 1px solid #3C12F7;
+        background-color:none;
+        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 0 5px rgba(0, 0, 0, 0.3) inset, 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+.SubWindowFooter{
+    width:100%!important;
+    font-size:50px!important;
+}
+    .MultiLineTxt{
+    width:100%!important;
+    height:80px;
+    max-width:none;
+    max-height:none;
+}
+.ReadOnlyTxt{
+    background-color:lightgray; 
+}
+
+.btnSubmit,
+.btnSubmitLeft,
+.btnSmall
+.btnSmallLeft{
+    padding:0px;   
+    border-radius:10px;
+}
+.btnSubmit,
+.btnClose{
+    float:right;
+    width:180px;
+    height:45px; 
+}
+.btnSubmitLeft{
+    float:left;
+    width:180px!important;
+    height:45px!important; 
+}
+
+.btnAndOr{
+    float:right;
+    width:50px!important;
+    height:25px!important; 
+}
+
+.btnSmall {
+    float:right;
+    width:100px!important;
+    height:30px!important; 
+}
+.btnSmallLeft {
+    float:left;
+    width:100px!important;
+    height:30px!important; 
+}
+.btnSubmit input{
+    /*font-size:40px!important;*/
+}
+.SubWindowTableHeader{
+    background-color:lightgreen!important;
+    border-radius: 3px;
+    border: 1px solid #83828A;
+}
+
+
+
+/*過去トラ観たか新規登録画面*/
+
+.MitakaRegistTable{
+    /*background-color:antiquewhite;*/
+    /*height:80vh;*/
+    width:95vw;
+}
+    .MitakaRegistTable tr{
+        /*background-color:aquamarine;*/
+        padding: 0px;
+        width:15vw;
+        /*height:100%!important;*/
+    }
+    .MitakaRegistTable td{
+        /*background-color:Highlight;*/
+        vertical-align:middle;
+        padding-left:10px;
+        height:100%!important;
+        width:125px;
+    }
+    .MitakaRegistTable input[type=text]
+     {
+        width:100%!important;
+        height:100%;
+        border:none;
+    }
+    .MitakaRegistTable span{
+        background-color:white;
+    }
+    .MitakaRegistSearchDiv {
+    /*width:98vw;*/
+    /*height:8vh;*/
+}
+.MitakaRegistSearchDiv Table{
+    /*background-color:antiquewhite;*/
+    /*height:10vh;*/
+    width:100%;
+    /*padding: 10px 10px;*/
+    /*border-radius: 3px;
+    border: 3px solid #83828A;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 0 5px rgba(0, 0, 0, 0.3) inset, 0 1px 2px rgba(0, 0, 0, 0.3);*/
+}
+    .MitakaRegistSearchDiv tr{
+        /*background-color:aquamarine;*/
+        /*padding: 0px;*/
+        /*width:30px;*/
+        /*height:30px!important;*/
+    }
+    .MitakaRegistSearchDiv td{
+        padding: 0px;
+        vertical-align:middle;
+        padding-left:10px;
+        /*width:100px;*/
+        /*background-color:red;*/
+    }
+
+
+
+/*過去トラ観たか詳細画面*/
+.MitakaDetailTable{
+    /*background-color:antiquewhite;*/
+    /*height:30vh;*/
+    width:98vw;
+    /*padding: 10px 10px;*/
+    /*border-radius: 3px;
+    border: 1px solid #83828A;*/
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 0 5px rgba(0, 0, 0, 0.3) inset, 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+    .MitakaDetailTable tr{
+        /*background-color:aquamarine;*/
+        /*padding: 0px;*/
+        /*width:12vw;*/
+        height:12px!important;
+    }
+
+    .MitakaDetailTable th{
+        width:150px;
+        text-align:left;
+    }
+    .MitakaDetailTable th,
+    .MitakaDetailTable td{
+        background-color:white;
+        padding: 0px;
+        vertical-align:middle;
+        padding-left:10px;
+        border-radius: 3px;
+        border: 1px solid #83828A
+        ;
+    }
+    .MitakaDetailTable input,
+    .MitakaDetailTable select {
+        width:15vh;
+        /*height:30px;*/
+    }
+
+.MitakaDetailSearchDiv{
+    width:98vw;
+
+}
+.MitakaDetailSearchDiv Table{
+    width:100%;
+}
+    .MitakaDetailSearchDiv td{
+        padding: 0px;
+        vertical-align:middle;
+        padding-left:10px;
+    }
+
+.MitakaDetailTroubleListDiv{
+    width:98vw;
+}
+    .MitakaDetailTroubleListDiv table {
+        width: 100%;
+    }
+    .MitakaDetailTroubleListDiv tr {
+
+    }
+
+/*過去トラ観たか回答スタイル定義*/
+
+.MitakaAnswerTable{
+    /*background-color:antiquewhite;*/
+    /*height:80vh;*/
+    width:95vw;
+}
+    .MitakaAnswerTable tr{
+        /*background-color:aquamarine;*/
+        padding: 0px;
+        /*width:15vw;*/
+        /*height:100%!important;*/
+    }
+    .MitakaAnswerTable td{
+        /*background-color:Highlight;*/
+        vertical-align:middle;
+        padding-left:10px;
+        /*height:100%!important;
+        /*width:125px;*/
+        /*width:100%;*/
+    }
+.MitakaAnswerUpperTable{
+    font-family: "ＭＳ ゴシック", "monospace";
+    font-size:10pt;
+    border-collapse: collapse; 
+    table-layout: fixed; 
+    width:100%;
+} 
+.MitakaAnswerLowerTable{
+    font-family: "ＭＳ ゴシック", "monospace";
+    font-size:10pt;
+    border-collapse: collapse; 
+    table-layout: fixed; 
+    width:100%;
+} 
+    .MitakaAnswerUpperTable th, 
+    .MitakaAnswerUpperTable td,
+    .MitakaAnswerLowerTable th, 
+    .MitakaAnswerLowerTable td { 
+        border: 1px solid #CCCCCC; 
+        padding: 5px 10px; 
+        text-align: left; 
+        vertical-align: top;
+    } 
+    .MitakaAnswerUpperTable th,
+    .MitakaAnswerLowerTable th { 
+        background-color: #D3D3D3; 
+        width:110px!important;
+    }
+    .MitakaAnswerUpperTable textarea{
+        width:100%;
+        max-height:none!important;
+        height:100%!important;
+    }
+
+/*過去トラ観たか回答スタイル定義*/
+
+.MitakaConfirmationTroubleListDiv{
+    width:98vw!important;
+}
+    .MitakaConfirmationTroubleListDiv table {
+        width: 100%;
+    }
+    .MitakaConfirmationTroubleListDiv tr {
+
+    }
+
+.MitakaConfirmationInstListDiv {
+    width:98vw!important;
+}
+    .MitakaConfirmationInstListDiv table {
+        width:100%!important;
+    }
+    .MitakaConfirmationInstListDiv th {
+        width:12vw;
+    }
+
+/*過去トラ観たか検索画面*/
+
+.MitakaSearchTable{
+    /*background-color:antiquewhite;*/
+    height:10vh;
+    width:75vw;
+    /*padding: 10px 10px;*/
+    border-radius: 3px;
+    border: 3px solid #83828A;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 0 5px rgba(0, 0, 0, 0.3) inset, 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+    .MitakaSearchTable tr{
+        /*background-color:aquamarine;*/
+        padding: 0px;
+        width:12vw;
+        /*height:30px!important;*/
+    }
+    .MitakaSearchTable td{
+        padding: 0px;
+        vertical-align:middle;
+        padding-left:10px;
+    }
+    .MitakaSearchTable input,
+    .MitakaSearchTable select {
+        /*width:40vh;*/
+        /*height:30px;*/
+    }
+.MitakaSearchInstListDiv {
+    width: 75vw !important;
+    height:40vh;
+    background-color: darkgray;
+    border-radius: 3px;
+    border: 1px solid #83828A;
+}
+    .MitakaSearchInstListDiv table {
+        width:100%!important;
+    }
+    .MitakaSearchInstListDiv th {
+        width:12vw;
+    }
+.MitakaSearchFooter td{
+    width:75vw!important;
+}
+
+/*過去トラ観たか選択画面*/
+
+.MitakaSelectTable{
+    /*background-color:antiquewhite;*/
+    height:10vh;
+    width:100%;
+    /*padding: 10px 10px;*/
+    /*border-radius: 3px;
+    border: 3px solid #83828A;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 0 5px rgba(0, 0, 0, 0.3) inset, 0 1px 2px rgba(0, 0, 0, 0.3);*/
+}
+    .MitakaSelectTable tr{
+        /*background-color:aquamarine;*/
+        padding: 0px;
+        /*width:30px;*/
+        /*height:30px!important;*/
+    }
+    .MitakaSelectTable td{
+        padding: 0px;
+        vertical-align:middle;
+        padding-left:10px;
+        /*width:100px;*/
+        /*background-color:red;*/
+    }
+    .MitakaSelectTable input,
+    .MitakaSelectTable select {
+        width:100%;
+        /*height:30px;*/
+    }
+
+.MitakaSelectInstTable {
+    /*width: 100% !important;*/
+    /*height:60vh;*/
+    /*background-color: darkgray!important;
+    border-radius: 3px!important;
+    border: 1px solid #83828A!important;*/
+}
+    .MitakaSelectInstTable th {
+        width:12vw;
+    }
+
+.tableDiv{
+    background-color: darkgray!important;
+    border-radius: 3px!important;
+    border: 1px solid #83828A!important;
+}
+    .thAnswerPeriod{
+        width:80px!important;
+    }
+    .thCreateUser{
+        width:60px!important;
+    }
+    .thSearchParameter{
+        width:120px!important;
+    }
+
+/*ユーザー検索画面*/
+.UserSearchTable,
+.UserSearchArea{
+    /*background-color:antiquewhite;*/
+    /*height:80vh;*/
+    width:90vw;
+}
+    .UserSearchTable tr{
+        /*background-color:aquamarine;*/
+        padding: 0px;
+        /*width:15vw;*/
+        /*height:30px!important;*/
+    }
+    .UserSearchTable td{
+        /*background-color:Highlight;*/
+        vertical-align:middle;
+        padding-left:10px;
+    }
+.UserSearchCriteriaTable{
+    /*background-color:antiquewhite;*/
+    /*height:80vh;*/
+    width:100%;
+}
+    .UserSearchCriteriaTable tr{
+        /*background-color:aquamarine;*/
+        padding: 0px;
+        width:15vw;
+        /*height:30px!important;*/
+    }
+    .UserSearchCriteriaTable td{
+        /*background-color:Highlight;*/
+        vertical-align:middle;
+        width:10vw;
+        padding-left:10px;
+    }
+    .UserSearchCriteriaTable input,
+    .UserSearchCriteriaTable select {
+        width:96%;
+        /*height:30px;*/
+    }
+.tdSearchArea,
+.tdSelectedArea{
+    width:50%!important;
+}
+.UserSearchResultListDiv,
+.UserSearchResultListDiv.no-footer.dataTables_wrapper,
+.UserSearchResultListDiv.dataTables_scrollBody
+ {
+    width: 100% !important;
+    /*height:40vh;*/
+    overflow:hidden!important;
+}
+    .UserSearchResultListDiv  table {
+        width:100%!important;
+    }
+    .UserSearchResultListDiv  th {
+        /*width:5vw;*/
+    }
+.tdDepartment,
+.tdDivision{
+    width :10%!important;
+}
+.tdUserName{
+    width :30%!important;
+}
+.tdAddress{
+    width:50%!important;
+}
+.tdAnswer{
+    width:50%!important;
+}
+.divHidden {
+    overflow: hidden !important;
+}
+/*展開対象設定画面*/
+.DeploymentTargetAddDiv,
+.DeploymentTargetSettingDiv{
+    width:98vw!important;
+    /*height:10vh;*/
+
+}
+.DeploymentTargetAddDiv Table,
+.DeploymentTargetSettingDiv Table{
+    width:100%;
+}
+    }
+    .DeploymentTargetAddDiv td,
+    .DeploymentTargetSettingDiv td{
+        padding: 0px;
+        vertical-align:middle;
+        padding-left:10px;
+    }
+    .DeploymentTargetAddTable input,
+    .DeploymentTargetAddTable select,
+    .DeploymentTargetSettingTable input,
+    .DeploymentTargetSettingTable select {
+        width:100%;
+    }
+
+.DeploymentTargetAddTroubleListDiv,
+.DeploymentTargetSettingTroubleListDiv{
+    width:98vw;
+
+}
+    .DeploymentTargetAddTroubleListDiv table,
+    .DeploymentTargetSettingTroubleListDiv table {
+        width: 100%;
+    }
+

@@ -155,16 +155,22 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Net.Http.Formatting.Extension.5.2.3.0\lib\System.Net.Http.Formatting.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Net.Http.Formatting.Extension.5.2.3.0\lib\System.Net.Http.Primitives.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Http">
-      <HintPath>..\..\MassManagementSystem\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
@@ -329,14 +335,24 @@
     <Content Include="frmAnswer.aspx" />
     <Content Include="frmChangeImage.aspx" />
     <Content Include="frmClientView.aspx" />
+    <Content Include="frmDeploymentTargetAdd.aspx" />
+    <Content Include="frmDeploymentTargetSetting.aspx" />
     <Content Include="frmDocument.aspx" />
     <Content Include="frmDetail.aspx" />
     <Content Include="frmEcsSelectWindow.aspx" />
     <Content Include="frmErrorPage.aspx" />
     <Content Include="frmFollow.aspx" />
     <Content Include="frmLoading.aspx" />
+    <Content Include="frmMitakaAnswer.aspx" />
+    <Content Include="frmMitakaConfirmation.aspx" />
+    <Content Include="frmMitakaDetailAnswer.aspx" />
+    <Content Include="frmMitakaDetailCreater.aspx" />
+    <Content Include="frmMitakaRegist.aspx" />
+    <Content Include="frmMitakaSearch.aspx" />
+    <Content Include="frmMitakaSelect.aspx" />
     <Content Include="frmSearch.aspx" />
     <Content Include="frmTroubleList.aspx" />
+    <Content Include="frmUserSearch.aspx" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\BackImage.gif" />
     <Content Include="Images\bar14.gif" />
@@ -864,11 +880,26 @@
     <Compile Include="BuisinessLogic\BLFollowAnswer.cs" />
     <Compile Include="BuisinessLogic\BLFollow.cs" />
     <Compile Include="BuisinessLogic\BLDetail.cs" />
+    <Compile Include="BuisinessLogic\TroubleData.cs" />
     <Compile Include="BuisinessLogic\BLTroubleList.cs" />
     <Compile Include="BuisinessLogic\BLSearch.cs" />
+    <Compile Include="BuisinessLogic\BLUserSearch.cs" />
+    <Compile Include="BuisinessLogic\MitakaAnswerData.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BuisinessLogic\MitakaData.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BuisinessLogic\MitakaSearchData.cs" />
+    <Compile Include="DataAccess\DAMitakaData.cs" />
     <Compile Include="CommonLogic\CommonLogic.cs" />
-    <Compile Include="CommonLogic\CommonPageLogic.cs" />
+    <Compile Include="CommonLogic\CommonPageLogic.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CommonLogic\StringUtil.cs" />
+    <Compile Include="CommonLogic\DateTimeUtil.cs" />
     <Compile Include="CommonLogic\ICommonLogic.cs" />
+    <Compile Include="Const\MessageConst.cs" />
     <Compile Include="Const\Const.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
@@ -883,8 +914,16 @@
     <Compile Include="DataAccess\DAAnswer.cs" />
     <Compile Include="DataAccess\DAFollowAnswer.cs" />
     <Compile Include="DataAccess\DAFollow.cs" />
+    <Compile Include="DataAccess\DATroubleData.cs" />
     <Compile Include="DataAccess\DATroubleList.cs" />
     <Compile Include="DataAccess\DASearch.cs" />
+    <Compile Include="DataAccess\DAUserSearch.cs" />
+    <Compile Include="DataAccess\IDAMitakaData.cs" />
+    <Compile Include="DataAccess\IDATroubleData.cs" />
+    <Compile Include="DataAccess\SqlBridging.cs" />
+    <Compile Include="DataAccess\SqlParam.cs" />
+    <Compile Include="DataAccess\SqlParamCollection.cs" />
+    <Compile Include="DataAccess\SqlService.cs" />
     <Compile Include="frmAnswerSubWindow.aspx.cs">
       <DependentUpon>frmAnswerSubWindow.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -912,6 +951,20 @@
     </Compile>
     <Compile Include="frmClientView.aspx.designer.cs">
       <DependentUpon>frmClientView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmDeploymentTargetAdd.aspx.cs">
+      <DependentUpon>frmDeploymentTargetAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmDeploymentTargetAdd.aspx.designer.cs">
+      <DependentUpon>frmDeploymentTargetAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmDeploymentTargetSetting.aspx.cs">
+      <DependentUpon>frmDeploymentTargetSetting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmDeploymentTargetSetting.aspx.designer.cs">
+      <DependentUpon>frmDeploymentTargetSetting.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmDocument.aspx.cs">
       <DependentUpon>frmDocument.aspx</DependentUpon>
@@ -955,6 +1008,55 @@
     <Compile Include="frmLoading.aspx.designer.cs">
       <DependentUpon>frmLoading.aspx</DependentUpon>
     </Compile>
+    <Compile Include="frmMitakaAnswer.aspx.cs">
+      <DependentUpon>frmMitakaAnswer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmMitakaAnswer.aspx.designer.cs">
+      <DependentUpon>frmMitakaAnswer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmMitakaConfirmation.aspx.cs">
+      <DependentUpon>frmMitakaConfirmation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmMitakaConfirmation.aspx.designer.cs">
+      <DependentUpon>frmMitakaConfirmation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmMitakaDetailAnswer.aspx.cs">
+      <DependentUpon>frmMitakaDetailAnswer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmMitakaDetailAnswer.aspx.designer.cs">
+      <DependentUpon>frmMitakaDetailAnswer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmMitakaDetailCreater.aspx.cs">
+      <DependentUpon>frmMitakaDetailCreater.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmMitakaDetailCreater.aspx.designer.cs">
+      <DependentUpon>frmMitakaDetailCreater.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmMitakaRegist.aspx.cs">
+      <DependentUpon>frmMitakaRegist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmMitakaRegist.aspx.designer.cs">
+      <DependentUpon>frmMitakaRegist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmMitakaSearch.aspx.cs">
+      <DependentUpon>frmMitakaSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmMitakaSearch.aspx.designer.cs">
+      <DependentUpon>frmMitakaSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmMitakaSelect.aspx.cs">
+      <DependentUpon>frmMitakaSelect.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmMitakaSelect.aspx.designer.cs">
+      <DependentUpon>frmMitakaSelect.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmSearch.aspx.cs">
       <DependentUpon>frmSearch.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -968,6 +1070,13 @@
     </Compile>
     <Compile Include="frmTroubleList.aspx.designer.cs">
       <DependentUpon>frmTroubleList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmUserSearch.aspx.cs">
+      <DependentUpon>frmUserSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmUserSearch.aspx.designer.cs">
+      <DependentUpon>frmUserSearch.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

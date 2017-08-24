@@ -55,7 +55,7 @@ namespace OldTigerWeb
                     ClientScriptManager csManager = Page.ClientScript;
                     Type csType = this.GetType();
                     ArrayList arrayMessage = new ArrayList();
-                    arrayMessage.Add(Const.Def.DefMsg_USERERR);
+                    arrayMessage.Add(Def.DefMsg_USERERR);
                     bcom.ShowMessage(csType, csManager, arrayMessage);
                 }
                 else

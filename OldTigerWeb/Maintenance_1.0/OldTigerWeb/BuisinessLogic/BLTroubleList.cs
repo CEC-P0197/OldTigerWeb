@@ -18,18 +18,21 @@ namespace OldTigerWeb.BuisinessLogic
         /// 過去トラ情報取得
         /// </summary>
         /// <param name="Mode">モード：1:画面、2:Excel</param>
-        /// <param name="Type">種類</param>
-        /// <param name="Moji">検索文字</param>
+        /// <param name="Type">種類　カテゴリ検索の場合はnull</param>
+        /// <param name="Moji">検索文字　カテゴリ検索の場合はnull</param>
         /// <param name="paraArrWord1">カテゴリ検索用配列１</param>
         /// <param name="paraArrWord2">カテゴリ検索用配列２（評価部署用）</param>
-        /// <param name="Table">カテゴリデータテーブル</param>
-        /// <param name="paraCondition">And・Or検索条件</param>
+        /// <param name="Table">カテゴリデータテーブル（カテゴリ検索用）</param>
+        /// <param name="paraCondition">キーワード検索用 And・Or検索条件  1：And、2：Or</param>
+        /// <param name="paraCategoryCondition">カテゴリ検索用 And・Or検索条件  1：And、2：Or</param> // 20170719 Add
         /// <returns>結果データテーブル</returns>
         /// <remarks></remarks>
         //20170201 機能改善 START
         //public DataTable GetToroubleList(String Mode, String Type, String Moji, ArrayList paraArrWord1, ArrayList paraArrWord2)
-        public DataTable GetToroubleList(String Mode, string Type, String Moji, ArrayList paraArrWord1, ArrayList paraArrWord2, DataTable Table, String paraCondition)
+        //public DataTable GetToroubleList(String Mode, string Type, String Moji, ArrayList paraArrWord1, ArrayList paraArrWord2, DataTable Table, String paraCondition)
         //20170201 機能改善 END
+        public DataTable GetToroubleList(String Mode, string Type, String Moji, ArrayList paraArrWord1, ArrayList paraArrWord2, DataTable Table, String paraCondition, 
+            String paraCategoryCondition) // 20170719 Add
         {
             DataTable result = null;
 
@@ -39,8 +42,10 @@ namespace OldTigerWeb.BuisinessLogic
             // ＳＱＬ実行
             //20170201 機能改善 START
             //result = dac.SelectTroubleList(Mode, Type, Moji, paraArrWord1, paraArrWord2);
-            result = dac.SelectTroubleList(Mode, Type, Moji, paraArrWord1, paraArrWord2, Table, paraCondition);
+            //result = dac.SelectTroubleList(Mode, Type, Moji, paraArrWord1, paraArrWord2, Table, paraCondition);
             //20170201 機能改善 END
+
+            result = dac.SelectTroubleList(Mode, Type, Moji, paraArrWord1, paraArrWord2, Table, paraCondition, paraCategoryCondition); // 20170719 Add
 
             return result;
         }

@@ -53,36 +53,38 @@ namespace OldTigerWeb.DataAccess.Common
         {
             DataTable work_t = new DataTable();
 
-            // DBオープン
-            SqlConnection connDb = dbOpen();
+            StringBuilder sb = new StringBuilder();
 
             try
             {
                 // SQL作成
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = connDb;
-                cmd.CommandText = "SELECT * FROM m_user where user_id = @user_id";
-                cmd.Parameters.AddWithValue("@user_id", user_id);
+                sb.AppendLine("SELECT ");
+                sb.AppendLine("* ");
+                sb.AppendLine("FROM ");
+                sb.AppendLine("M_USER ");
+                sb.AppendLine("where ");
+                sb.AppendLine("user_id = '@userId'");
+                sb= sb.Replace("@userId", user_id);
 
-                // コマンドを実行
-                SqlDataReader reader = cmd.ExecuteReader();
+                // SQL実行
+                DataTable dt = new SqlBridging().ExecuteReader(sb.ToString());
 
-                // SqlDataReader からデータを DataTable に読み込む
-                work_t.Load(reader);
+                DataColumn[] stringColumns = dt.Columns.Cast<DataColumn>()
+                    .Where(c => c.DataType == typeof(string))
+                    .ToArray();
 
-                reader.Close();
+                foreach (DataRow row in dt.Rows)
+                    foreach (DataColumn col in stringColumns)
+                    {
+                        if (row.Field<string>(col) == null) continue;
+                        row.SetField<string>(col, row.Field<string>(col).Trim());
+                    }
 
-                return work_t;
+                return dt;
             }
             catch (Exception ex)
             {
                 throw ex;
-            }
-            finally
-            {
-                connDb.Close();
-                connDb.Dispose();
-                connDb = null;
             }
         }
         #endregion
@@ -94,7 +96,7 @@ namespace OldTigerWeb.DataAccess.Common
         /// </summary>
         /// <param name="Type">課・主査コード</param>
         /// <returns>部コード</returns>
-        public DataTable SelectBuCode(String ka_code)
+        public DataTable selectBuCode(String ka_code)
         {
             DataTable result = new DataTable();
 
@@ -284,7 +286,7 @@ namespace OldTigerWeb.DataAccess.Common
 
             try
             {
-                if (paraType == Const.Def.DefTYPE_TOP10)
+                if (paraType == Def.DefTYPE_TOP10)
                 {
                     paraTop10 = paraWord;
                     paraWord = null;

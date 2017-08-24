@@ -39,13 +39,13 @@ namespace OldTigerWeb
                 // 引数:フォローキー情報
                 try
                 {
-                    stFmcMc = Request.QueryString.Get(Const.Def.DefPARA_FMCMC).Trim();
-                    stKaihatsuId = Request.QueryString.Get(Const.Def.DefPARA_KAIHATSUID).Trim();
-                    stByPu = Request.QueryString.Get(Const.Def.DefPARA_BYPU).Trim();
-                    stEventNo = Request.QueryString.Get(Const.Def.DefPARA_EVENTNO).Trim();
-                    stFollowNo = Request.QueryString.Get(Const.Def.DefPARA_FOLLOWNO).Trim();
-                    stKaCode = Request.QueryString.Get(Const.Def.DefPARA_KACODE).Trim();
-                    stSystemNo = Request.QueryString.Get(Const.Def.DefPARA_SYSTEMNO).Trim();
+                    stFmcMc = Request.QueryString.Get(Def.DefPARA_FMCMC).Trim();
+                    stKaihatsuId = Request.QueryString.Get(Def.DefPARA_KAIHATSUID).Trim();
+                    stByPu = Request.QueryString.Get(Def.DefPARA_BYPU).Trim();
+                    stEventNo = Request.QueryString.Get(Def.DefPARA_EVENTNO).Trim();
+                    stFollowNo = Request.QueryString.Get(Def.DefPARA_FOLLOWNO).Trim();
+                    stKaCode = Request.QueryString.Get(Def.DefPARA_KACODE).Trim();
+                    stSystemNo = Request.QueryString.Get(Def.DefPARA_SYSTEMNO).Trim();
                     if (stFmcMc == "" || stFmcMc == null)
                     {
                         bRet = true;
@@ -60,7 +60,7 @@ namespace OldTigerWeb
                 bRet = bcom.CheckUser();
                 if (bRet)
                 {
-                    errorMessage(Const.Def.DefMsg_USERERR);
+                    errorMessage(Def.DefMsg_USERERR);
                     return;
                 }
 
@@ -68,7 +68,7 @@ namespace OldTigerWeb
 
                 // 2017/07/14 Add Start
                 // 展開区分取得
-                gbTenkaiKbn = bAnswer.GetTenkaiKbn(stFmcMc,
+                gbTenkaiKbn = bAnswer.getTenkaiKbn(stFmcMc,
                             stKaihatsuId,
                             stByPu,
                             stEventNo);

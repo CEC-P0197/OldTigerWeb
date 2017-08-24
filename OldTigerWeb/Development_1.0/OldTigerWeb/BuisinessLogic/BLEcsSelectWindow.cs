@@ -6,7 +6,6 @@ using System.Data;
 using System.Linq;
 using System.Net.Http;
 using System.Web;
-using OldTigerWeb.Const;
 
 namespace OldTigerWeb.BuisinessLogic
 {

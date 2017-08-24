@@ -38,7 +38,7 @@ namespace OldTigerWeb
 
                 pnlFollowAnswer.Visible = false;
 
-                String paraEventCode = (String)Session[Const.Def.DefPARA_FOLLOW];
+                String paraEventCode = (String)Session[Def.DefPARA_FOLLOW];
 
                 Boolean result = false;
             
@@ -50,7 +50,7 @@ namespace OldTigerWeb
                 if (paraEventCode == "" || paraEventCode == null)
                 {
                     btnDisp.Enabled = false;    // 表示ボタン使用不可
-                    arrayMessage.Add(Const.Def.DefMsg_URLERR);
+                    arrayMessage.Add(Def.DefMsg_URLERR);
                     bcom.ShowMessage(csType, csManager, arrayMessage);
                     return;
                 }
@@ -60,7 +60,7 @@ namespace OldTigerWeb
                 if (result)
                 {
                     btnDisp.Enabled = false;    // 表示ボタン使用不可
-                    arrayMessage.Add(Const.Def.DefMsg_USERERR);
+                    arrayMessage.Add(Def.DefMsg_USERERR);
                     bcom.ShowMessage(csType, csManager, arrayMessage);
                     return;
                 }
@@ -76,14 +76,14 @@ namespace OldTigerWeb
                 ViewState["BY_PU"] = strArrayData[2];
                 ViewState["EVENT_NO"] = strArrayData[3];
                 ViewState["FullEventName"] = strArrayData[4];
-                Session[Const.Def.DefPARA_EVENTNM] = strArrayData[4];
+                Session[Def.DefPARA_EVENTNM] = strArrayData[4];
                 ViewState["EventName"] = strArrayData[5];
 
-                // フォロー対象部署オートコンプリート処理
-                GetKaCodeData(ViewState["FMC_mc"].ToString(), ViewState["KAIHATU_ID"].ToString(),
+                // フォロー対象部署オートコンプリート処理 // 2017/07/14 Add
+                getKaCodeData(ViewState["FMC_mc"].ToString(), ViewState["KAIHATU_ID"].ToString(),
                         ViewState["BY_PU"].ToString(), ViewState["EVENT_NO"].ToString());
 
-                Session[Const.Def.DefPARA_FOLLOW] = "";         // セッションクリア
+                Session[Def.DefPARA_FOLLOW] = "";         // セッションクリア
 
             }
             // システムエラー処理（ログ出力、エラー画面遷移）
@@ -131,8 +131,8 @@ namespace OldTigerWeb
 
             if (gbFollowData.Rows.Count > 0)
             {
-                int pgsu = gbFollowData.Rows.Count / Const.Def.DefFOLLOW_LINECNT;
-                int amari = gbFollowData.Rows.Count % Const.Def.DefFOLLOW_LINECNT;
+                int pgsu = gbFollowData.Rows.Count / Def.DefFOLLOW_LINECNT;
+                int amari = gbFollowData.Rows.Count % Def.DefFOLLOW_LINECNT;
                 int curpage = int.Parse(hdPageNo.Value.ToString());
                 if (pgsu < 1)
                 {
@@ -187,12 +187,12 @@ namespace OldTigerWeb
         /// <param name="by_pu">BYPU区分</param>
         /// <param name="event_no">イベントNO</param>
         /// <returns>結果ステータス</returns>
-        protected void GetKaCodeData(String FMC_mc, String kaihatu_id, String by_pu, String event_no)
+        protected void getKaCodeData(String FMC_mc, String kaihatu_id, String by_pu, String event_no)
         {
             BuisinessLogic.BLFollowAnswer bLogic = new BuisinessLogic.BLFollowAnswer();
 
             // AutoComplete の課コードリスト取得
-            kaCodeFollowData = bLogic.GetKaCodeFollowDataList(FMC_mc, kaihatu_id, by_pu, event_no);
+            kaCodeFollowData = bLogic.getKaCodeFollowDataList(FMC_mc, kaihatu_id, by_pu, event_no);
 
             string kaCodeInfo = "";
 

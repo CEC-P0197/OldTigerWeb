@@ -38,7 +38,7 @@ namespace OldTigerWeb.BuisinessLogic
         /// <param name="event_no">イベントNO</param>
         /// <returns>結果ステータス</returns>
         /// <remarks></remarks>
-        public DataTable GetKaCodeFollowDataList(String FMC_mc, String kaihatu_id, String by_pu, String event_no)
+        public DataTable getKaCodeFollowDataList(String FMC_mc, String kaihatu_id, String by_pu, String event_no)
         {
             DataTable result = null;
 
@@ -46,7 +46,7 @@ namespace OldTigerWeb.BuisinessLogic
             DataAccess.DAFollowAnswer dac = new DataAccess.DAFollowAnswer();
 
             // ＳＱＬ実行
-            result = dac.SelectKaCodeFollowDataList(FMC_mc, kaihatu_id, by_pu, event_no);
+            result = dac.selectKaCodeFollowDataList(FMC_mc, kaihatu_id, by_pu, event_no);
 
             return result;
         }

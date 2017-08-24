@@ -487,7 +487,7 @@ public void ShowMessage(
     /// </summary>
     /// <param name="KaCode">課コード</param>
     /// <returns>部コード</returns>
-    public DataTable GetBuCode(String KaCode)
+    public DataTable getBuCode(String KaCode)
     {
         DataTable result = null;
 
@@ -495,7 +495,7 @@ public void ShowMessage(
         SqlCommon dac = new SqlCommon();
 
         // ＳＱＬ実行
-        result = dac.SelectBuCode(KaCode);
+        result = dac.selectBuCode(KaCode);
 
         return result;
     }

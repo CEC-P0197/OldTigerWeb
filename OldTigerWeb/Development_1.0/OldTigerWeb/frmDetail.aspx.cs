@@ -46,7 +46,7 @@ namespace OldTigerWeb
                 // 引数:システム管理No
                 try
                 {
-                    stKanriNo = Request.QueryString.Get(Const.Def.DefPARA_KANRINO).Trim();
+                    stKanriNo = Request.QueryString.Get(Def.DefPARA_KANRINO).Trim();
                     if (stKanriNo == "" || stKanriNo == null)
                     {
                         bRet = true;
@@ -61,7 +61,7 @@ namespace OldTigerWeb
                 {
                     DetailDiv.Visible = false;
 
-                    arrayMessage.Add(Const.Def.DefMsg_URLERR);
+                    arrayMessage.Add(Def.DefMsg_URLERR);
                     bcom.ShowMessage(csType, csManager, arrayMessage);
                     return;
                 }
@@ -72,15 +72,15 @@ namespace OldTigerWeb
                 {
                     DetailDiv.Visible = false;
 
-                    arrayMessage.Add(Const.Def.DefMsg_USERERR);
+                    arrayMessage.Add(Def.DefMsg_USERERR);
                     bcom.ShowMessage(csType, csManager, arrayMessage);
                     return;
                 }
 
                 // 検索ログ登録
                 //20170201 機能改善 START
-                //result = bcom.RegistLogData(Const.Def.DefTYPE_DETAIL, "", int.Parse(stKanriNo));
-                result = bcom.RegistLogData(Const.Def.DefTYPE_DETAIL, "", int.Parse(stKanriNo), DateTime.Now);
+                //result = bcom.RegistLogData(Def.DefTYPE_DETAIL, "", int.Parse(stKanriNo));
+                result = bcom.RegistLogData(Def.DefTYPE_DETAIL, "", int.Parse(stKanriNo), DateTime.Now);
                 //20170201 機能改善 END
 
                 // 過去トラデータ取得
@@ -89,7 +89,7 @@ namespace OldTigerWeb
                 {
                     DetailDiv.Visible = false;
 
-                    arrayMessage.Add(Const.Def.DefMsg_DATA_NOTFOUND);
+                    arrayMessage.Add(Def.DefMsg_DATA_NOTFOUND);
                     bcom.ShowMessage(csType, csManager, arrayMessage);
                     return;
                 }
@@ -391,8 +391,8 @@ namespace OldTigerWeb
                     ViewState["SIRYO_DIR"] = "file:" + (String)ViewState["SIRYO_DIR"].ToString().Trim().Replace("\\", "/");
                     ViewState["KOUMOKU_KANRI_NO"] = dtTrableData.Rows[0]["KOUMOKU_KANRI_NO"].ToString().Trim();     // 項目管理№
 
-                    kanrenSiryo = Directory.GetFiles(kanrenSiryoPath + dtTrableData.Rows[0]["LINK_FOLDER_PATH"], Const.Def.DefPDF_Asterisk + Const.Def.DefPDF_ExtensionPDF);
-                    kanrenSiryoName = Directory.GetFiles(kanrenSiryoPath + dtTrableData.Rows[0]["LINK_FOLDER_PATH"], Const.Def.DefPDF_Asterisk + Const.Def.DefPDF_ExtensionPDF);
+                    kanrenSiryo = Directory.GetFiles(kanrenSiryoPath + dtTrableData.Rows[0]["LINK_FOLDER_PATH"], Def.DefPDF_Asterisk + Def.DefPDF_ExtensionPDF);
+                    kanrenSiryoName = Directory.GetFiles(kanrenSiryoPath + dtTrableData.Rows[0]["LINK_FOLDER_PATH"], Def.DefPDF_Asterisk + Def.DefPDF_ExtensionPDF);
 
                     for (int i = 0; i < kanrenSiryo.Length; i++) {
                         kanrenSiryo[i] = kanrenSiryo[i].Replace(kanrenSiryoPath, "");

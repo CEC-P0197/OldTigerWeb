@@ -141,8 +141,8 @@
                     <tr>
                         <td colspan="4" class="midasi">過去トラ検索結果</td>
                         <td>
-<%--                            <asp:Button ID="btnClose" runat="server" Width="100px" Height="35px" Text="閉じる" CssClass="buttoncolor btnClose" 
-                            OnClientClick="window.close();" />--%>
+                            <asp:Button ID="btnClose" runat="server" Width="100px" Height="35px" Text="閉じる" CssClass="buttoncolor btnClose" 
+                            OnClientClick="window.close();" />
                         </td>
                     </tr>
                     <tr>
@@ -162,10 +162,10 @@
 <%-- 20170201 機能改善 END --%>
                        </td>
                        <td style="text-align:right">
-                        <asp:Button ID="btnExcel" runat="server" Width="128px" Height="35px" Text="EXCELダウンロード" CssClass="buttoncolor" 
-                            OnClick="btn_Excel_Click"/>
-                        <asp:Button ID="btnClose" runat="server" Width="100px" Height="35px" Text="閉じる" CssClass="buttoncolor" 
-                            OnClientClick="window.close();" />
+                        <input type="button" style="width:128px;height:35px;" value="観たか作成" class="buttoncolor" onclick="openSubWindowMitakaRegist()" />
+                        <input type="button" style="width:128px;height:35px;" value="観たか追加" class="buttoncolor" onclick="openSubWindowMitakaSelect()" />
+<%--                        <asp:Button ID="btnExcel" runat="server" Width="128px" Height="35px" Text="EXCELダウンロード" CssClass="buttoncolor" 
+                            OnClick="btn_Excel_Click"/>--%>
                       </td>
                     </tr>
 <%-- 20170201 機能改善 START --%>
@@ -470,6 +470,25 @@
         function openWindowLoading() {
             parentWindowObject.document.getElementById('btnOpenWindow').click();
         }
+
+        function openSubWindowMitakaRegist() {
+            // 1. 画面のオープン
+            var url = "frmMitakaRegist.aspx";
+            var w = (screen.width - 1340) / 2;
+            var h = (screen.height - 700) / 2;
+            var features = "menubar=no,toolbar=no,location=no,resizable=no,scrollbars=yes,status=no,height=700,width=1340,left=" + w + ",top=" + h;
+            var frmMitakaRegistFlg = window.open(url, "frmMitakaRegist", features);
+        }
+
+        function openSubWindowMitakaSelect() {
+            // 1. 画面のオープン
+            var url = "frmMitakaSelect.aspx";
+            var w = (screen.width - 1340) / 2;
+            var h = (screen.height - 700) / 2;
+            var features = "menubar=no,toolbar=no,location=no,resizable=no,scrollbars=yes,status=no,height=700,width=1340,left=" + w + ",top=" + h;
+            var frmMitakaSelectFlg = window.open(url, "frmMitakaSelect", features);
+        }
+
 
     </script>
     </form>

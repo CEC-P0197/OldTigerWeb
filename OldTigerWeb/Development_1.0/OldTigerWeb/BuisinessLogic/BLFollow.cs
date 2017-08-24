@@ -88,14 +88,14 @@ namespace OldTigerWeb.BuisinessLogic
             // 見出しの出力
 
             // フォローイベント情報
-            ws.Cells[Const.Def.DefHDFCONDITION_ROW, Const.Def.DefHDFCONDITION_CLM].Value = fullEvent;
+            ws.Cells[Def.DefHDFCONDITION_ROW, Def.DefHDFCONDITION_CLM].Value = fullEvent;
 
             // 作成日
-            ws.Cells[Const.Def.DefHDFCREATEYMD_ROW, Const.Def.DefHDFCREATEYMD_CLM].Value =
+            ws.Cells[Def.DefHDFCREATEYMD_ROW, Def.DefHDFCREATEYMD_CLM].Value =
                 "作成日：" + DateTime.Now.ToString("yyyy/MM/dd HH:mm");
 
             // フォローイベント情報
-            ws.Cells[Const.Def.DefHDFEVENT_ROW, Const.Def.DefHDFEVENT_CLM].Value = Event;
+            ws.Cells[Def.DefHDFEVENT_ROW, Def.DefHDFEVENT_CLM].Value = Event;
 
         }
 
@@ -111,55 +111,55 @@ namespace OldTigerWeb.BuisinessLogic
             for (int i = 0; i < kakotora.Rows.Count; i++)
             {
                 // No.
-                ws.Cells[Const.Def.DefFMEISAISTART_ROW + i, Const.Def.DefFNO_CLM].Value =
+                ws.Cells[Def.DefFMEISAISTART_ROW + i, Def.DefFNO_CLM].Value =
                     kakotora.Rows[i]["ROWID"].ToString();
 
                 // 部品
-                ws.Cells[Const.Def.DefFMEISAISTART_ROW + i, Const.Def.DefFBUHIN_CLM].Value =
+                ws.Cells[Def.DefFMEISAISTART_ROW + i, Def.DefFBUHIN_CLM].Value =
                     kakotora.Rows[i]["BUHIN_NAME"].ToString();
 
                 // マスタの現象
-                ws.Cells[Const.Def.DefFMEISAISTART_ROW + i, Const.Def.DefFGENSYO_CLM].Value =
+                ws.Cells[Def.DefFMEISAISTART_ROW + i, Def.DefFGENSYO_CLM].Value =
                     kakotora.Rows[i]["BUNRUI_GENSYO_NAME"].ToString();
 
                 // マスタの制御系要因
-                ws.Cells[Const.Def.DefFMEISAISTART_ROW + i, Const.Def.DefFSEIGYOFACTOR_CLM].Value =
+                ws.Cells[Def.DefFMEISAISTART_ROW + i, Def.DefFSEIGYOFACTOR_CLM].Value =
                     kakotora.Rows[i]["SEIGYO_FACTOR_NAME"].ToString();
 
                 // 進捗
-                ws.Cells[Const.Def.DefFMEISAISTART_ROW + i, Const.Def.DefFSINCHOKU_CLM].Value =
+                ws.Cells[Def.DefFMEISAISTART_ROW + i, Def.DefFSINCHOKU_CLM].Value =
                     kakotora.Rows[i]["FOLLOW_INFO"].ToString();
 
                 // 項目管理No.
-                ws.Cells[Const.Def.DefFMEISAISTART_ROW + i, Const.Def.DefFKANRINO_CLM].Value =
+                ws.Cells[Def.DefFMEISAISTART_ROW + i, Def.DefFKANRINO_CLM].Value =
                     kakotora.Rows[i]["KOUMOKU_KANRI_NO"].ToString();
 
                 // 項目
-                ws.Cells[Const.Def.DefFMEISAISTART_ROW + i, Const.Def.DefFKOUMOKU_CLM].Value =
+                ws.Cells[Def.DefFMEISAISTART_ROW + i, Def.DefFKOUMOKU_CLM].Value =
                     kakotora.Rows[i]["KOUMOKU"].ToString();
 
                 // 原因
-                ws.Cells[Const.Def.DefFMEISAISTART_ROW + i, Const.Def.DefFGENIN_CLM].Value =
+                ws.Cells[Def.DefFMEISAISTART_ROW + i, Def.DefFGENIN_CLM].Value =
                     kakotora.Rows[i]["GENIN"].ToString();
 
                 // 対策
-                ws.Cells[Const.Def.DefFMEISAISTART_ROW + i, Const.Def.DefFTAISAKU_CLM].Value =
+                ws.Cells[Def.DefFMEISAISTART_ROW + i, Def.DefFTAISAKU_CLM].Value =
                     kakotora.Rows[i]["TAISAKU"].ToString();
 
                 // 開発時の流出要因
-                ws.Cells[Const.Def.DefFMEISAISTART_ROW + i, Const.Def.DefFHAKKEN_CLM].Value =
+                ws.Cells[Def.DefFMEISAISTART_ROW + i, Def.DefFHAKKEN_CLM].Value =
                     kakotora.Rows[i]["KAIHATU_MIHAKKEN_RIYU"].ToString();
 
                 // 確認の観点
-                ws.Cells[Const.Def.DefFMEISAISTART_ROW + i, Const.Def.DefFKANTEN_CLM].Value =
+                ws.Cells[Def.DefFMEISAISTART_ROW + i, Def.DefFKANTEN_CLM].Value =
                     kakotora.Rows[i]["SQB_KANTEN"].ToString();
 
                 // 再発防止策（設計面）
-                ws.Cells[Const.Def.DefFMEISAISTART_ROW + i, Const.Def.DefFSBOUSISAKU_CLM].Value =
+                ws.Cells[Def.DefFMEISAISTART_ROW + i, Def.DefFSBOUSISAKU_CLM].Value =
                     kakotora.Rows[i]["SAIHATU_SEKKEI"].ToString();
 
                 // 再発防止策（評価面）
-                ws.Cells[Const.Def.DefFMEISAISTART_ROW + i, Const.Def.DefFHBOUSISAKU_CLM].Value =
+                ws.Cells[Def.DefFMEISAISTART_ROW + i, Def.DefFHBOUSISAKU_CLM].Value =
                     kakotora.Rows[i]["SAIHATU_HYOUKA"].ToString();
 
                 // 資料No.一覧
@@ -237,53 +237,53 @@ namespace OldTigerWeb.BuisinessLogic
                         strSiryo += "\n" + kakotora.Rows[i]["KANREN_KANRI_NO"].ToString().Trim();
                     }
                 }
-                ws.Cells[Const.Def.DefFMEISAISTART_ROW + i, Const.Def.DefFSIRYO_CLM].Value =
+                ws.Cells[Def.DefFMEISAISTART_ROW + i, Def.DefFSIRYO_CLM].Value =
                     strSiryo;
 
                 // 部署
-                ws.Cells[Const.Def.DefFMEISAISTART_ROW + i, Const.Def.DefFBUSYO_CLM].Value =
+                ws.Cells[Def.DefFMEISAISTART_ROW + i, Def.DefFBUSYO_CLM].Value =
                     kakotora.Rows[i]["KA_CODE"].ToString();
 
                 // 適用有無<SQB>
-                ws.Cells[Const.Def.DefFMEISAISTART_ROW + i, Const.Def.DefFSQB_CLM].Value =
+                ws.Cells[Def.DefFMEISAISTART_ROW + i, Def.DefFSQB_CLM].Value =
                     kakotora.Rows[i]["TEKIYO_SQB"].ToString();
 
                 // 適用有無<設計>
-                ws.Cells[Const.Def.DefFMEISAISTART_ROW + i, Const.Def.DefFSHYOUKA_CLM].Value =
+                ws.Cells[Def.DefFMEISAISTART_ROW + i, Def.DefFSHYOUKA_CLM].Value =
                     kakotora.Rows[i]["TEKIYO_SEKKEI"].ToString();
 
                 // ﾋｱﾘﾝｸﾞ要望
-                ws.Cells[Const.Def.DefFMEISAISTART_ROW + i, Const.Def.DefFHEARING_CLM].Value =
+                ws.Cells[Def.DefFMEISAISTART_ROW + i, Def.DefFHEARING_CLM].Value =
                     kakotora.Rows[i]["HEARING"].ToString();
 
                 // 進度
-                ws.Cells[Const.Def.DefFMEISAISTART_ROW + i, Const.Def.DefFSINDO_CLM].Value =
+                ws.Cells[Def.DefFMEISAISTART_ROW + i, Def.DefFSINDO_CLM].Value =
                     kakotora.Rows[i]["SINDO"].ToString();
 
                 // 対応内容
-                ws.Cells[Const.Def.DefFMEISAISTART_ROW + i, Const.Def.DefFKAITO_CLM].Value =
+                ws.Cells[Def.DefFMEISAISTART_ROW + i, Def.DefFKAITO_CLM].Value =
                     kakotora.Rows[i]["TAIOU_NAIYO"].ToString();
 
                 // 重要度ランク
-                ws.Cells[Const.Def.DefFMEISAISTART_ROW + i, Const.Def.DefFRANK_CLM].Value =
+                ws.Cells[Def.DefFMEISAISTART_ROW + i, Def.DefFRANK_CLM].Value =
                     kakotora.Rows[i]["RANK"].ToString();
 
                 // 再発案件
-                ws.Cells[Const.Def.DefFMEISAISTART_ROW + i, Const.Def.DefFSAIHATU_CLM].Value =
+                ws.Cells[Def.DefFMEISAISTART_ROW + i, Def.DefFSAIHATU_CLM].Value =
                     kakotora.Rows[i]["SAIHATU"].ToString();
 
                 // RSC項目
-                ws.Cells[Const.Def.DefFMEISAISTART_ROW + i, Const.Def.DefFRSC_CLM].Value =
+                ws.Cells[Def.DefFMEISAISTART_ROW + i, Def.DefFRSC_CLM].Value =
                     kakotora.Rows[i]["RSC"].ToString();
 
                 // 主務部署
-                ws.Cells[Const.Def.DefFMEISAISTART_ROW + i, Const.Def.DefFSYUMU_CLM].Value =
+                ws.Cells[Def.DefFMEISAISTART_ROW + i, Def.DefFSYUMU_CLM].Value =
                     kakotora.Rows[i]["SYUMU"].ToString();
 
                 String grey = "OFF";
 
                 // 類似は背景色設定
-                if ( kakotora.Rows[i]["SAIHATU"].ToString().Trim() == Const.Def.DefRUIJI )
+                if ( kakotora.Rows[i]["SAIHATU"].ToString().Trim() == Def.DefRUIJI )
                 {
                     grey = "ON";
                 }
@@ -303,8 +303,8 @@ namespace OldTigerWeb.BuisinessLogic
         public void CreateFollowList_Syosiki(ExcelWorksheet ws, int i, String grey)
         {
             // 行を指示
-            var cells = ws.Cells[Const.Def.DefFMEISAISTART_ROW + i, Const.Def.DefFNO_CLM,
-                                Const.Def.DefFMEISAISTART_ROW + i, Const.Def.DefFSYUMU_CLM];
+            var cells = ws.Cells[Def.DefFMEISAISTART_ROW + i, Def.DefFNO_CLM,
+                                Def.DefFMEISAISTART_ROW + i, Def.DefFSYUMU_CLM];
 
             if (grey == "ON")
             {

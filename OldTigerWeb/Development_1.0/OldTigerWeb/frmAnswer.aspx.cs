@@ -42,8 +42,8 @@ namespace OldTigerWeb
                 // 引数:フォローキー情報
                 try
                 {
-                    stFollowKey = Request.QueryString.Get(Const.Def.DefPARA_FOLLOW).Trim();
-                    stEventName = Request.QueryString.Get(Const.Def.DefPARA_EVENTNM).Trim();
+                    stFollowKey = Request.QueryString.Get(Def.DefPARA_FOLLOW).Trim();
+                    stEventName = Request.QueryString.Get(Def.DefPARA_EVENTNM).Trim();
                     if (stFollowKey == "" || stFollowKey == null)
                     {
                         bRet = true;
@@ -81,7 +81,7 @@ namespace OldTigerWeb
                     btnRegist.Enabled = false;
                     pnlDetail.Visible = false;
 
-                    errorMessage(Const.Def.DefMsg_URLERR);
+                    errorMessage(Def.DefMsg_URLERR);
                     return;
                 }
 
@@ -92,7 +92,7 @@ namespace OldTigerWeb
                     pnlDetail.Visible = false;
                     btnRegist.Enabled = false;
 
-                    errorMessage(Const.Def.DefMsg_USERERR);
+                    errorMessage(Def.DefMsg_USERERR);
                     return;
                 }
 
@@ -109,7 +109,7 @@ namespace OldTigerWeb
                     pnlDetail.Visible = false;
                     btnRegist.Enabled = false;
 
-                    errorMessage(Const.Def.DefMsg_DATA_NOTFOUND);
+                    errorMessage(Def.DefMsg_DATA_NOTFOUND);
                     return;
                 }
 
@@ -154,7 +154,7 @@ namespace OldTigerWeb
                             ViewState["SYSTEM_NO"].ToString());
                 if (dtFollowData.Rows.Count == 0)
                 {
-                    errorMessage(Const.Def.DefMsg_KAITO_NOTFOUND);
+                    errorMessage(Def.DefMsg_KAITO_NOTFOUND);
 
                     return;
                 }
@@ -162,7 +162,7 @@ namespace OldTigerWeb
                 // 更新日時の排他チェック
                 if (ViewState["SHARED_YMD"].ToString() != dtFollowData.Rows[0]["SHARED_YMD"].ToString())
                 {
-                    errorMessage(Const.Def.DefMsg_KAITO_EDITED);
+                    errorMessage(Def.DefMsg_KAITO_EDITED);
 
                     return;
                 }
@@ -532,8 +532,8 @@ namespace OldTigerWeb
                     ViewState["SIRYO_DIR"] = "file:" + (String)ViewState["SIRYO_DIR"].ToString().Trim().Replace("\\", "/");
                     ViewState["KOUMOKU_KANRI_NO"] = dtTrableData.Rows[0]["KOUMOKU_KANRI_NO"].ToString().Trim();     // 項目管理№
 
-                    kanrenSiryo = Directory.GetFiles(kanrenSiryoPath + dtTrableData.Rows[0]["LINK_FOLDER_PATH"], Const.Def.DefPDF_Asterisk + Const.Def.DefPDF_ExtensionPDF);
-                    kanrenSiryoName = Directory.GetFiles(kanrenSiryoPath + dtTrableData.Rows[0]["LINK_FOLDER_PATH"], Const.Def.DefPDF_Asterisk + Const.Def.DefPDF_ExtensionPDF);
+                    kanrenSiryo = Directory.GetFiles(kanrenSiryoPath + dtTrableData.Rows[0]["LINK_FOLDER_PATH"], Def.DefPDF_Asterisk + Def.DefPDF_ExtensionPDF);
+                    kanrenSiryoName = Directory.GetFiles(kanrenSiryoPath + dtTrableData.Rows[0]["LINK_FOLDER_PATH"], Def.DefPDF_Asterisk + Def.DefPDF_ExtensionPDF);
 
                     for (int i = 0; i < kanrenSiryo.Length; i++)
                     {

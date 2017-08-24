@@ -414,14 +414,22 @@
                                     </table>
                                 </asp:Panel>
                             </div>
-                        	<div>
+                        
+                        	<%--<div>
 	                        <asp:Button ID="btnCategoryClear" runat="server" text="ｶﾃｺﾞﾘｸﾘｱ" Width="100px"
 	                                 Class="buttoncolor " Style="font-size: 12pt; float: right;" onclick="btn_CategoryClear_Click" OnClientClick="return CategoryAllClear();"/>
 	                        <asp:Button ID="btnCategorySerch" runat="server" text="ｶﾃｺﾞﾘ検索"  Width="100px" 
 	                               Class="buttoncolor" Style="font-size: 12pt;float: right;" onclick="btn_CategorySearch_Click" OnClientClick="return confSearchCategoryCheck();" />
+                            </div>--%>
+                            <div>
+                                <asp:Button ID="btnCategoryClear" runat="server" text="ｶﾃｺﾞﾘｸﾘｱ" Width="100px"
+                                         Class="buttoncolor " Style="font-size: 12pt; float: right;" onclick="btn_CategoryClear_Click" OnClientClick="return CategoryAllClear();"/>
+                                <asp:Button ID="btnCategorySerchAND" runat="server" text="ｶﾃｺﾞﾘAND検索" 
+                                       Class="buttoncolor" Style="font-size: 12pt;float: right;" BackColor="#66FFFF" onclick="btn_CategorySearchAND_Click" OnClientClick="return confSearchCategoryCheck();" />
+                                <asp:Button ID="btnCategorySerchOR" runat="server" text="ｶﾃｺﾞﾘOR検索"
+                                       Class="buttoncolor" Style="font-size: 12pt;float: right;" BackColor="#99FF99" onclick="btn_CategorySearchOR_Click" OnClientClick="return confSearchCategoryCheck();" />
                             </div>
                         </div>
-			
                     </td>
 
                     <%-- TOP10タグ --%>
@@ -540,20 +548,6 @@
                         </table>
                     </td>
                 </tr>
-                <%-- フッターエリア --%>
-<%--                <tr>
-                    <td class="moji20">
-                        <a href="mailto:<%= (String)ViewState["MailAddr"] %>">お問合せ・要望メール</a></td>
-                    <td>
-                    <td></td>
-                    <td>
-                        <asp:Label ID="lblMessage" runat="server" />
-                    </td>
-                    <td class ="align_right">
-                        <asp:Button ID="btnFollow" runat="server" Text="FMC･mc進捗" Width="160px" 
-                            Class="buttoncolor" Style="font-size: 16pt" OnClick="btn_Follow_Click" />
-                    </td>
-                </tr>--%>
         </table> 
         <input type="button" id="btnOpenWindow" style="visibility:hidden" onclick="openWindowLoading();" />
         <input type="button" id="btnCloseWindow" style="visibility:hidden" onclick="closeWindowLoading();" />
@@ -627,7 +621,6 @@
                 txtData = txtData.replace("　", " ");
             }
 
-            //alert(txtData);
             // 文字数チェック
             var wkData = txtData.split(" ");
             txtData = "";
@@ -641,14 +634,8 @@
                     }
                     txtData += wkData[i];
                     iCnt++;
-                    //alert(txtData + " " + iCnt);
                 }
             }
-
-            //if (wkData.length == 1)
-            //{
-            //    wkData = txtData.split("　");
-            //}
 
             if (iCnt > 4)
             {
@@ -784,40 +771,6 @@
            return iCount;
        }
 
-<%--        // --------------------------------------------------
-        // 関数名   : mstSelectCheck
-        // 概要     : カテゴリ・マスタ選択チェック
-        // 引数     : なし
-        // 戻り値   : true、false
-        // --------------------------------------------------
-        function mstSelectCheck() {
-            var chkData = document.getElementById("<%= ckBoxMst01.ClientID %>");
-            var iFound = 0;
-            var rc = false;
-
-            var a = chkData.getElementsByTagName("input");
-
-            for (var i = 0; i < a.length; i++) {
-                var c = a[i];
-                if (c.type != "checkbox") {
-                    continue;
-                }
-
-                if (c.checked) {
-                    iFound++;
-                    break;
-                }
-            }
-
-            // チェックボックス選択チェック
-            if ( iFound == 0 ) {
-                alert("検索リストが選択されていません。");
-                return rc;
-            }
-
-            return true;
-        }--%>
-
         // --------------------------------------------------
         // 関数名   : systemSelectCheck
         // 概要     : カテゴリ・システム選択チェック
@@ -853,99 +806,6 @@
            
         }
 
-<%--        // --------------------------------------------------
-        // 関数名   : buhinSelectCheck
-        // 概要     : 部品・部位選択チェック
-        // 引数     : なし
-        // 戻り値   : true、false
-        // --------------------------------------------------
-       function buhinSelectCheck() {
-            var chkData = document.getElementById("<%= ckBoxBuhin.ClientID %>");
-            var iFound = 0;
-            var rc = false;
-
-            if (chkData == null) {
-                alert("部品・部位が選択されていません。");
-                return rc;
-            }
-
-            var a = chkData.getElementsByTagName("input");
-
-            for (var i = 0; i < a.length; i++) {
-                var c = a[i];
-                if (c.type != "checkbox") {
-                    continue;
-                }
-
-                if (c.checked) {
-                    iFound++;
-                    break;
-                }
-            }
-
-            // チェックボックス選択チェック
-            if (iFound == 0) {
-                alert("部品・部位が選択されていません。");
-                return rc;
-            }
-
-            return true;
-        }--%>
-
-<%--        // --------------------------------------------------
-        // 関数名   : busyoSelectCheck
-        // 概要     : カテゴリ・部署選択チェック
-        // 引数     : なし
-        // 戻り値   : true、false
-        // --------------------------------------------------
-        function busyoSelectCheck() {
-            var chkSekkeiData = document.getElementById("<%= ckBoxBusyoSekkei.ClientID %>");
-            
-            var iFound = 0;
-            var rc = false;
-
-            // 設計部署・未選択チェック
-            var a = chkSekkeiData.getElementsByTagName("input");
-
-            for (var i = 0; i < a.length; i++) {
-                var c = a[i];
-                if (c.type != "checkbox") {
-                    continue;
-                }
-
-                if (c.checked) {
-                    iFound++;
-                    break;
-                }
-            }
-
-            // 設計部署・未選択の時、評価部署選択チェック
-            if (iFound == 0) {
-
-                var chkHyoukaData = document.getElementById("<%= ckBoxBusyoHyoukaBy.ClientID %>");
-                var a = chkHyoukaData.getElementsByTagName("input");
-
-                for (var i = 0; i < a.length; i++) {
-                    var c = a[i];
-                    if (c.type != "checkbox") {
-                        continue;
-                    }
-
-                    if (c.checked) {
-                        iFound++;
-                        break;
-                    }
-                }
-            }
-
-            // チェックボックス選択チェック
-            if (iFound == 0) {
-                alert("検索リストが選択されていません。");
-                return rc;
-            }
-
-            return true;
-        }--%>
 
         // --------------------------------------------------
         // 関数名   : sekkeiChange
@@ -1226,6 +1086,6 @@
                }
            });
        });
-
+        
     </script>
     </html>

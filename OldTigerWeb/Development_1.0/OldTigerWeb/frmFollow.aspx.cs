@@ -12,7 +12,6 @@ using System.Web.UI.WebControls;
 using OfficeOpenXml;
 using OfficeOpenXml.Drawing;
 using OfficeOpenXml.Style;
-using OldTigerWeb.Const;
 
 namespace OldTigerWeb
 {
@@ -56,7 +55,7 @@ namespace OldTigerWeb
                     ClientScriptManager csManager = Page.ClientScript;
                     Type csType = this.GetType();
                     ArrayList arrayMessage = new ArrayList();
-                    arrayMessage.Add(Const.Def.DefMsg_USERERR);
+                    arrayMessage.Add(Def.DefMsg_USERERR);
                     bcom.ShowMessage(csType, csManager, arrayMessage);
                 }
                 else
@@ -140,7 +139,7 @@ namespace OldTigerWeb
                     }
                 }
 
-                Session[Const.Def.DefPARA_FOLLOW] = event_code;
+                Session[Def.DefPARA_FOLLOW] = event_code;
 
                 openWindow();       // フォロー情報回答画面オープン
             }
@@ -199,9 +198,9 @@ namespace OldTigerWeb
                 // 部展開の場合、入力された課コードから部コードを取得
                 DataTable buCode = null;
 
-                if (strArrayData[6] == Const.Def.BuTenkai)
+                if (strArrayData[6] == Def.BuTenkai)
                 {
-                    buCode = bcom.GetBuCode(txtKacode.Text.Trim());
+                    buCode = bcom.getBuCode(txtKacode.Text.Trim());
 
                     if (buCode.Rows.Count > 0)
                     {
@@ -220,19 +219,19 @@ namespace OldTigerWeb
                 FileInfo template = new FileInfo(@bcom.GetExcelTemplate("F"));
 
                 // 作成EXCELのFileInfo
-                FileInfo newFile = new FileInfo(Const.Def.DefFollowExcelName + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xlsx");
+                FileInfo newFile = new FileInfo(Def.DefFollowExcelName + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xlsx");
 
                 // EXCEL作成
                 using (ExcelPackage excelPkg = new ExcelPackage(newFile, template))
                 {
                     ExcelWorksheet worksheet = null;
-                    worksheet = excelPkg.Workbook.Worksheets.Where(s => s.Name == Const.Def.DefFollowWorksheetName).FirstOrDefault();
+                    worksheet = excelPkg.Workbook.Worksheets.Where(s => s.Name == Def.DefFollowWorksheetName).FirstOrDefault();
 
                     //処理を記述
                     bLogic.CreateFollowList(worksheet, paraTitle, strArrayData[5], followList);
 
                     // ダウンロード処理
-                    String fn = Const.Def.DefFollowExcelName + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xlsx";
+                    String fn = Def.DefFollowExcelName + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xlsx";
                     Response.Clear();
                     Response.AddHeader("Content-Disposition", String.Format("attachment; filename=" + HttpUtility.UrlDecode(fn)));
                     Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
@@ -264,25 +263,25 @@ namespace OldTigerWeb
             DataTable result = null;
 
             // イベント期間内・ＦＭＣ
-            result = bLogic.GetFollowList(Const.Def.DefTYPE_FMC, Const.Def.DefTYPE_Now);
+            result = bLogic.GetFollowList(Def.DefTYPE_FMC, Def.DefTYPE_Now);
 
             ckBoxFmc.DataSource = result;
             ckBoxFmc.DataBind();
 
             // イベント期間内・ｍｃ
-            result = bLogic.GetFollowList(Const.Def.DefTYPE_mc, Const.Def.DefTYPE_Now);
+            result = bLogic.GetFollowList(Def.DefTYPE_mc, Def.DefTYPE_Now);
 
             ckBoxmc.DataSource = result;
             ckBoxmc.DataBind();
 
             // イベント期間外・ＦＭＣ
-            result = bLogic.GetFollowList(Const.Def.DefTYPE_FMC, Const.Def.DefTYPE_Old);
+            result = bLogic.GetFollowList(Def.DefTYPE_FMC, Def.DefTYPE_Old);
 
             ckBoxOverFmc.DataSource = result;
             ckBoxOverFmc.DataBind();
 
             // イベント期間外・ｍｃ
-            result = bLogic.GetFollowList(Const.Def.DefTYPE_mc, Const.Def.DefTYPE_Old);
+            result = bLogic.GetFollowList(Def.DefTYPE_mc, Def.DefTYPE_Old);
 
             ckBoxOvermc.DataSource = result;
             ckBoxOvermc.DataBind();
@@ -299,7 +298,7 @@ namespace OldTigerWeb
             Type cstype = this.GetType();
             ClientScriptManager cs = Page.ClientScript;
 
-            string strScr = cPageLogic.openWindow(Def.DefPageId_FollowAnswer);
+            string strScr = cPageLogic.getScriptForOpenWindow(Def.DefPageId_FollowAnswer);
 
             cs.RegisterStartupScript(cstype, "OpenSubWindow", strScr);
         }

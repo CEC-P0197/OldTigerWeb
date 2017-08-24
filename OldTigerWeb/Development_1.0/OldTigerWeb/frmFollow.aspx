@@ -66,12 +66,8 @@
                }
                  %>
 
-            <%--</td>--%>
-            <%--<td style ="text-align:center;">--%>
                 <a href="mailto:<%= (String)ViewState["MailAddr"] %>">&nbsp;&nbsp;問合せ・ご要望</a>
             </td>
-            <%--            <td width="15%" align="right" Class="moji24"><asp:LinkButton id="lnkTop" Text="TOPページへ" OnClick="lnkTop_Click" runat="server"/></td>--%>
-            <%--<td width="10%" align="right" Class="moji24"></td>--%>
             <td>
             </td>
         </tr>

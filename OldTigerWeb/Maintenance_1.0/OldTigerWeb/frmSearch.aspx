@@ -414,14 +414,22 @@
                                     </table>
                                 </asp:Panel>
                             </div>
-                        	<div>
+                        
+                        	<%--<div>
 	                        <asp:Button ID="btnCategoryClear" runat="server" text="ｶﾃｺﾞﾘｸﾘｱ" Width="100px"
 	                                 Class="buttoncolor " Style="font-size: 12pt; float: right;" onclick="btn_CategoryClear_Click" OnClientClick="return CategoryAllClear();"/>
 	                        <asp:Button ID="btnCategorySerch" runat="server" text="ｶﾃｺﾞﾘ検索"  Width="100px" 
 	                               Class="buttoncolor" Style="font-size: 12pt;float: right;" onclick="btn_CategorySearch_Click" OnClientClick="return confSearchCategoryCheck();" />
+                            </div>--%>
+                            <div>
+                                <asp:Button ID="btnCategoryClear" runat="server" text="ｶﾃｺﾞﾘｸﾘｱ" Width="100px"
+                                         Class="buttoncolor " Style="font-size: 12pt; float: right;" onclick="btn_CategoryClear_Click" OnClientClick="return CategoryAllClear();"/>
+                                <asp:Button ID="btnCategorySerchAND" runat="server" text="ｶﾃｺﾞﾘAND検索" 
+                                       Class="buttoncolor" Style="font-size: 12pt;float: right;" BackColor="#66FFFF" onclick="btn_CategorySearchAND_Click" OnClientClick="return confSearchCategoryCheck();" />
+                                <asp:Button ID="btnCategorySerchOR" runat="server" text="ｶﾃｺﾞﾘOR検索"
+                                       Class="buttoncolor" Style="font-size: 12pt;float: right;" BackColor="#99FF99" onclick="btn_CategorySearchOR_Click" OnClientClick="return confSearchCategoryCheck();" />
                             </div>
                         </div>
-			
                     </td>
 
                     <%-- TOP10タグ --%>

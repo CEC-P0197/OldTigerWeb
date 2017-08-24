@@ -67,10 +67,12 @@ namespace OldTigerWeb
             String paraWord = (String)Session[Const.Def.DefPARA_WORD];              // 文字列検索
             //20170201 機能改善 START
             DataTable paraTable = (DataTable)Session[Const.Def.DefPARA_TABLE];      // Datatable
-            String paraCondition = (String)Session[Const.Def.DefPARA_CONDITION_FLG];// And・Or検索条件
+            String paraCondition = (String)Session[Const.Def.DefPARA_CONDITION_FLG];// キーワード検索用 And・Or検索条件
             //20170201 機能改善 END
             ArrayList paraArrWord = (ArrayList)Session[Const.Def.DefPARA_ARRY];     // 各マスタor設計部署
             ArrayList paraArrWord2 = (ArrayList)Session[Const.Def.DefPARA_ARRY2];   // 評価部署
+
+            String paraCategoryCondition = (String)Session[Const.Def.DefPARA_CATEGORY_CONDITION_FLG];// カテゴリ検索用 And・Or検索条件 // 20170719 Add
 
             // 20170313 START k-ohmatsuzawa F5キーによるNULLエラー対応
             //Session[Const.Def.DefPARA_TYPE] = null;     // 検索タイプ
@@ -87,109 +89,15 @@ namespace OldTigerWeb
             ViewState[Const.Def.DefPARA_WORD] = paraWord;       // 文字列検索
             //20170201 機能改善 START
             ViewState[Const.Def.DefPARA_TABLE] = paraTable;               // Datatable
-            ViewState[Const.Def.DefPARA_CONDITION_FLG] = paraCondition;   // And・Or検索条件
+            ViewState[Const.Def.DefPARA_CONDITION_FLG] = paraCondition;   // キーワード検索用 And・Or検索条件
             //20170201 機能改善 END
             ViewState[Const.Def.DefPARA_ARRY] = paraArrWord;    // 各マスタor設計部署
             ViewState[Const.Def.DefPARA_ARRY2] = paraArrWord2;  // 評価部署
 
+            ViewState[Const.Def.DefPARA_CATEGORY_CONDITION_FLG] = paraCategoryCondition;   // カテゴリ検索用 And・Or検索条件 // 20170719 Add
+
             //20170201 機能改善 START
-            //CommLogic bcom = new CommLogic();
 
-            //try
-            //{
-            //    String strMoji = "";
-            //    Boolean result = false;
-
-            //    ClientScriptManager csManager = Page.ClientScript;
-            //    Type csType = this.GetType();
-            //    ArrayList arrayMessage = new ArrayList();
-
-            //    // 検索タイプ
-            //    if (paraType == "" || paraType == null)
-            //    {
-            //        btnExcel.Enabled = false;
-
-            //        arrayMessage.Add(Const.Def.DefMsg_URLERR);
-            //        bcom.ShowMessage(csType, csManager, arrayMessage);
-            //        return;
-            //    }
-
-            //    // Windowsログイン・ユーザマスタチェック
-            //    result = bcom.CheckUser();
-            //    if (result)
-            //    {
-            //        btnExcel.Visible = false;
-
-            //        arrayMessage.Add(Const.Def.DefMsg_USERERR);
-            //        bcom.ShowMessage(csType, csManager, arrayMessage);
-            //        return;
-            //    }
-            //    else
-            //    {
-            //        DataTable userInfo = bcom.GetUser();
-            //        userSight = userInfo.Rows[0]["BY_PU"].ToString().Trim();
-            //    }
-            //    // ログテーブル登録
-            //    if (paraType == "1" || paraType == "2")
-            //    {
-            //        strMoji = paraWord;
-            //    }
-            //    else
-            //    {
-            //        for (int i = 0; i < paraArrWord.Count; i++)
-            //        {
-            //            if (i != 0)
-            //            {
-            //                strMoji += ",";
-            //            }
-            //            strMoji += paraArrWord[i].ToString().Trim();
-            //        }
-            //        // 部署の時
-            //        if (paraType == "3")
-            //        {
-            //            for (int i = 0; i < paraArrWord2.Count; i++)
-            //            {
-            //                if (i == 0)
-            //                {
-            //                    if (strMoji.Length > 0)
-            //                    {
-            //                        strMoji += ",";
-            //                    }
-            //                }
-            //                else
-            //                {
-            //                    strMoji += ",";
-            //                }
-            //                strMoji += paraArrWord2[i].ToString().Trim();
-            //            }
-            //        }
-            //    }
-
-            //    ViewState[Const.Def.DefSERCH_WORD] = strMoji;   // 検索条件退避・EXCEL用
-
-            //    // 検索ログ登録
-            //    result = bcom.RegistLogData(paraType, strMoji, 0);
-
-            //    // 検索タイプ名
-            //    if (paraType == Const.Def.DefTYPE_WORD || paraType == Const.Def.DefTYPE_TOP10)
-            //    {
-            //        lblType.Text = setTypeName(paraType) + "：" + paraWord;
-            //    }
-            //    else
-            //    {
-            //        lblType.Text = "カテゴリ検索：" + setTypeName(paraType);
-            //    }
-
-            //    // 過去トラテーブル検索
-            //    initialDisp(paraType, paraWord, paraArrWord, paraArrWord2);
-
-            //}
-            //// システムエラー処理（ログ出力、エラー画面遷移）
-            //catch (Exception ex)
-            //{
-            //    // システムエラー処理（ログ出力＆エラーページ表示）
-            //    bcom.ErrorProcess("frmTroubleList", "Page_Load", ex, this.Response);
-            //}
             if ((String)ViewState[Const.Def.DefPARA_CONDITION_FLG] == Const.Def.DefTYPE_AND)
             {
                 // テキストボックスカラー変更（AND）
@@ -199,8 +107,18 @@ namespace OldTigerWeb
             {
                 txtSearch.BackColor = System.Drawing.ColorTranslator.FromHtml("#99FF99");
             }
+            if((string)ViewState[Const.Def.DefPARA_CATEGORY_CONDITION_FLG] == Const.Def.DefTYPE_AND)
+            {
+                lblCategory.BackColor = System.Drawing.ColorTranslator.FromHtml("#66FFFF");
+            }
+            else
+            {
+                lblCategory.BackColor = System.Drawing.ColorTranslator.FromHtml("#99FF99");
 
-            SearchTroubleList(paraType, paraWord, paraArrWord, paraArrWord2, paraTable, paraCondition);
+            }
+
+            // SearchTroubleList(paraType, paraWord, paraArrWord, paraArrWord2, paraTable, paraCondition);
+            SearchTroubleList(paraType, paraWord, paraArrWord, paraArrWord2, paraTable, paraCondition , paraCategoryCondition); // 20170719 Add
             //20170201 機能改善 END
         }
         /// <summary>
@@ -226,10 +144,12 @@ namespace OldTigerWeb
                 String paraWord = (String)ViewState[Const.Def.DefPARA_WORD];            // 文字列検索
                 //20170201 機能改善 START
                 DataTable paraTable = (DataTable)ViewState[Const.Def.DefPARA_TABLE];          // Datatable
-                String paraCondition = (String)ViewState[Const.Def.DefPARA_CONDITION_FLG];  // And・Or検索条件
+                String paraCondition = (String)ViewState[Const.Def.DefPARA_CONDITION_FLG];  // キーワード検索用 And・Or検索条件
                 //20170201 機能改善 END
                 ArrayList paraArrWord = (ArrayList)ViewState[Const.Def.DefPARA_ARRY];   // 各マスタor設計部署
                 ArrayList paraArrWord2 = (ArrayList)ViewState[Const.Def.DefPARA_ARRY2]; // 評価部署
+
+                String paraCategoryCondition = (String)ViewState[Const.Def.DefPARA_CATEGORY_CONDITION_FLG];  // カテゴリ検索用 And・Or検索条件 // 20170719 Add
 
                 BuisinessLogic.BLTroubleList bLogic = new BuisinessLogic.BLTroubleList();
 
@@ -292,8 +212,11 @@ namespace OldTigerWeb
                 // 過去トラ一覧リスト取得
                 //20170201 機能改善 START
                 //trableList = bLogic.GetToroubleList(Const.Def.DefMODE_EXCEL, paraType, paraWord, paraArrWord, paraArrWord2);
-                trableList = bLogic.GetToroubleList(Const.Def.DefMODE_EXCEL, paraType, paraWord, paraArrWord, paraArrWord2, paraTable, paraCondition);
+                //trableList = bLogic.GetToroubleList(Const.Def.DefMODE_EXCEL, paraType, paraWord, paraArrWord, paraArrWord2, paraTable, paraCondition);
                 //20170201 機能改善 END
+
+                trableList = bLogic.GetToroubleList(Const.Def.DefMODE_EXCEL, paraType, paraWord, paraArrWord, paraArrWord2, paraTable, paraCondition, 
+                    paraCategoryCondition); // 20170719 Add
 
                 DataTable excelListBY = dtTemp.Clone();
                 DataTable excelListPU = dtTemp.Clone();
@@ -699,11 +622,14 @@ namespace OldTigerWeb
             String paraType = (String)ViewState[Const.Def.DefPARA_TYPE];              // 検索タイプ
             String paraWord = (String)ViewState[Const.Def.DefPARA_WORD];              // 文字列検索
             DataTable paraTable = (DataTable)ViewState[Const.Def.DefPARA_TABLE];      // Datatable
-            String paraCondition = (String)ViewState[Const.Def.DefPARA_CONDITION_FLG];// And・Or検索条件
+            String paraCondition = (String)ViewState[Const.Def.DefPARA_CONDITION_FLG];// キーワード検索用 And・Or検索条件
             ArrayList paraArrWord = (ArrayList)ViewState[Const.Def.DefPARA_ARRY];     // 各マスタor設計部署
             ArrayList paraArrWord2 = (ArrayList)ViewState[Const.Def.DefPARA_ARRY2];   // 評価部署
 
-            SearchTroubleList(paraType, paraWord, paraArrWord, paraArrWord2, paraTable, paraCondition);
+            String paraCategoryCondition = (String)ViewState[Const.Def.DefPARA_CATEGORY_CONDITION_FLG];// カテゴリ検索用 And・Or検索条件 // 20170719 Add
+
+            // SearchTroubleList(paraType, paraWord, paraArrWord, paraArrWord2, paraTable, paraCondition);
+            SearchTroubleList(paraType, paraWord, paraArrWord, paraArrWord2, paraTable, paraCondition, paraCategoryCondition); // 20170719 Add
         }
 
         /// <summary>
@@ -769,16 +695,19 @@ namespace OldTigerWeb
         /// 画面表示処理
         /// </summary>
         /// <param name="Mode">モード：1:画面、2:Excel</param>
-        /// <param name="Type">種類</param>
-        /// <param name="Moji">検索文字</param>
+        /// <param name="Type">種類、カテゴリ検索の場合はnull</param>
+        /// <param name="Moji">検索文字、カテゴリ検索の場合はnull</param>
         /// <param name="paraArrWord1">カテゴリ検索用配列１</param>
         /// <param name="paraArrWord2">カテゴリ検索用配列２（評価部署用）</param>
-        /// <param name="Table">カテゴリデータテーブル</param>
-        /// <param name="paraCondition">And・Or検索条件</param>
+        /// <param name="Table">カテゴリデータテーブル（カテゴリ検索用）</param>
+        /// <param name="paraCondition">キーワード検索用 And・Or検索条件  1：And、2：Or</param>
+        /// <param name="paraCategoryCondition">カテゴリ検索用 And・Or検索条件  1：And、2：Or</param> // 20170719 Add
         //20170201 機能改善 START
         //protected void initialDisp(String Type, String Moji, ArrayList paraArrWord1, ArrayList paraArrWord2)
-        protected void initialDisp(String Type, String Moji, ArrayList paraArrWord1, ArrayList paraArrWord2, DataTable Table, String paraCondition)
+        // protected void initialDisp(String Type, String Moji, ArrayList paraArrWord1, ArrayList paraArrWord2, DataTable Table, String paraCondition)
         //20170201 機能改善 END
+        protected void initialDisp(String Type, String Moji, ArrayList paraArrWord1, ArrayList paraArrWord2, DataTable Table, String paraCondition, 
+            String paraCategoryCondition) // 20170719 Add
         {
             BuisinessLogic.BLTroubleList bLogic = new BuisinessLogic.BLTroubleList();
             CommonLogic bCom = new CommonLogic();
@@ -816,8 +745,11 @@ namespace OldTigerWeb
             // 過去トラ一覧リスト取得
             //20170201 機能改善 START
             //gbTrableData = bLogic.GetToroubleList(Const.Def.DefMODE_DISP, Type, Moji, paraArrWord1, paraArrWord2);
-            gbTrableData = bLogic.GetToroubleList(Const.Def.DefMODE_DISP, Type, Moji, paraArrWord1, paraArrWord2, Table, paraCondition);
+            //gbTrableData = bLogic.GetToroubleList(Const.Def.DefMODE_DISP, Type, Moji, paraArrWord1, paraArrWord2, Table, paraCondition);
             //20170201 機能改善 END
+
+            gbTrableData = bLogic.GetToroubleList(Const.Def.DefMODE_DISP, Type, Moji, paraArrWord1, paraArrWord2, Table, paraCondition, 
+                paraCategoryCondition); // 20170719 Add
 
             // レコードがない時、Excelダウンロードボタン非活性
             if (gbTrableData.Rows.Count == 0)
@@ -1014,6 +946,16 @@ namespace OldTigerWeb
 
             switch (Type)
             {
+                // 20170721 Add Start
+                case Const.Def.DefTYPE_CATEGORY_AND:
+                    // カテゴリAND検索
+                    typeName = "(AND)";
+                    break;
+                case Const.Def.DefTYPE_CATEGORY_OR:
+                    // カテゴリOR検索
+                    typeName = "(OR)";
+                    break;
+                // 20170721 Add End
                 case Const.Def.DefTYPE_WORD:
                     // 文字列検索
                     typeName = "文字列検索";
@@ -1023,6 +965,7 @@ namespace OldTigerWeb
                     typeName = "ＴＯＰ１０";
                     break;
                 case Const.Def.DefTYPE_BUSYO:
+                case Const.Def.DefTYPE_HYOUKA: // 20170724 Add
                     // 部署
                     typeName = "部署";
                     break;
@@ -1136,7 +1079,8 @@ namespace OldTigerWeb
 
         //20170201 機能改善 START
         #region 過去トラテーブル検索
-        private void SearchTroubleList(String paraType, String paraWord, ArrayList paraArrWord, ArrayList paraArrWord2, DataTable  paraTable, String paraCondition)
+        // private void SearchTroubleList(String paraType, String paraWord, ArrayList paraArrWord, ArrayList paraArrWord2, DataTable  paraTable, String paraCondition)
+        private void SearchTroubleList(String paraType, String paraWord, ArrayList paraArrWord, ArrayList paraArrWord2, DataTable paraTable, String paraCondition, String paraCategoryCondition) // 20170719 Add
         {
             CommonLogic bcom = new CommonLogic();
 
@@ -1204,6 +1148,22 @@ namespace OldTigerWeb
                 String strEgtm = null;
                 DataRow[] drSelectType = null;
                 lblCategory.Text = "";
+
+                // 20170721 Add Start
+                // カテゴリAND検索
+                if (paraCategoryCondition == Const.Def.DefTYPE_AND)
+                {
+                    // 検索タイプ名
+                    lblCategory.Text = setTypeName(Const.Def.DefTYPE_CATEGORY_AND);
+                }
+                // カテゴリOR検索
+                if (paraCategoryCondition == Const.Def.DefTYPE_OR)
+                {
+                    // 検索タイプ名
+                    lblCategory.Text = setTypeName(Const.Def.DefTYPE_CATEGORY_OR);
+                }
+                // 20170721 Add End
+
                 //設計部署
                 drSelectType = setSelectType(paraTable, Const.Def.DefTYPE_BUSYO);
                 if (drSelectType.Length > 0)
@@ -1227,7 +1187,7 @@ namespace OldTigerWeb
                     // 検索ログ登録
                     result = bcom.RegistLogData(Const.Def.DefTYPE_BUSYO, strLog, 0, date_time);
                     // 検索タイプ名
-                    lblCategory.Text = setTypeName(Const.Def.DefTYPE_BUSYO) + strKuten;
+                    lblCategory.Text += setTypeName(Const.Def.DefTYPE_BUSYO) + strKuten;
                     //ハイライト文字
                     ViewState["HightLight"] = strLog.Replace(",", " ") + " ";
                 }
@@ -1398,6 +1358,55 @@ namespace OldTigerWeb
 
                 ViewState[Const.Def.DefSERCH_WORD] = lblCategory.Text;   // 検索条件退避・EXCEL用
 
+                // 20170721 Add Start ツールチップ設定
+                //DataTable paraTable = (DataTable)ViewState[Const.Def.DefPARA_TABLE];
+                List<string> paraCategory = new List<string>();
+                string categoryName = "";
+                string oldKey = "";
+                if (paraTable.Rows.Count > 0)
+                {
+                    for (int i = 0; i < paraTable.Rows.Count; i++)
+                    {
+                        string categoryKey = setTypeName(paraTable.Rows[i]["TableType"].ToString());
+                        // カンマ区切りで配列化し、最終要素の値を取得する※名称のみを取り出す
+                        string itemName = paraTable.Rows[i]["ItemValue1"].ToString().Split(',').Last();
+
+
+                        if (i == 0)
+                        {
+                            categoryName = "";
+                            categoryName = categoryKey + "：" + itemName;
+                        }
+                        else if (categoryKey != oldKey)
+                        {
+                            paraCategory.Add(categoryName);
+                            categoryName = "";
+                            categoryName = categoryKey + "：" + itemName;
+                        }
+                        else
+                        {
+                            categoryName = categoryName + " " + itemName;
+                        }
+
+                        oldKey = categoryKey;
+                    }
+                    paraCategory.Add(categoryName);
+
+                    // カテゴリにツールチップ設定
+                    for (int j = 0; j < paraCategory.Count; j++)
+                    {
+                        if (j == 0)
+                        {
+                            lblCategory.ToolTip = paraCategory[j];
+                        }
+                        if (j > 0)
+                        {
+                            lblCategory.ToolTip += Environment.NewLine + paraCategory[j]; // 改行コード + 検索条件
+                        }
+                    }
+                }
+                // 20170721 Add End
+
                 // 検索履歴登録
                 //20170306 START k-ohmatsuzawa 検索履歴登録の対象からカテゴリ検索を除外
                 //20170329 START Kanda 検索履歴登録の対象からTop10検索を除外 0403取止め
@@ -1410,7 +1419,8 @@ namespace OldTigerWeb
                 //20170306 END k-ohmatsuzawa
                 //20170329 END Kanda　0403取止め
                 // 過去トラテーブル検索
-                initialDisp(paraType, paraWord, paraArrWord, paraArrWord2, paraTable, paraCondition);
+                // initialDisp(paraType, paraWord, paraArrWord, paraArrWord2, paraTable, paraCondition);
+                initialDisp(paraType, paraWord, paraArrWord, paraArrWord2, paraTable, paraCondition, paraCategoryCondition); // 20170719 Add
             }
             // システムエラー処理（ログ出力、エラー画面遷移）
             catch (Exception ex)

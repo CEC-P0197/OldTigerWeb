@@ -263,24 +263,41 @@ namespace OldTigerWeb
         }
         #endregion
 
-        #region カテゴリ検索ボタンクリック
+        #region カテゴリAND検索ボタンクリック
         /// <summary>
-        /// カテゴリ検索ボタンクリック
+        /// カテゴリAND検索ボタンクリック
         /// </summary>
-        protected void btn_CategorySearch_Click(object sender, EventArgs e)
+        protected void btn_CategorySearchAND_Click(object sender, EventArgs e)
         {
             //20170313 START k-ohmatsuzawa
             SessionClear();
             //20170313 END k-ohmatsuzawa
-            createSearchParam();
+            createSearchParam(false, -1, Const.Def.DefTYPE_AND);
         }
+        #endregion
+
+        #region カテゴリOR検索ボタンクリック
+        /// <summary>
+        /// カテゴリOR検索ボタンクリック
+        /// </summary>
+        // 20170719 Add Start
+        protected void btn_CategorySearchOR_Click(object sender, EventArgs e)
+        {
+            SessionClear();
+            createSearchParam(false, -1, Const.Def.DefTYPE_OR);
+        }
+        // 20170719 Add End
         #endregion
 
         #region 検索処理メイン
         /// <summary>
         /// 検索処理メイン　引数 searchKbn true:キーワード検索　false:カテゴリ検索
-        /// </summary>        
-        private void createSearchParam( Boolean searchKbn = false, int intHistoryRow = -1)
+        /// </summary>  
+        /// <param name="searchKbn">検索区分 true:キーワード検索　false:カテゴリ検索</param>
+        /// <param name="intHistoryRow">履歴</param>
+        /// <param name="strCategorySearch">カテゴリ検索 1:AND、2:OR</param> // 20170719 Add
+        //private void createSearchParam(Boolean searchKbn = false, int intHistoryRow = -1)
+        private void createSearchParam( Boolean searchKbn = false, int intHistoryRow = -1, string strCategorySearch = "0")
         {
             try
             {
@@ -304,7 +321,10 @@ namespace OldTigerWeb
                 }
                 //20170201 機能改善 END
                 Session[Const.Def.DefPARA_TABLE] = categolyParam;
-                                
+
+                Session[Const.Def.DefPARA_CATEGORY_CONDITION_FLG] = strCategorySearch;
+
+
                 if (searchKbn == true)
                 { 
                     //20170201 機能改善 START
@@ -1511,6 +1531,7 @@ namespace OldTigerWeb
             Session[Const.Def.DefPARA_TABLE] = null;            // Datatable
             Session[Const.Def.DefPARA_CONDITION_FLG] = null;    // And・Or検索条件
             Session[Const.Def.DefPARA_ARRY] = null;     // 各マスタor設計部署
+            Session[Const.Def.DefPARA_CATEGORY_CONDITION_FLG] = null;    // カテゴリ用検索 And・Or検索条件 // 20170719 Add
         }
         #endregion
         //20170306 END k-ohmatsuzawa

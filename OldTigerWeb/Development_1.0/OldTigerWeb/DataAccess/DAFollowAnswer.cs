@@ -98,7 +98,7 @@ namespace OldTigerWeb.DataAccess
         /// <param name="Type">BYPU区分</param>
         /// <param name="Type">イベントNO</param>
         /// <returns>取得結果情報</returns>
-        public DataTable SelectKaCodeFollowDataList(String FMC_mc, String kaihatu_id, String by_pu, String event_no)
+        public DataTable selectKaCodeFollowDataList(String FMC_mc, String kaihatu_id, String by_pu, String event_no)
         {
             DataTable result = new DataTable();
 

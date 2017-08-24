@@ -223,7 +223,7 @@ namespace OldTigerWeb.DataAccess
                     strSql += " case when RTRIM(KA_CODE) = RTRIM(BU_CODE) then RTRIM(BU_CODE) else RTRIM(BU_CODE) + '／' + RTRIM(KA_CODE) end as NAME";
                     strSql += " FROM M_BUSYO_HYOUKA WHERE BY_PU = '" + BYPU + "' ORDER BY SEQ";
                     break;
-                case Const.Def.DefTYPE_PARTS:
+                case Def.DefTYPE_PARTS:
                     // 部品・部位 システム
                     strSql = "SELECT ";
                     strSql += "DISTINCT RTRIM(SYSTEM_NO) AS SYSTEM_NO, ";
@@ -232,45 +232,45 @@ namespace OldTigerWeb.DataAccess
                     strSql += "FROM M_PARTS ";
                     strSql += "ORDER BY SYSTEM_NO;";
                     break;
-                case Const.Def.DefTYPE_KAIHATU:
+                case Def.DefTYPE_KAIHATU:
                     // 開発符号
                     strSql = "SELECT KAIHATU_ID + ',' + KAIHATU_FUGO AS ID, SYAKEI + '／' + KAIHATU_FUGO AS NAME";
                     strSql += " FROM M_DEVELOPMENTSIGN ";
                     strSql += " WHERE FMC_MC = '1' ORDER BY SEQ";
                     break;
-                case Const.Def.DefTYPE_GENSYO:
-                case Const.Def.DefTYPE_SGENSYO:
+                case Def.DefTYPE_GENSYO:
+                case Def.DefTYPE_SGENSYO:
                     // 現象（分類）
                     // 現象（制御系）
                     strSql = "SELECT GENSYO_NO + ',' + GENSYO_NAME AS ID, GENSYO_NAME AS NAME";
                     strSql += " FROM M_GENSYO ORDER BY SEQ";
                     break;
-                case Const.Def.DefTYPE_GENIN:
+                case Def.DefTYPE_GENIN:
                     // 原因（分類）
                     strSql = "SELECT CASE_NO + ',' + CASE_NAME AS ID, CASE_NAME AS NAME";
                     strSql += " FROM M_CASE ORDER BY SEQ";
                     break;
-                case Const.Def.DefTYPE_SYAKATA:
+                case Def.DefTYPE_SYAKATA:
                     // 車型特殊
                     strSql = "SELECT KATA_NO + ',' + KATA_NAME AS ID, KATA_NAME AS NAME";
                     strSql += " FROM M_SYAKATA ORDER BY SEQ";
                     break;
-                case Const.Def.DefTYPE_SYOUIN:
+                case Def.DefTYPE_SYOUIN:
                     // 要因（制御系）
                     strSql = "SELECT FACTOR_NO + ',' + FACTOR_NAME AS ID, FACTOR_NAME AS NAME";
                     strSql += " FROM M_FACTOR ORDER BY SEQ";
                     break;
-                case Const.Def.DefTYPE_EGTM:
+                case Def.DefTYPE_EGTM:
                     // EGTM形式
                     strSql = "SELECT EGTM_NO + ',' + EGTM_NAME AS ID, EGTM_NAME AS NAME";
                     strSql += " FROM M_EGTM ORDER BY SEQ";
                     break;
-                case Const.Def.DefTYPE_TOP40:
+                case Def.DefTYPE_TOP40:
                     // TOP40
                     strSql = "SELECT FOLLOW_NO AS ID, FOLLOW_NO AS NAME";
                     strSql += " FROM M_TOP40 ORDER BY SEQ";
                     break;
-                case Const.Def.DefTYPE_RIPRO20:
+                case Def.DefTYPE_RIPRO20:
                     // リプロ20
                     strSql = "SELECT FOLLOW_NO AS ID, FOLLOW_NO AS NAME";
                     strSql += " FROM M_RIPRO20 ORDER BY SEQ";

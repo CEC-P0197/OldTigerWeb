@@ -5,7 +5,7 @@ using System.Collections;
 using System.Text;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using OldTigerWeb.Const;
+using OldTigerWeb.BuisinessLogic;
 
 namespace OldTigerWeb
 {
@@ -29,9 +29,6 @@ namespace OldTigerWeb
             }
   
             pnlCategoryBusyo.Visible = false;
-
-            //lnkKategori12.Visible = false;  // TOP40 3/4 非表示
-            //lnkKategori13.Visible = false;  // リプロ20 3/4 非表示
 
             ViewState["MailAddr"] = "";
             ViewState["HELP"] = "";
@@ -69,7 +66,7 @@ namespace OldTigerWeb
                     ClientScriptManager csManager = Page.ClientScript;
                     Type csType = this.GetType();
                     ArrayList arrayMessage = new ArrayList();
-                    arrayMessage.Add(Const.Def.DefMsg_USERERR);
+                    arrayMessage.Add(Def.DefMsg_USERERR);
                     bcom.ShowMessage(csType, csManager, arrayMessage);
                     
 
@@ -115,30 +112,30 @@ namespace OldTigerWeb
                 CategoryProc("31", "PU");   // PU部署・設計
                 CategoryProc("32", "PU");   // PU部署・評価
 
-                CategoryProc(Const.Def.DefTYPE_PARTS, "");      // 部品
+                CategoryProc(Def.DefTYPE_PARTS, "");      // 部品
 
                 ckBoxBuhin.DataSource = "";
                 ckBoxBuhin.DataBind();
 
-                CategoryProc(Const.Def.DefTYPE_KAIHATU, "");    // 開発符号
+                CategoryProc(Def.DefTYPE_KAIHATU, "");    // 開発符号
 
-                CategoryProc(Const.Def.DefTYPE_GENSYO, "");     // 現象（分類）
+                CategoryProc(Def.DefTYPE_GENSYO, "");     // 現象（分類）
 
-                CategoryProc(Const.Def.DefTYPE_GENIN, "");      // 原因（分類）
+                CategoryProc(Def.DefTYPE_GENIN, "");      // 原因（分類）
 
-                CategoryProc(Const.Def.DefTYPE_SYAKATA, "");    // 車型特殊
+                CategoryProc(Def.DefTYPE_SYAKATA, "");    // 車型特殊
 
-                CategoryProc(Const.Def.DefTYPE_SGENSYO, "");    // 現象（制御系）
+                CategoryProc(Def.DefTYPE_SGENSYO, "");    // 現象（制御系）
 
-                CategoryProc(Const.Def.DefTYPE_SYOUIN, "");     // 要因（制御系）
+                CategoryProc(Def.DefTYPE_SYOUIN, "");     // 要因（制御系）
 
-                CategoryProc(Const.Def.DefTYPE_EGTM, "");       // EGTM形式
+                CategoryProc(Def.DefTYPE_EGTM, "");       // EGTM形式
 
-                CategoryProc(Const.Def.DefTYPE_TOP40, "");      // ＴＯＰ４０
+                //CategoryProc(Def.DefTYPE_TOP40, "");      // ＴＯＰ４０
 
-                CategoryProc(Const.Def.DefTYPE_RIPRO20, "");    // リプロ２０
+                //CategoryProc(Def.DefTYPE_RIPRO20, "");    // リプロ２０
 
-                ViewState[Const.Def.DefPARA_CONDITION_FLG] = Const.Def.DefTYPE_OR;
+                ViewState[Def.DefPARA_CONDITION_FLG] = Def.DefTYPE_OR;
 
                 //検索履歴画面表示処理
                 SearchHistory();
@@ -153,22 +150,6 @@ namespace OldTigerWeb
         }
         #endregion
 
-        #region コントロール情報取得
-        /// <summary>
-        /// コントロール情報取得
-        /// </summary>
-        public Control[] GetAllControls(Control top)
-        {
-            ArrayList buf = new ArrayList();
-            foreach (Control c in top.Controls)
-            {
-                buf.Add(c);
-                buf.AddRange(GetAllControls(c));
-            }
-            return (Control[])buf.ToArray(typeof(Control));
-        }
-        #endregion
-
         #region カテゴリデータテーブル設定
         /// <summary>
         /// カテゴリデータテーブル設定
@@ -176,38 +157,38 @@ namespace OldTigerWeb
         protected void CreateCategoryDatatable(DataTable result)
         {
             // 部署
-            CreateCategoryTable(Const.Def.DefTYPE_BUSYO, ckBoxBusyoSekkeiPu, result);
-            CreateCategoryTable(Const.Def.DefTYPE_HYOUKA, ckBoxBusyoHyoukaPu, result);
-            CreateCategoryTable(Const.Def.DefTYPE_BUSYO, ckBoxBusyoSekkeiBy, result);
-            CreateCategoryTable(Const.Def.DefTYPE_HYOUKA, ckBoxBusyoHyoukaBy, result);
+            CreateCategoryTable(Def.DefTYPE_BUSYO, ckBoxBusyoSekkeiPu, result);
+            CreateCategoryTable(Def.DefTYPE_HYOUKA, ckBoxBusyoHyoukaPu, result);
+            CreateCategoryTable(Def.DefTYPE_BUSYO, ckBoxBusyoSekkeiBy, result);
+            CreateCategoryTable(Def.DefTYPE_HYOUKA, ckBoxBusyoHyoukaBy, result);
 
             if (IsCreateCategory(ckBoxBuhin) == true)
             {
                 // 部品
-                CreateCategoryTable(Const.Def.DefTYPE_PARTS, ckBoxBuhin, result);
+                CreateCategoryTable(Def.DefTYPE_PARTS, ckBoxBuhin, result);
             }
             else
             {
                 // システム
-                CreateCategoryTable(Const.Def.DefTYPE_PARTS, ckBoxSystem, result);
+                CreateCategoryTable(Def.DefTYPE_PARTS, ckBoxSystem, result);
             }
 
             // 開発符号
-            CreateCategoryTable(Const.Def.DefTYPE_KAIHATU, ckBoxMst01, result);
+            CreateCategoryTable(Def.DefTYPE_KAIHATU, ckBoxMst01, result);
             // 現象（分類）
-            CreateCategoryTable(Const.Def.DefTYPE_GENSYO, ckBoxMst02, result);
+            CreateCategoryTable(Def.DefTYPE_GENSYO, ckBoxMst02, result);
             // 原因（分類）
-            CreateCategoryTable(Const.Def.DefTYPE_GENIN, ckBoxMst03, result);
+            CreateCategoryTable(Def.DefTYPE_GENIN, ckBoxMst03, result);
             // 車型特殊
-            CreateCategoryTable(Const.Def.DefTYPE_SYAKATA, ckBoxMst04, result);
+            CreateCategoryTable(Def.DefTYPE_SYAKATA, ckBoxMst04, result);
             // 現象（制御系）
-            CreateCategoryTable(Const.Def.DefTYPE_SGENSYO, ckBoxMst05, result);
+            CreateCategoryTable(Def.DefTYPE_SGENSYO, ckBoxMst05, result);
             // 要因（制御系）
-            CreateCategoryTable(Const.Def.DefTYPE_SYOUIN, ckBoxMst06, result);
+            CreateCategoryTable(Def.DefTYPE_SYOUIN, ckBoxMst06, result);
             // EGTM形式
-            CreateCategoryTable(Const.Def.DefTYPE_EGTM, ckBoxMst07, result);
+            CreateCategoryTable(Def.DefTYPE_EGTM, ckBoxMst07, result);
             //データテーブル作成結果をセッションに入れる
-            Session[Const.Def.DefPARA_TABLE] = result;
+            Session[Def.DefPARA_TABLE] = result;
         }
         #endregion
 
@@ -255,65 +236,74 @@ namespace OldTigerWeb
         /// </summary>
         protected void btn_Search_Click(object sender, EventArgs e)
         {
-            //20170313 START k-ohmatsuzawa
-            ///Session[Const.Def.DefPARA_WORD] = null;
             SessionClear();
-            //20170313 END k-ohmatsuzawa
             createSearchParam(true);
         }
         #endregion
 
-        #region カテゴリ検索ボタンクリック
+        #region カテゴリAND検索ボタンクリック
         /// <summary>
-        /// カテゴリ検索ボタンクリック
+        /// カテゴリAND検索ボタンクリック
         /// </summary>
-        protected void btn_CategorySearch_Click(object sender, EventArgs e)
+        protected void btn_CategorySearchAND_Click(object sender, EventArgs e)
         {
-            //20170313 START k-ohmatsuzawa
             SessionClear();
-            //20170313 END k-ohmatsuzawa
-            createSearchParam();
+            createSearchParam(false, -1, Def.DefTYPE_AND);
         }
+        #endregion
+
+        #region カテゴリOR検索ボタンクリック
+        /// <summary>
+        /// カテゴリOR検索ボタンクリック
+        /// </summary>
+        // 20170719 Add Start
+        protected void btn_CategorySearchOR_Click(object sender, EventArgs e)
+        {
+            SessionClear();
+            createSearchParam(false, -1, Def.DefTYPE_OR);
+        }
+        // 20170719 Add End
         #endregion
 
         #region 検索処理メイン
         /// <summary>
         /// 検索処理メイン　引数 searchKbn true:キーワード検索　false:カテゴリ検索
-        /// </summary>        
-        private void createSearchParam( Boolean searchKbn = false, int intHistoryRow = -1)
+        /// </summary>  
+        /// <param name="searchKbn">検索区分 true:キーワード検索　false:カテゴリ検索</param>
+        /// <param name="intHistoryRow">履歴</param>
+        /// <param name="strCategorySearch">カテゴリ検索 1:AND、2:OR</param> // 20170719 Add
+        //private void createSearchParam(Boolean searchKbn = false, int intHistoryRow = -1)
+        private void createSearchParam( Boolean searchKbn = false, int intHistoryRow = -1, string strCategorySearch = "0")
         {
             try
             {
                 String[] strArrayData = null;
                 String strMoji = "";
-                //20170201 機能改善 START
-                //String strWord = "";
                 String strWord = null;
-                //20170201 機能改善 END
                 // カテゴリ検索パラメータ
-                DataTable categolyParam = new DataTable();
-                categolyParam.Columns.Add("TableType", typeof(string));
-                categolyParam.Columns.Add("ItemValue1", typeof(String));
+                DataTable categolyParam = new TroubleData().getCotegoryDataTable();
 
-                //20170201 機能改善 START
-                //Session[Const.Def.DefPARA_WORD] = strWord.Trim();
-                if (Session[Const.Def.DefPARA_WORD] == null) {
-                            // 初期設定　検索パラメータ
-                    Session[Const.Def.DefPARA_CONDITION_FLG] = (String)ViewState[Const.Def.DefPARA_CONDITION_FLG];
-                    //Session[Const.Def.DefPARA_WORD] = strWord;
+                if (Session[Def.DefPARA_WORD] == null)
+                {
+                    // 初期設定　検索パラメータ
+                    Session[Def.DefPARA_CONDITION_FLG] = (String)ViewState[Def.DefPARA_CONDITION_FLG];
+                    //Session[Def.DefPARA_WORD] = strWord;
                 }
-                //20170201 機能改善 END
-                Session[Const.Def.DefPARA_TABLE] = categolyParam;
-                                
+
+                Session[Def.DefPARA_TABLE] = categolyParam;
+
+                Session[Def.DefPARA_CATEGORY_CONDITION_FLG] = strCategorySearch;
+
+
                 if (searchKbn == true)
                 { 
                     //20170201 機能改善 START
-                    Session[Const.Def.DefPARA_CONDITION_FLG] = (String)ViewState[Const.Def.DefPARA_CONDITION_FLG];
+                    Session[Def.DefPARA_CONDITION_FLG] = (String)ViewState[Def.DefPARA_CONDITION_FLG];
                     strMoji = txtSearch.Text.Trim();
                     if (strMoji.Length > 0)
                     {
                         //20170201 機能改善 END
-                        Session[Const.Def.DefPARA_TYPE] = Const.Def.DefTYPE_WORD;   // 文字列検索
+                        Session[Def.DefPARA_TYPE] = Def.DefTYPE_WORD;   // 文字列検索
                         strMoji = txtSearch.Text.Trim();
                         // 全角スペースをを半角に置換 20160311
                         strMoji = strMoji.Replace("　", " ");
@@ -333,18 +323,13 @@ namespace OldTigerWeb
                         }
                         txtSearch.Text = strWord.Trim();
 
-                        //Session[Const.Def.DefPARA_CONDITION_FLG] = (String)ViewState[Const.Def.DefPARA_CONDITION_FLG];
-                        Session[Const.Def.DefPARA_WORD] = strWord.Trim();    // 検索文字列
+                        Session[Def.DefPARA_WORD] = strWord.Trim();    // 検索文字列
 
-                        //20170201 機能改善 START
-                        //// 検索ログ登録
-                        //result = bcom.RegistHistoryLogData((String)ViewState[Const.Def.DefPARA_CONDITION_FLG], strWord);
                     }
                     if (intHistoryRow > -1)
                     {
                         CreateHistoryPrm(intHistoryRow);
                     }
-                    //20170201 機能改善 END
                 }
                 else
                 { 
@@ -379,22 +364,22 @@ namespace OldTigerWeb
             categolyParam.Columns.Add("ItemValue1", typeof(String));
 
             // 履歴カテゴリ選択テーブル作成
-            CreateHistoryCategoryDatatable(intHistoryRow, Const.Def.DefSEARCH_PARTS_N, Const.Def.DefTYPE_PARTS, categolyParam);
+            CreateHistoryCategoryDatatable(intHistoryRow, Def.DefSEARCH_PARTS_N, Def.DefTYPE_PARTS, categolyParam);
             if (categolyParam.Rows.Count == 0)
             {
-                CreateHistoryCategoryDatatable(intHistoryRow, Const.Def.DefSEARCH_PARTS_S, Const.Def.DefTYPE_PARTS, categolyParam);
+                CreateHistoryCategoryDatatable(intHistoryRow, Def.DefSEARCH_PARTS_S, Def.DefTYPE_PARTS, categolyParam);
             }
-            CreateHistoryCategoryDatatable(intHistoryRow, Const.Def.DefSEARCH_BUSYO, Const.Def.DefTYPE_BUSYO, categolyParam);
-            CreateHistoryCategoryDatatable(intHistoryRow, Const.Def.DefSEARCH_HYOUKA, Const.Def.DefTYPE_HYOUKA, categolyParam);
-            CreateHistoryCategoryDatatable(intHistoryRow, Const.Def.DefSEARCH_KAIHATU, Const.Def.DefTYPE_KAIHATU, categolyParam);
-            CreateHistoryCategoryDatatable(intHistoryRow, Const.Def.DefSEARCH_GENSYO, Const.Def.DefTYPE_GENSYO, categolyParam);
-            CreateHistoryCategoryDatatable(intHistoryRow, Const.Def.DefSEARCH_GENIN, Const.Def.DefTYPE_GENIN, categolyParam);
-            CreateHistoryCategoryDatatable(intHistoryRow, Const.Def.DefSEARCH_SYAKATA, Const.Def.DefTYPE_SYAKATA, categolyParam);
-            CreateHistoryCategoryDatatable(intHistoryRow, Const.Def.DefSEARCH_SGENSYO, Const.Def.DefTYPE_SGENSYO, categolyParam);
-            CreateHistoryCategoryDatatable(intHistoryRow, Const.Def.DefSEARCH_SYOUIN, Const.Def.DefTYPE_SYOUIN, categolyParam);
-            CreateHistoryCategoryDatatable(intHistoryRow, Const.Def.DefSEARCH_EGTM, Const.Def.DefTYPE_EGTM, categolyParam);
+            CreateHistoryCategoryDatatable(intHistoryRow, Def.DefSEARCH_BUSYO, Def.DefTYPE_BUSYO, categolyParam);
+            CreateHistoryCategoryDatatable(intHistoryRow, Def.DefSEARCH_HYOUKA, Def.DefTYPE_HYOUKA, categolyParam);
+            CreateHistoryCategoryDatatable(intHistoryRow, Def.DefSEARCH_KAIHATU, Def.DefTYPE_KAIHATU, categolyParam);
+            CreateHistoryCategoryDatatable(intHistoryRow, Def.DefSEARCH_GENSYO, Def.DefTYPE_GENSYO, categolyParam);
+            CreateHistoryCategoryDatatable(intHistoryRow, Def.DefSEARCH_GENIN, Def.DefTYPE_GENIN, categolyParam);
+            CreateHistoryCategoryDatatable(intHistoryRow, Def.DefSEARCH_SYAKATA, Def.DefTYPE_SYAKATA, categolyParam);
+            CreateHistoryCategoryDatatable(intHistoryRow, Def.DefSEARCH_SGENSYO, Def.DefTYPE_SGENSYO, categolyParam);
+            CreateHistoryCategoryDatatable(intHistoryRow, Def.DefSEARCH_SYOUIN, Def.DefTYPE_SYOUIN, categolyParam);
+            CreateHistoryCategoryDatatable(intHistoryRow, Def.DefSEARCH_EGTM, Def.DefTYPE_EGTM, categolyParam);
 
-            Session[Const.Def.DefPARA_TABLE] = categolyParam;
+            Session[Def.DefPARA_TABLE] = categolyParam;
         }
         #endregion
 
@@ -406,7 +391,7 @@ namespace OldTigerWeb
             BuisinessLogic.BLTroubleList bLogic = new BuisinessLogic.BLTroubleList();
             DataTable dtCategoryName = null;
             String strCategoryName = "";
-            string[] stArrayData = ((System.Data.DataTable)(ViewState[Const.Def.DefHISTORY])).Rows[intHistoryRow].ItemArray[intItemRow].ToString().Split(',');
+            string[] stArrayData = ((System.Data.DataTable)(ViewState[Def.DefHISTORY])).Rows[intHistoryRow].ItemArray[intItemRow].ToString().Split(',');
 
             foreach (String stData in stArrayData)
             {
@@ -420,7 +405,7 @@ namespace OldTigerWeb
 
                     DataRow dr = dt.NewRow();
                     dr["TableType"] = Type;
-                    if (intItemRow == Const.Def.DefSEARCH_PARTS_N)
+                    if (intItemRow == Def.DefSEARCH_PARTS_N)
                     {
                         System.Text.StringBuilder sb = new System.Text.StringBuilder(stData);
                         //カンマを挿入する
@@ -429,11 +414,11 @@ namespace OldTigerWeb
                         string strWork = sb.ToString();
                         dr["ItemValue1"] = strWork + "," + strCategoryName;
                     }
-                    else if (intItemRow == Const.Def.DefSEARCH_PARTS_S)
+                    else if (intItemRow == Def.DefSEARCH_PARTS_S)
                     {
                         dr["ItemValue1"] = stData + ",,," + strCategoryName;
                     }
-                    else if(intItemRow == Const.Def.DefSEARCH_BUSYO || intItemRow == Const.Def.DefSEARCH_HYOUKA)
+                    else if(intItemRow == Def.DefSEARCH_BUSYO || intItemRow == Def.DefSEARCH_HYOUKA)
                     {
                         dr["ItemValue1"] = stData;
                     }
@@ -446,9 +431,6 @@ namespace OldTigerWeb
             }
         }
         #endregion
-        //20170201 機能改善 END
-
-        //20170306 START k-ohmatsuzawa カテゴリクリアボタン修正
         #region カテゴリクリアボタンクリック
         /// <summary>
         /// カテゴリクリアボタンクリック
@@ -459,7 +441,6 @@ namespace OldTigerWeb
             ckBoxBuhin.DataBind();
         }
         #endregion
-        //20170306 END k-ohmatsuzawa
 
         #region ＴＯＰページへクリック
         /// <summary>
@@ -500,262 +481,6 @@ namespace OldTigerWeb
         }
         #endregion
 
-        #region カテゴリ検索
-        /// <summary>
-        /// カテゴリ検索リンク・部署(BY)
-        /// </summary>
-        protected void lnkKategori03BY_Click(Object sender, EventArgs e)
-        {
-            try
-            {
-                String BYPU = "BY";
-
-                CategoryProc("31", BYPU);   // 部署・設計
-                CategoryProc("32", BYPU);   // 部署・評価
-
-                //btnFollow.Visible = false; // FMCmc進捗ボタン非表示　2017.03.29 神田 画面から削除
-
-            }
-            // システムエラー処理（ログ出力、エラー画面遷移）
-            catch (Exception ex)
-            {
-                // システムエラー処理（ログ出力＆エラーページ表示）
-                bcom.ErrorProcess("frmSearch", "lnkKategori03_Click", ex, this.Response);
-            }
-        }
-
-        /// <summary>
-        /// カテゴリ検索リンク・部署(PU)
-        /// </summary>
-        protected void lnkKategori03PU_SelectionChanged(object sender, EventArgs e)
-        { 
-            try
-            {
-                String BYPU = "PU";
-
-                CategoryProc("31", BYPU);   // 部署・設計
-                CategoryProc("32", BYPU);   // 部署・評価
-
-                //btnFollow.Visible = false; // FMCmc進捗ボタン非表示　2017.03.29 神田 画面から削除
-
-            }
-            // システムエラー処理（ログ出力、エラー画面遷移）
-            catch (Exception ex)
-            {
-                // システムエラー処理（ログ出力＆エラーページ表示）
-                bcom.ErrorProcess("frmSearch", "lnkKategori03_Click", ex, this.Response);
-            }
-        }
-
-        /// <summary>
-        /// カテゴリ検索リンク・部品
-        /// </summary>
-        protected void lnkKategori04_Click(Object sender, EventArgs e)
-        {
-            try
-            {
-                CategoryProc(Const.Def.DefTYPE_PARTS, "");  // 部品
-
-                //ckBoxBY.Checked = true;
-                //ckBoxPU.Checked = true;
-
-                ckBoxBuhin.DataSource = "";
-                ckBoxBuhin.DataBind();
-
-                //btnFollow.Visible = false; // FMCmc進捗ボタン非表示　2017.03.29 神田 画面から削除
-            }
-            // システムエラー処理（ログ出力、エラー画面遷移）
-            catch (Exception ex)
-            {
-                // システムエラー処理（ログ出力＆エラーページ表示）
-                bcom.ErrorProcess("frmSearch", "lnkKategori04_Click", ex, this.Response);
-            }
-        }
-
-        /// <summary>
-        /// カテゴリ検索リンク・開発符号
-        /// </summary>
-        protected void lnkKategori05_Click(Object sender, EventArgs e)
-        {
-            try
-            {
-                CategoryProc(Const.Def.DefTYPE_KAIHATU, "");    // 開発符号
-
-                //btnFollow.Visible = false; // FMCmc進捗ボタン非表示　2017.03.29 神田 画面から削除
-            }
-            // システムエラー処理（ログ出力、エラー画面遷移）
-            catch (Exception ex)
-            {
-                // システムエラー処理（ログ出力＆エラーページ表示）
-                bcom.ErrorProcess("frmSearch", "lnkKategori05_Click", ex, this.Response);
-            }
-        }
-
-        /// <summary>
-        /// カテゴリ検索リンク・現象（分類）
-        /// </summary>
-        protected void lnkKategori06_Click(Object sender, EventArgs e)
-        {
-            try
-            {
-                CategoryProc(Const.Def.DefTYPE_GENSYO, "");     // 現象（分類）
-
-                //btnFollow.Visible = false; // FMCmc進捗ボタン非表示　2017.03.29 神田 画面から削除
-            }
-            // システムエラー処理（ログ出力、エラー画面遷移）
-            catch (Exception ex)
-            {
-                // システムエラー処理（ログ出力＆エラーページ表示）
-                bcom.ErrorProcess("frmSearch", "lnkKategori06_Click", ex, this.Response);
-            }
-        }
-
-        /// <summary>
-        /// カテゴリ検索リンク・原因（分類）
-        /// </summary>
-        protected void lnkKategori07_Click(Object sender, EventArgs e)
-        {
-            try
-            {
-                CategoryProc(Const.Def.DefTYPE_GENIN, "");      // 原因（分類）
-
-                //btnFollow.Visible = false; // FMCmc進捗ボタン非表示　2017.03.29 神田 画面から削除
-            }
-            // システムエラー処理（ログ出力、エラー画面遷移）
-            catch (Exception ex)
-            {
-                // システムエラー処理（ログ出力＆エラーページ表示）
-                bcom.ErrorProcess("frmSearch", "lnkKategori07_Click", ex, this.Response);
-            }
-        }
-
-        /// <summary>
-        /// カテゴリ検索リンク・車型特殊
-        /// </summary>
-        protected void lnkKategori08_Click(Object sender, EventArgs e)
-        {
-            
-
-            try
-            {
-                CategoryProc(Const.Def.DefTYPE_SYAKATA, "");    // 車型特殊
-
-                //btnFollow.Visible = false; // FMCmc進捗ボタン非表示　2017.03.29 神田 画面から削除
-            }
-            // システムエラー処理（ログ出力、エラー画面遷移）
-            catch (Exception ex)
-            {
-                // システムエラー処理（ログ出力＆エラーページ表示）
-                bcom.ErrorProcess("frmSearch", "lnkKategori08_Click", ex, this.Response);
-            }
-        }
-
-        /// <summary>
-        /// カテゴリ検索リンク・現象（制御系）
-        /// </summary>
-        protected void lnkKategori09_Click(Object sender, EventArgs e)
-        {
-            
-
-            try
-            {
-                CategoryProc(Const.Def.DefTYPE_SGENSYO, "");    // 現象（制御系）
-
-                //btnFollow.Visible = false; // FMCmc進捗ボタン非表示　2017.03.29 神田 画面から削除
-            }
-            // システムエラー処理（ログ出力、エラー画面遷移）
-            catch (Exception ex)
-            {
-                // システムエラー処理（ログ出力＆エラーページ表示）
-                bcom.ErrorProcess("frmSearch", "lnkKategori09_Click", ex, this.Response);
-            }
-        }
-
-        /// <summary>
-        /// カテゴリ検索リンク・要因（制御系）
-        /// </summary>
-        protected void lnkKategori10_Click(Object sender, EventArgs e)
-        {
-            
-
-            try
-            {
-                CategoryProc(Const.Def.DefTYPE_SYOUIN, "");     // 要因（制御系）
-
-                //btnFollow.Visible = false; // FMCmc進捗ボタン非表示　2017.03.29 神田 画面から削除　
-            }
-            // システムエラー処理（ログ出力、エラー画面遷移）
-            catch (Exception ex)
-            {
-                // システムエラー処理（ログ出力＆エラーページ表示）
-                bcom.ErrorProcess("frmSearch", "lnkKategori10_Click", ex, this.Response);
-            }
-        }
-
-        /// <summary>
-        /// カテゴリ検索リンク・EGTM形式
-        /// </summary>
-        protected void lnkKategori11_Click(Object sender, EventArgs e)
-        {
-            
-
-            try
-            {
-                CategoryProc(Const.Def.DefTYPE_EGTM, "");   // EGTM形式
-
-                //btnFollow.Visible = false; // FMCmc進捗ボタン非表示　2017.03.29 神田 画面から削除　
-            }
-            // システムエラー処理（ログ出力、エラー画面遷移）
-            catch (Exception ex)
-            {
-                // システムエラー処理（ログ出力＆エラーページ表示）
-                bcom.ErrorProcess("frmSearch", "lnkKategori11_Click", ex, this.Response);
-            }
-        }
-
-        /// <summary>
-        /// カテゴリ検索リンク・ＴＯＰ４０
-        /// </summary>
-        protected void lnkKategori12_Click(Object sender, EventArgs e)
-        {
-            
-
-            try
-            {
-                CategoryProc(Const.Def.DefTYPE_TOP40, "");      // ＴＯＰ４０
-
-                //btnFollow.Visible = false; // FMCmc進捗ボタン非表示　2017.03.29 神田 画面から削除　
-            }
-            // システムエラー処理（ログ出力、エラー画面遷移）
-            catch (Exception ex)
-            {
-                // システムエラー処理（ログ出力＆エラーページ表示）
-                bcom.ErrorProcess("frmSearch", "lnkKategori12_Click", ex, this.Response);
-            }
-        }
-
-        /// <summary>
-        /// カテゴリ検索リンク・リプロ２０
-        /// </summary>
-        protected void lnkKategori13_Click(Object sender, EventArgs e)
-        {
-            
-
-            try
-            {
-                CategoryProc(Const.Def.DefTYPE_RIPRO20, "");    // リプロ２０
-
-                //btnFollow.Visible = false; // FMCmc進捗ボタン非表示　2017.03.29 神田 画面から削除
-            }
-            // システムエラー処理（ログ出力、エラー画面遷移）
-            catch (Exception ex)
-            {
-                // システムエラー処理（ログ出力＆エラーページ表示）
-                bcom.ErrorProcess("frmSearch", "lnkKategori13_Click", ex, this.Response);
-            }
-        }
-        #endregion
-
         #region おすすめリンク
         /// <summary>
         /// おすすめ０１～１０リンククリック
@@ -768,14 +493,14 @@ namespace OldTigerWeb
                 SessionClear();
                 //20170313 END k-ohmatsuzawa
                 // 2017.02.22 ta_kanda 条件
-                Session[Const.Def.DefPARA_CONDITION_FLG] = Const.Def.DefTYPE_OR;　　// 条件
-                Session[Const.Def.DefPARA_TYPE] = Const.Def.DefTYPE_TOP10;  　　　　// キーワード検索
-                Session[Const.Def.DefPARA_WORD] = e.CommandName;            　　　　// 検索文字列
+                Session[Def.DefPARA_CONDITION_FLG] = Def.DefTYPE_OR;　　// 条件
+                Session[Def.DefPARA_TYPE] = Def.DefTYPE_TOP10;  　　　　// キーワード検索
+                Session[Def.DefPARA_WORD] = e.CommandName;            　　　　// 検索文字列
                 // 2017.02.22 ta_kanda カテゴリ検索パラメータ
                 DataTable categolyParam = new DataTable();
                 categolyParam.Columns.Add("TableType", typeof(string));
                 categolyParam.Columns.Add("ItemValue1", typeof(String));
-                Session[Const.Def.DefPARA_TABLE] = categolyParam;
+                Session[Def.DefPARA_TABLE] = categolyParam;
 
                 openWindow();                           // 過去トラ検索結果画面オープン
             }
@@ -789,82 +514,6 @@ namespace OldTigerWeb
         #endregion
 
         #region カテゴリ検索
-        /// <summary>
-        /// カテゴリ検索・ＯＫ
-        /// </summary>
-        protected void btn_Category_Ok(Object sender, EventArgs e)
-        {
-            
-
-            try
-            {
-                ArrayList arrWork = new ArrayList();
-
-                foreach (ListItem mstItem in ckBoxMst01.Items)
-                {
-                    if (mstItem.Selected)
-                    {
-                        arrWork.Add(mstItem.Value);
-                    }
-                }
-
-                Session[Const.Def.DefPARA_TYPE] = (String)ViewState[Const.Def.DefPARA_TYPE];    // 検索タイプ
-                Session[Const.Def.DefPARA_ARRY] = arrWork;
-
-                // 検索文字列・配列
-
-                openWindow();       // 過去トラ検索結果画面オープン
-            }
-            // システムエラー処理（ログ出力、エラー画面遷移）
-            catch (Exception ex)
-            {
-                // システムエラー処理（ログ出力＆エラーページ表示）
-                bcom.ErrorProcess("frmSearch", "btn_Category_Ok", ex, this.Response);
-            }
-        }
-
-        /// <summary>
-        /// カテゴリ検索・キャンセル
-        /// </summary>
-        protected void btn_Category_Cancel(Object sender, EventArgs e)
-        {
-            //pnlCategoryMst.Visible = false;
-
-            //btnFollow.Visible = true;   // FMCmc進捗ボタン表示　2017.03.29 神田 画面から削除
-        }
-
-        /// <summary>
-        /// カテゴリ検索・システムＯＫ
-        /// </summary>
-        protected void btn_System_Ok(Object sender, EventArgs e)
-        {
-            
-
-            try
-            {
-                ArrayList arrWork = new ArrayList();
-
-                foreach (ListItem sysItem in ckBoxSystem.Items)
-                {
-                    if (sysItem.Selected)
-                    {
-                        arrWork.Add(sysItem.Value);
-                    }
-                }
-
-                Session[Const.Def.DefPARA_TYPE] = (String)ViewState[Const.Def.DefPARA_TYPE];    // 検索タイプ
-                Session[Const.Def.DefPARA_ARRY] = arrWork;                                      // 検索文字列・配列
-
-                openWindow();       // 過去トラ検索結果画面オープン
-            }
-            // システムエラー処理（ログ出力、エラー画面遷移）
-            catch (Exception ex)
-            {
-                // システムエラー処理（ログ出力＆エラーページ表示）
-                bcom.ErrorProcess("frmSearch", "btn_System_Ok", ex, this.Response);
-            }
-        }
-
         /// <summary>
         /// カテゴリ検索・部品部位絞込み
         /// </summary>
@@ -892,7 +541,6 @@ namespace OldTigerWeb
                 }
 
                 dtPartList = bLogic.GetPartsList(strBY, strPU, arrWork);
-                //btnFilter.Enabled = false; dtPartList = bLogic.GetPartsList(strBY, strPU, arrWork);
 
                 ckBoxBuhin.DataSource = dtPartList;
                 ckBoxBuhin.DataBind();
@@ -908,98 +556,6 @@ namespace OldTigerWeb
 
         }
 
-        /// <summary>
-        /// 部品カテゴリ検索・部品部位ＯＫ
-        /// </summary>
-        protected void btn_Buhin_Ok(Object sender, EventArgs e)
-        {
-            
-
-            try
-            {
-                ArrayList arrWork = new ArrayList();
-
-                foreach (ListItem buhinItem in ckBoxBuhin.Items)
-                {
-                    if (buhinItem.Selected)
-                    {
-                        arrWork.Add(buhinItem.Value);
-                    }
-                }
-
-                Session[Const.Def.DefPARA_TYPE] = (String)ViewState[Const.Def.DefPARA_TYPE];    // 検索タイプ
-                Session[Const.Def.DefPARA_ARRY] = arrWork;                                      // 検索文字列・配列
-
-                openWindow();       // 過去トラ検索結果画面オープン
-            }
-            // システムエラー処理（ログ出力、エラー画面遷移）
-            catch (Exception ex)
-            {
-                // システムエラー処理（ログ出力＆エラーページ表示）
-                bcom.ErrorProcess("frmSearch", "btn_Buhin_Ok", ex, this.Response);
-            }
-        }
-
-        /// <summary>
-        /// 部品カテゴリ検索・キャンセル
-        /// </summary>
-        protected void btn_Buhin_Cancel(Object sender, EventArgs e)
-        {
-            //pnlCategoryBuhin.Visible = false;
-
-            //btnFollow.Visible = true;   // FMCmc進捗ボタン表示　2017.03.29 神田 画面から削除
-        }
-
-        /// <summary>
-        /// カテゴリ検索・部署ＯＫ
-        /// </summary>
-        //protected void btn_Busyo_Ok(Object sender, EventArgs e)
-        //{
-        //    
-
-        //    try
-        //    {
-        //        ArrayList arrWork = new ArrayList();
-        //        ArrayList arrWork2 = new ArrayList();
-
-        //        foreach (ListItem mstItem in ckBoxBusyoSekkei1.Items)
-        //        {
-        //            if (mstItem.Selected)
-        //            {
-        //                arrWork.Add(mstItem.Value);
-        //            }
-        //        }
-
-        //        foreach (ListItem mstItem in ckBoxBusyoHyouka1.Items)
-        //        {
-        //            if (mstItem.Selected)
-        //            {
-        //                arrWork2.Add(mstItem.Value);
-        //            }
-        //        }
-        //        Session[Const.Def.DefPARA_TYPE] = (String)ViewState[Const.Def.DefPARA_TYPE];    // 検索タイプ
-        //        Session[Const.Def.DefPARA_ARRY] = arrWork;                      // 検索文字列・設計部署配列
-        //        Session[Const.Def.DefPARA_ARRY2] = arrWork2;                    // 検索文字列・評価部署配列
-
-        //        openWindow();       // 過去トラ検索結果画面オープン
-        //    }
-        //    // システムエラー処理（ログ出力、エラー画面遷移）
-        //    catch (Exception ex)
-        //    {
-        //        // システムエラー処理（ログ出力＆エラーページ表示）
-        //        bcom.ErrorProcess("frmSearch", "btn_Busyo_Ok", ex, this.Response);
-        //    }
-        //}
-
-        /// <summary>
-        /// 部署カテゴリ検索・キャンセル
-        /// </summary>
-        protected void btn_Busyo_Cancel(Object sender, EventArgs e)
-        {
-            pnlCategoryBusyo.Visible = false;
-
-            //btnFollow.Visible = true;   // FMCmc進捗ボタン表示 2017.03.29 神田 画面から削除
-        }
         #endregion
 
         #region 固有関数
@@ -1132,68 +688,68 @@ namespace OldTigerWeb
                 case "31":
                 case "32":
                     // 部署
-                    ViewState[Const.Def.DefPARA_TYPE] = Const.Def.DefTYPE_BUSYO;
-                    ViewState[Const.Def.DefPARA_CATNM] = "";
+                    ViewState[Def.DefPARA_TYPE] = Def.DefTYPE_BUSYO;
+                    ViewState[Def.DefPARA_CATNM] = "";
                     pnlCategoryBusyo.Visible = true;
                     break;
-                case Const.Def.DefTYPE_PARTS:
+                case Def.DefTYPE_PARTS:
                     // 部品・部位
-                    ViewState[Const.Def.DefPARA_TYPE] = Const.Def.DefTYPE_PARTS;
-                    ViewState[Const.Def.DefPARA_CATNM] = Const.Def.DefTYPENM_PARTS;
+                    ViewState[Def.DefPARA_TYPE] = Def.DefTYPE_PARTS;
+                    ViewState[Def.DefPARA_CATNM] = Def.DefTYPENM_PARTS;
                     //pnlCategoryBuhin.Visible = true;
                     break;
-                case Const.Def.DefTYPE_KAIHATU:
-                    // 開発符号Const.def.
-                    ViewState[Const.Def.DefPARA_TYPE] = Const.Def.DefTYPE_KAIHATU;
-                    ViewState[Const.Def.DefPARA_CATNM] = Const.Def.DefTYPENM_KAIHATU;
+                case Def.DefTYPE_KAIHATU:
+                    // 開発符号def.
+                    ViewState[Def.DefPARA_TYPE] = Def.DefTYPE_KAIHATU;
+                    ViewState[Def.DefPARA_CATNM] = Def.DefTYPENM_KAIHATU;
                     //pnlCategoryMst.Visible = true;
                     break;
-                case Const.Def.DefTYPE_GENSYO:
+                case Def.DefTYPE_GENSYO:
                     // 現象（分類）
-                    ViewState[Const.Def.DefPARA_TYPE] = Const.Def.DefTYPE_GENSYO;
-                    ViewState[Const.Def.DefPARA_CATNM] = Const.Def.DefTYPENM_GENSYO;
+                    ViewState[Def.DefPARA_TYPE] = Def.DefTYPE_GENSYO;
+                    ViewState[Def.DefPARA_CATNM] = Def.DefTYPENM_GENSYO;
                     //pnlCategoryMst.Visible = true;
                     break;
-                case Const.Def.DefTYPE_GENIN:
+                case Def.DefTYPE_GENIN:
                     // 原因（分類）
-                    ViewState[Const.Def.DefPARA_TYPE] = Const.Def.DefTYPE_GENIN;
-                    ViewState[Const.Def.DefPARA_CATNM] = Const.Def.DefTYPENM_GENIN;
+                    ViewState[Def.DefPARA_TYPE] = Def.DefTYPE_GENIN;
+                    ViewState[Def.DefPARA_CATNM] = Def.DefTYPENM_GENIN;
                     //pnlCategoryMst.Visible = true;
                     break;
-                case Const.Def.DefTYPE_SYAKATA:
+                case Def.DefTYPE_SYAKATA:
                     // 車型特殊
-                    ViewState[Const.Def.DefPARA_TYPE] = Const.Def.DefTYPE_SYAKATA;
-                    ViewState[Const.Def.DefPARA_CATNM] = Const.Def.DefTYPENM_SYAKATA;
+                    ViewState[Def.DefPARA_TYPE] = Def.DefTYPE_SYAKATA;
+                    ViewState[Def.DefPARA_CATNM] = Def.DefTYPENM_SYAKATA;
                     //pnlCategoryMst.Visible = true;
                     break;
-                case Const.Def.DefTYPE_SGENSYO:
+                case Def.DefTYPE_SGENSYO:
                     // 現象（制御系）
-                    ViewState[Const.Def.DefPARA_TYPE] = Const.Def.DefTYPE_SGENSYO;
-                    ViewState[Const.Def.DefPARA_CATNM] = Const.Def.DefTYPENM_SGENSYO;
+                    ViewState[Def.DefPARA_TYPE] = Def.DefTYPE_SGENSYO;
+                    ViewState[Def.DefPARA_CATNM] = Def.DefTYPENM_SGENSYO;
                     //pnlCategoryMst.Visible = true;
                     break;
-                case Const.Def.DefTYPE_SYOUIN:
+                case Def.DefTYPE_SYOUIN:
                     // 要因（制御系）
-                    ViewState[Const.Def.DefPARA_TYPE] = Const.Def.DefTYPE_SYOUIN;
-                    ViewState[Const.Def.DefPARA_CATNM] = Const.Def.DefTYPENM_SYOUIN;
+                    ViewState[Def.DefPARA_TYPE] = Def.DefTYPE_SYOUIN;
+                    ViewState[Def.DefPARA_CATNM] = Def.DefTYPENM_SYOUIN;
                     //pnlCategoryMst.Visible = true;
                     break;
-                case Const.Def.DefTYPE_EGTM:
+                case Def.DefTYPE_EGTM:
                     // EGTM形式
-                    ViewState[Const.Def.DefPARA_TYPE] = Const.Def.DefTYPE_EGTM;
-                    ViewState[Const.Def.DefPARA_CATNM] = Const.Def.DefTYPENM_EGTM;
+                    ViewState[Def.DefPARA_TYPE] = Def.DefTYPE_EGTM;
+                    ViewState[Def.DefPARA_CATNM] = Def.DefTYPENM_EGTM;
                     //pnlCategoryMst.Visible = true;
                     break;
-                case Const.Def.DefTYPE_TOP40:
+                case Def.DefTYPE_TOP40:
                     // TOP40
-                    ViewState[Const.Def.DefPARA_TYPE] = Const.Def.DefTYPE_TOP40;
-                    ViewState[Const.Def.DefPARA_CATNM] = Const.Def.DefTYPENM_TOP40;
+                    ViewState[Def.DefPARA_TYPE] = Def.DefTYPE_TOP40;
+                    ViewState[Def.DefPARA_CATNM] = Def.DefTYPENM_TOP40;
                     //pnlCategoryMst.Visible = true;
                     break;
-                case Const.Def.DefTYPE_RIPRO20:
+                case Def.DefTYPE_RIPRO20:
                     // リプロ20
-                    ViewState[Const.Def.DefPARA_TYPE] = Const.Def.DefTYPE_RIPRO20;
-                    ViewState[Const.Def.DefPARA_CATNM] = Const.Def.DefTYPENM_RIPRO20;
+                    ViewState[Def.DefPARA_TYPE] = Def.DefTYPE_RIPRO20;
+                    ViewState[Def.DefPARA_CATNM] = Def.DefTYPENM_RIPRO20;
                     //pnlCategoryMst.Visible = true;
                     break;
             }
@@ -1257,7 +813,7 @@ namespace OldTigerWeb
                         }
                     }
                     break;
-                case Const.Def.DefTYPE_PARTS:
+                case Def.DefTYPE_PARTS:
                     if (result.Rows.Count != 0)
                     {
                         // 部品・部位
@@ -1265,15 +821,15 @@ namespace OldTigerWeb
                         ckBoxSystem.DataBind();
                     }
                     break;
-                case Const.Def.DefTYPE_KAIHATU:
+                case Def.DefTYPE_KAIHATU:
                     if (result.Rows.Count != 0)
                     {
-                        // 開発符号Const.def.
+                        // 開発符号def.
                         ckBoxMst01.DataSource = result;
                         ckBoxMst01.DataBind();
                     }
                     break;
-                case Const.Def.DefTYPE_GENSYO:
+                case Def.DefTYPE_GENSYO:
                     if (result.Rows.Count != 0)
                     {
                         // 現象（分類）
@@ -1281,7 +837,7 @@ namespace OldTigerWeb
                         ckBoxMst02.DataBind();
                     }
                     break;
-                case Const.Def.DefTYPE_GENIN:
+                case Def.DefTYPE_GENIN:
                     if (result.Rows.Count != 0)
                     {
                         // 原因（分類）
@@ -1289,7 +845,7 @@ namespace OldTigerWeb
                         ckBoxMst03.DataBind();
                     }
                     break;
-                case Const.Def.DefTYPE_SYAKATA:
+                case Def.DefTYPE_SYAKATA:
                     if (result.Rows.Count != 0)
                     {
                         // 車型特殊
@@ -1297,7 +853,7 @@ namespace OldTigerWeb
                         ckBoxMst04.DataBind();
                     }
                     break;
-                case Const.Def.DefTYPE_SGENSYO:
+                case Def.DefTYPE_SGENSYO:
                     if (result.Rows.Count != 0)
                     {
                         // 現象（制御系）
@@ -1305,7 +861,7 @@ namespace OldTigerWeb
                         ckBoxMst05.DataBind();
                     }
                     break;
-                case Const.Def.DefTYPE_SYOUIN:
+                case Def.DefTYPE_SYOUIN:
                     if (result.Rows.Count != 0)
                     {
                         // 要因（制御系）
@@ -1313,7 +869,7 @@ namespace OldTigerWeb
                         ckBoxMst06.DataBind();
                     }
                     break;
-                case Const.Def.DefTYPE_EGTM:
+                case Def.DefTYPE_EGTM:
                     if (result.Rows.Count != 0)
                     {
                         // EGTM形式
@@ -1321,7 +877,7 @@ namespace OldTigerWeb
                         ckBoxMst07.DataBind();
                     }
                     break;
-                //case Const.Def.DefTYPE_TOP40:
+                //case Def.DefTYPE_TOP40:
                 //    if (result.Rows.Count != 0)
                 //    {
                 //        // TOP40
@@ -1329,7 +885,7 @@ namespace OldTigerWeb
                 //        ckBoxMst08.DataBind();
                 //    }
                 //    break;
-                //case Const.Def.DefTYPE_RIPRO20:
+                //case Def.DefTYPE_RIPRO20:
                 //    // リプロ20
                 //    ckBoxMst09.DataSource = result;
                 //    ckBoxMst09.DataBind();
@@ -1348,7 +904,7 @@ namespace OldTigerWeb
             Type cstype = this.GetType();
             ClientScriptManager cs = Page.ClientScript;
 
-            string strScr = cPageLogic.openWindow(Def.DefPageId_TroubleList);
+            string strScr = cPageLogic.getScriptForOpenWindow(Def.DefPageId_TroubleList);
 
             cs.RegisterStartupScript(cstype, "OpenSubWindow", strScr);
         }
@@ -1385,9 +941,9 @@ namespace OldTigerWeb
 
             //20170201 機能改善 START
             
-            ViewState[Const.Def.DefHISTORY] = dtHistory;
+            ViewState[Def.DefHISTORY] = dtHistory;
 
-            Session[Const.Def.DefHISTORY] = dtHistory;
+            Session[Def.DefHISTORY] = dtHistory;
             //20170201 機能改善 END
 
             // 最新の検索履歴5件のデータ取得
@@ -1506,11 +1062,12 @@ namespace OldTigerWeb
         /// </summary>
         protected void SessionClear()
         {
-            Session[Const.Def.DefPARA_TYPE] = null;     // 検索タイプ
-            Session[Const.Def.DefPARA_WORD] = null;     // 文字列検索
-            Session[Const.Def.DefPARA_TABLE] = null;            // Datatable
-            Session[Const.Def.DefPARA_CONDITION_FLG] = null;    // And・Or検索条件
-            Session[Const.Def.DefPARA_ARRY] = null;     // 各マスタor設計部署
+            Session[Def.DefPARA_TYPE] = null;     // 検索タイプ
+            Session[Def.DefPARA_WORD] = null;     // 文字列検索
+            Session[Def.DefPARA_TABLE] = null;            // Datatable
+            Session[Def.DefPARA_CONDITION_FLG] = null;    // And・Or検索条件
+            Session[Def.DefPARA_ARRY] = null;     // 各マスタor設計部署
+            Session[Def.DefPARA_CATEGORY_CONDITION_FLG] = null;    // カテゴリ用検索 And・Or検索条件 // 20170719 Add
         }
         #endregion
         //20170306 END k-ohmatsuzawa
@@ -1618,7 +1175,7 @@ namespace OldTigerWeb
                 //20170313 START k-ohmatsuzawa
                 SessionClear();
                 //20170313 END k-ohmatsuzawa
-                var dt = (DataTable)Session[Const.Def.DefHISTORY];
+                var dt = (DataTable)Session[Def.DefHISTORY];
 
                 var i = int.Parse(e.CommandName);
 
@@ -1628,33 +1185,25 @@ namespace OldTigerWeb
                 if (dt.Rows[i]["CONDITION_FLGM"].Equals("AND"))
                 //20170313 END k-ohmatsuzawa
                 {
-                    Session[Const.Def.DefPARA_CONDITION_FLG] = Const.Def.DefTYPE_AND;
+                    Session[Def.DefPARA_CONDITION_FLG] = Def.DefTYPE_AND;
                 }
                 else
                 {
-                    Session[Const.Def.DefPARA_CONDITION_FLG] = Const.Def.DefTYPE_OR;
+                    Session[Def.DefPARA_CONDITION_FLG] = Def.DefTYPE_OR;
                 }
-
-                //20170304 START k-ohmatsuzawa TOP10検索履歴の表示修正とカテゴリ履歴検索時の不具合を修正
-                //Session[Const.Def.DefPARA_TYPE] = Const.Def.DefTYPE_WORD;   // 文字列検索
-                //Session[Const.Def.DefPARA_WORD] = dt.Rows[i]["SEARCH_WORD"].ToString();
-
-                //// カテゴリ設定（履歴用）
-                //CreateHistoryPrm(i);
-                //createSearchParam(true, i);
 
                 // 検索内容設定
                 if (dt.Rows[i]["SEARCH_WORD"].ToString() != "")
                 {
                     // キーワード検索設定
-                    Session[Const.Def.DefPARA_TYPE] = Const.Def.DefTYPE_WORD;   // 文字列検索
-                    Session[Const.Def.DefPARA_WORD] = dt.Rows[i]["SEARCH_WORD"].ToString();
+                    Session[Def.DefPARA_TYPE] = Def.DefTYPE_WORD;   // 文字列検索
+                    Session[Def.DefPARA_WORD] = dt.Rows[i]["SEARCH_WORD"].ToString();
                 }
                 else if(dt.Rows[i]["SEARCH_TOP10"].ToString() != "")
                 {
                     // TOP10検索設定
-                    Session[Const.Def.DefPARA_TYPE] = Const.Def.DefTYPE_TOP10;   // TOP10検索
-                    Session[Const.Def.DefPARA_WORD] = dt.Rows[i]["SEARCH_TOP10"].ToString();
+                    Session[Def.DefPARA_TYPE] = Def.DefTYPE_TOP10;   // TOP10検索
+                    Session[Def.DefPARA_WORD] = dt.Rows[i]["SEARCH_TOP10"].ToString();
                 }
                 // カテゴリ検索設定（履歴用）
                 CreateHistoryPrm(i);
@@ -1685,7 +1234,7 @@ namespace OldTigerWeb
             {
                 txtSearch.BackColor = System.Drawing.ColorTranslator.FromHtml("#99FF99");
 
-                ViewState[Const.Def.DefPARA_CONDITION_FLG] = Const.Def.DefTYPE_OR;
+                ViewState[Def.DefPARA_CONDITION_FLG] = Def.DefTYPE_OR;
 
 
             }
@@ -1710,7 +1259,7 @@ namespace OldTigerWeb
             {
                 txtSearch.BackColor = System.Drawing.ColorTranslator.FromHtml("#66FFFF");
 
-                ViewState[Const.Def.DefPARA_CONDITION_FLG] = Const.Def.DefTYPE_AND;
+                ViewState[Def.DefPARA_CONDITION_FLG] = Def.DefTYPE_AND;
 
 
             }

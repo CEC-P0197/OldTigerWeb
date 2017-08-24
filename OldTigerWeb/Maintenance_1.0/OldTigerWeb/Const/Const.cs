@@ -36,6 +36,7 @@ namespace OldTigerWeb.Const
         public const string DefPARA_TABS = "Tabs";       // タブタイプ 
         public const string DefPARA_CONDITION_FLG = "CONDITION_FLG";       // And・Or検索条件 
         public const string DefPARA_TABLE = "TABLE";       // Datatable
+        public const string DefPARA_CATEGORY_CONDITION_FLG = "CATEGORY_CONDITION_FLG"; // カテゴリ検索用 And・Or検索条件 // 20170719 Add
         //20170201 機能改善 START
         public const string DefPARA_TROUBLELISTBY = "TROUBLELISTBY";        // トラブルリスト（BY）
         public const string DefPARA_TROUBLELISTPU = "TROUBLELISTPU";        // トラブルリスト（PU）
@@ -60,8 +61,14 @@ namespace OldTigerWeb.Const
         // AND/OR区分
         public const string DefTYPE_AND = "1";             // 1:AND
         public const string DefTYPE_OR = "2";              // 2:OR
-        
+
+        // 過去トラ検索結果 カテゴリ検索 // 20170725 Add
+        public const string DefTYPE_NEXT = "0";             // 0:一番目ではない // 20170725 Add
+        public const string DefTYPE_FIRST = "1";            // 1:一番目 // 20170725 Add
+
         // 検索タイプ
+        public const string DefTYPE_CATEGORY_AND = "01";    // 01;カテゴリAND検索 // 20170721 Add
+        public const string DefTYPE_CATEGORY_OR = "02";     // 02;カテゴリOR検索 // 20170721 Add
         public const string DefTYPE_WORD    = "1";          // 1;文字列検索
         public const string DefTYPE_TOP10   = "2";          // 2:TOP10検索
         public const string DefTYPE_BUSYO   = "3";          // 3:設計部署検索

@@ -38,13 +38,13 @@ namespace OldTigerWeb
                 bRet = bcom.CheckUser();
                 if (bRet)
                 {
-                    arrayMessage.Add(Const.Def.DefMsg_USERERR);
+                    arrayMessage.Add(Def.DefMsg_USERERR);
                     bcom.ShowMessage(csType, csManager, arrayMessage);
                     return;
                 }
 
                 // ファイルパス取得
-                string prm = Request.QueryString.Get(Const.Def.DefPDF_FileNo).Trim().Replace("<>","\\");
+                string prm = Request.QueryString.Get(Def.DefPDF_FileNo).Trim().Replace("<>","\\");
                 filePath = System.Web.Configuration.WebConfigurationManager.AppSettings["LinkForder"] + prm;
                 string[] strTitle = filePath.Split('\\');
                 title = strTitle[strTitle.Length - 1].Trim();
@@ -52,7 +52,7 @@ namespace OldTigerWeb
                 // ファイル存在チェック
                 if (!File.Exists(filePath))
                 {
-                    arrayMessage.Add(Const.Def.DefMsg_FILE_NOTFOUND);
+                    arrayMessage.Add(Def.DefMsg_FILE_NOTFOUND);
                     bcom.ShowMessage(csType, csManager, arrayMessage);
                     return;
                 }

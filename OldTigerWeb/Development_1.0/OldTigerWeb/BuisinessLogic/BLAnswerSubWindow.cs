@@ -18,7 +18,7 @@ namespace OldTigerWeb.BuisinessLogic
         /// <param name="by_pu">BYPU区分</param>
         /// <param name="event_no">イベントNO</param>
         /// <returns>展開区分</returns>
-        public DataTable GetTenkaiKbn(String FMC_mc, String kaihatu_id, String by_pu, String event_no)
+        public DataTable getTenkaiKbn(String FMC_mc, String kaihatu_id, String by_pu, String event_no)
         {
             DataTable result = null;
 
@@ -26,7 +26,7 @@ namespace OldTigerWeb.BuisinessLogic
             DataAccess.DAAnswerSubWindow dac = new DataAccess.DAAnswerSubWindow();
 
             // ＳＱＬ実行
-            result = dac.SelectTenkaiKbn(FMC_mc, kaihatu_id, by_pu, event_no);
+            result = dac.selectTenkaiKbn(FMC_mc, kaihatu_id, by_pu, event_no);
 
             return result;
         }

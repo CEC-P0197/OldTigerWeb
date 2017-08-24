@@ -47,7 +47,7 @@ namespace OldTigerWeb
                 bRet = bcom.CheckUser();
                 if (bRet)
                 {
-                    arrayMessage.Add(Const.Def.DefMsg_USERERR);
+                    arrayMessage.Add(Def.DefMsg_USERERR);
                     bcom.ShowMessage(csType, csManager, arrayMessage);
                     return;
                 }
@@ -85,7 +85,7 @@ namespace OldTigerWeb
                 // ファイル存在チェック
                 if (!File.Exists(filePath))
                 {
-                    arrayMessage.Add(Const.Def.DefMsg_FILE_NOTFOUND);
+                    arrayMessage.Add(Def.DefMsg_FILE_NOTFOUND);
                     bcom.ShowMessage(csType, csManager, arrayMessage);
                     return;
                 }

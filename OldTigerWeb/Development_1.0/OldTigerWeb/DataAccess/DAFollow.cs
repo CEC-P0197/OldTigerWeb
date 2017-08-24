@@ -52,7 +52,7 @@ namespace OldTigerWeb.DataAccess
                 cmd.CommandText += "WHERE a.FMC_mc = '" + FMC_mc + "' AND ";
 
                 // 現在情報取得
-                if (Type == Const.Def.DefTYPE_Now)
+                if (Type == Def.DefTYPE_Now)
                 {
                     cmd.CommandText += "CONVERT(VARCHAR, a.YMD_KAISI,111) <= CONVERT(VARCHAR,CURRENT_TIMESTAMP,111) AND ";
                     cmd.CommandText += "CONVERT(VARCHAR, a.YMD_END,111) >= CONVERT(VARCHAR,CURRENT_TIMESTAMP,111) ";
