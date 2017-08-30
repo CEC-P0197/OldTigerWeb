@@ -13,7 +13,7 @@ public class TestSettings
     // 外部ファイル・フォルダパス
     //************************************************
     /// <summary>
-    /// EXCELテンプレートファイルパス
+    /// EXCELテンプレートファイルパス（テスト）
     /// </summary>
     public const string TEST_FILEPATH_EXCEL_TEMPLATE = "D:/Source/SUBARU/OldTigerWeb/OldTigerWeb/Development_1.0/OldTigerWeb/App_Data/template/Kakotora_Template.xltx";
     /// <summary>

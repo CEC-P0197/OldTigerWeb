@@ -67,6 +67,7 @@
     <Compile Include="DataAccess\DAMitakaDataTests.cs" />
     <Compile Include="DataAccess\TestDAMitakaData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestSettings\Test.cs" />
     <Compile Include="TestSettings\TestSettings.cs" />
   </ItemGroup>
   <ItemGroup>
